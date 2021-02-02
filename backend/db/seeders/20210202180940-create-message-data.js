@@ -11,7 +11,16 @@ module.exports = {
         name: 'John Doe',
         isBetaMember: false
       }], {});
-    */
+    */return queryInterface.bulkInsert(
+      "Messages",
+      [
+        {
+          name: "John Doe",
+          isBetaMember: false,
+        },
+      ],
+      {}
+    );
   },
 
   down: (queryInterface, Sequelize) => {
@@ -22,5 +31,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
+   return queryInterface.bulkDelete("Messages", null, {});
   }
 };

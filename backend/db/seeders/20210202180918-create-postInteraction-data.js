@@ -608,7 +608,182 @@ module.exports = {
         {
           agree: Math.random() < 0.6,
           userId: 15,
+          postId: 9,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 15,
+          postId: 11,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 15,
+          postId: 12,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 15,
+          postId: 15,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 15,
+          postId: 18,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 15,
+          postId: 25,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 15,
+          postId: 30,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 1,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 2,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 4,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 6,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 8,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 11,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 13,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 16,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 19,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 20,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 16,
+          postId: 26,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 17,
+          postId: 2,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 17,
+          postId: 15,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 17,
+          postId: 20,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 17,
+          postId: 29,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 18,
           postId: 3,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 18,
+          postId: 6,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 18,
+          postId: 12,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 18,
+          postId: 16,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 18,
+          postId: 22,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 18,
+          postId: 25,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 19,
+          postId: 6,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 19,
+          postId: 16,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 20,
+          postId: 2,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 20,
+          postId: 5,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 20,
+          postId: 7,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 20,
+          postId: 12,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 20,
+          postId: 18,
+        },
+        {
+          agree: Math.random() < 0.6,
+          userId: 20,
+          postId: 22,
         },
       ],
       {}
