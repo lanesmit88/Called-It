@@ -3,6 +3,7 @@ import Post from "../Post";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeedData } from "../../store/feed";
 import { fetchAgreeData } from "../../store/agree";
+import { fetchUsersData } from "../../store/users";
 import { useEffect } from "react";
 import "./index.css";
 
@@ -16,13 +17,16 @@ function Feed() {
     return reduxState.feed;
   });
 
-
   useEffect(() => {
     dispatch(fetchFeedData(userId));
   }, []);
 
   useEffect(() => {
     dispatch(fetchAgreeData());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchUsersData());
   }, []);
 
   if (!feed) {
