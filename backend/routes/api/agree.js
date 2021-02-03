@@ -6,9 +6,7 @@ const { Post, PostInteraction } = require("../../db/models");
 router.get(
   "/",
   asyncHandler(async (req, res, next) => {
-    postId = req.params.postId;
     const agrees = await PostInteraction.findAll();
-
     res.json(agrees);
   })
 );
