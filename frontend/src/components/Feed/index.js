@@ -2,37 +2,46 @@ import React from "react";
 import Post from "../Post";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeedData } from "../../store/feed";
+import { fetchAgreeData } from "../../store/agree";
 import { useEffect } from "react";
-import "./index.css"
+import "./index.css";
 
 function Feed() {
   const dispatch = useDispatch();
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-  const feedData = useSelector((reduxState) => {
+
+  const feed = useSelector((reduxState) => {
     return reduxState.feed;
   });
 
+
   useEffect(() => {
-    dispatch(fetchFeedData(1));
+    dispatch(fetchFeedData(userId));
   }, []);
 
-  if (!feedData) {
+  useEffect(() => {
+    dispatch(fetchAgreeData());
+  }, []);
+
+  if (!feed) {
     return null;
   }
+
   return (
     <div id="feedContainer">
-      {feedData &&
-        feedData.map((post) => {
+      {feed &&
+        feed.map((post) => {
           return (
             <Post
               key={post.id}
+              postId={post.id}
               text={post.text}
-              createdAt={post.createdAt}
-              id={post.id}
-              updatedAt={post.updatedAt}
+              dueDate={post.dueDate}
               userId={post.userId}
+              createdAt={post.createdAt}
+              updatedAt={post.updatedAt}
             />
           );
         })}

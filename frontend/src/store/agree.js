@@ -5,9 +5,9 @@ const agreeData = (agree) => ({
   agree: agree,
 });
 
-export const fetchAgreeData = (postId) => {
+export const fetchAgreeData = () => {
   return async (dispatch) => {
-    const res = await fetch(`/api/agree/${postId}`);
+    const res = await fetch(`/api/agree/`);
     const resData = await res.json();
     dispatch(agreeData(resData));
   };
