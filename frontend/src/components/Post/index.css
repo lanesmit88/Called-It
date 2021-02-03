@@ -1,5 +1,15 @@
-.postContainer{
-    width: 100%;
-    background-color: silver;
-    margin-bottom: 32px;
+.postContainer {
+  width: 100%;
+  background-color: silver;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.postInteraction {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 30px;
 }

@@ -1,7 +1,9 @@
+import "./index.css";
+
 function Disagree({count}) {
   return (
     <>
-      <h3>{count}</h3>
+      <h3 id="postDisagrees">{count}</h3>
     </>
   );
 }

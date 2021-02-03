@@ -1,7 +1,9 @@
+import "./index.css"
+
 function Agree({count}) {
   return (
     <>
-      <h3>{count}</h3>
+      <h3 id="postAgrees">{count}</h3>
     </>
   );
 }
