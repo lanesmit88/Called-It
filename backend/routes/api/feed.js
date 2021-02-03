@@ -10,18 +10,21 @@ router.get(
     const followed = await Follow.findAll({ where: { followerId: userId } });
     stuff = [];
     followed.forEach((follow) => {
+      
       temp = follow.dataValues.followedId;
+      
       stuff.push(temp);
     });
 
     let feed = [];
-
+    
     await Promise.all(stuff.map(async (id) => {
+
       const temp = await Post.findAll({ where: { userId: id } });
-      feed.push(temp);
+      feed.push(...temp);
     }));
-    console.log("+++++++++++++++++++++++", feed)
-    res.json({ feed });
+
+    res.json([...feed]);
   })
 );
 
