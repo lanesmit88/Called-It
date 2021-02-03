@@ -13,7 +13,7 @@ module.exports = {
       }], {});
     */
    return queryInterface.bulkInsert(
-     "follows",
+     "Follows",
      [
        {
          followedId: 2,
