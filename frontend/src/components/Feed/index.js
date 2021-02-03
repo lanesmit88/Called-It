@@ -3,6 +3,7 @@ import Post from "../Post";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeedData } from "../../store/feed";
 import { useEffect } from "react";
+import "./index.css"
 
 function Feed() {
   const dispatch = useDispatch();
@@ -12,31 +13,29 @@ function Feed() {
   const feedData = useSelector((reduxState) => {
     return reduxState.feed;
   });
-  
+
   useEffect(() => {
-    dispatch(fetchFeedData(userId));
+    dispatch(fetchFeedData(1));
   }, []);
 
+  if (!feedData) {
+    return null;
+  }
   return (
-    <div>
-      {/* {feedData && feedData.map((post) => {
-        return (
-          <Post
-            key={post.id}
-            caption={post.caption}
-            comment={post.comment}
-            createdAt={post.createdAt}
-            hashtags={post.hashtags}
-            id={post.id}
-            likes={post.likes}
-            location={post.location}
-            photoData={post.photoData}
-            updatedAt={post.updatedAt}
-            userId={post.userId}
-          />
-        );
-      })} */}
-
+    <div id="feedContainer">
+      {feedData &&
+        feedData.map((post) => {
+          return (
+            <Post
+              key={post.id}
+              text={post.text}
+              createdAt={post.createdAt}
+              id={post.id}
+              updatedAt={post.updatedAt}
+              userId={post.userId}
+            />
+          );
+        })}
     </div>
   );
 }
