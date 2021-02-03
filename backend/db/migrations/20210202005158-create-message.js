@@ -23,8 +23,9 @@ module.exports = {
         references: { model: "Users", key: "id" },
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
