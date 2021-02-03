@@ -3,7 +3,8 @@ import "./index.css";
 import { fetchAgreeData } from "../../store/agree";
 import { useSelector, useDispatch } from "react-redux";
 
-import Interaction from "../Interaction";
+import Agree from "../Agree";
+import Disagree from "../Disagree";
 
 function Post({ text, postId }) {
   const agrees = useSelector((reduxState) => {
@@ -35,21 +36,10 @@ function Post({ text, postId }) {
   return (
     <div className="postContainer">
       <h1>{text}</h1>
-
-      {interactions &&
-        interactions.map((interaction) => {
-          return (
-            <Interaction
-              key={interaction.id}
-              interactionId={interaction.id}
-              agree={interaction.agree}
-              userId={interaction.userId}
-              postId={interaction.postId}
-              createdAt={interaction.createdAt}
-              updatedAt={interaction.updatedAt}
-            />
-          );
-        })}
+      <>
+        {agreeCount && <Agree count={agreeCount} />}
+        {disagreeCount && <Disagree count={disagreeCount} />}
+      </>
     </div>
   );
 }
