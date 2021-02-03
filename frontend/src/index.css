@@ -1,4 +1,13 @@
 /* TODO Add site wide styles */
-body {
+body, html {
     margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: crimson;
 }
