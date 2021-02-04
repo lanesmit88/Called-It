@@ -3,14 +3,18 @@ import thunk from 'redux-thunk';
 import session from './session'
 import feedReducer from "./feed";
 import agreeReducer from './agree';
+import userReducer from './user';
 import usersReducer from './users';
+import userPostsReducer from './userPosts';
 
 
 const rootReducer = combineReducers({
   session,
   feed: feedReducer,
   agree: agreeReducer,
-  users: usersReducer
+  user: userReducer,
+  userPosts: userPostsReducer,
+  users: usersReducer,
 });
 
 let enhancer;

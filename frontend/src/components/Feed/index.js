@@ -18,7 +18,7 @@ function Feed() {
   });
 
   const users = useSelector((reduxState) => {
-    return reduxState;
+    return reduxState.users;
   });
 
   useEffect(() => {
@@ -33,26 +33,15 @@ function Feed() {
     dispatch(fetchUsersData());
   }, []);
 
-  if (!feed) {
+  if (!users) {
     return null;
   }
-
+console.log(users)
   return (
     <div id="feedContainer">
-      {feed &&
-        feed.map((post) => {
-          return (
-            <Post
-              key={post.id}
-              postId={post.id}
-              text={post.text}
-              dueDate={post.dueDate}
-              userId={post.userId}
-              createdAt={post.createdAt}
-              updatedAt={post.updatedAt}
-            />
-          );
-        })}
+      {feed.map((post) => {
+        return <Post key={post.id} post={post} users={users} />;
+      })}
     </div>
   );
 }

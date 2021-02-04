@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
-const { Post, Follow } = require("../../db/models");
+const { Post, Follow, PostInteraction, User } = require("../../db/models");
 
 router.get(
   "/:id",
@@ -20,7 +20,7 @@ router.get(
     
     await Promise.all(stuff.map(async (id) => {
 
-      const temp = await Post.findAll({ where: { userId: id } });
+      const temp = await Post.findAll({ where: { userId: id }, include:  [PostInteraction, User]});
       feed.push(...temp);
     }));
 
