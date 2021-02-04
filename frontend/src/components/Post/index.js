@@ -7,7 +7,7 @@ import Agree from "../Agree";
 import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
 
-function Post({ text, postId, userId }) {
+function Post({ text, postId, userId, dueDate }) {
   const agrees = useSelector((reduxState) => {
     return reduxState.agree;
   });
@@ -42,7 +42,9 @@ function Post({ text, postId, userId }) {
   if (!userInfo) {
     return null;
   }
-  console.log("++++++++++++++++++++++++++++++++++", userInfo);
+
+  const date = new Date(dueDate);
+  console.log(date);
   return (
     <div className="postContainer">
       {userInfo && (
@@ -53,8 +55,11 @@ function Post({ text, postId, userId }) {
       )}
       <h1>{text}</h1>
       <div className="postInteraction">
-        {agreeCount && <Agree count={agreeCount} />}
-        {disagreeCount && <Disagree count={disagreeCount} />}
+        <h3>By: {date.toDateString()}</h3>
+        <div id="agrees">
+          {agreeCount ? <Agree count={agreeCount} /> : <h3>0</h3>}
+          {disagreeCount ? <Disagree count={disagreeCount} /> : <h3>0</h3>}
+        </div>
       </div>
     </div>
   );
