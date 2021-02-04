@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Post } = require("../../db/models");
 
 const router = express.Router();
 
@@ -37,12 +37,12 @@ router.get(
   "/:id",
   asyncHandler(async (req, res, next) => {
     userId = req.params.id;
-    console.log("--------------------", userId)
     const user = await User.findOne({ where: {id: userId }});
-    console.log(user)
-    res.json(user);
+    const posts = await Post.findAll({where: {userId: userId}})
+    res.json({posts, user});
   })
 );
+
 
 // Sign up
 router.post(

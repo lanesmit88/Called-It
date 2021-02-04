@@ -8,7 +8,6 @@ function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  console.log(id);
   const user = useSelector((reduxState) => {
     return reduxState.user;
   });
@@ -30,10 +29,11 @@ function Profile() {
   //   return null;
   // }
   return (
-    <>
+    <div id="profile-container">
       {user && <h1>{user.username}</h1>}
-      {user && <img src={user.profilePhotoUrl}></img>}
-    </>
+      {user && <img id="profPhoto"src={user.profilePhotoUrl}></img>}
+      {user && <p>{user.bio}</p>}
+    </div>
   );
 }
 

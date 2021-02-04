@@ -4,7 +4,7 @@ function UserInfo({ profPhoto, username }) {
   return (
     <div id="postUserInfo">
       <img
-        id="profPhoto"
+        id="profPhotoPost"
         src={profPhoto}
         alt="Not Found"
       ></img>
