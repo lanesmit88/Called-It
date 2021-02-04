@@ -1,4 +1,4 @@
-const USERS_DATA = "users/usersData";
+const USER_DATA = "user/userData";
 
 const userData = (user) => ({
   type: USER_DATA,
@@ -7,7 +7,7 @@ const userData = (user) => ({
 
 export const fetchUserData = (userId) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/user/${userId}`);
+    const res = await fetch(`/api/users/${userId}`);
     const resData = await res.json();
     dispatch(userData(resData));
   };

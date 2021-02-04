@@ -1,38 +1,34 @@
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsersData } from "../../store/users";
+import { fetchUserData } from "../../store/user";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [user, setUser] = useState(null);
 
   console.log(id);
-  const users = useSelector((reduxState) => {
-    return reduxState.users;
+  const user = useSelector((reduxState) => {
+    return reduxState.user;
   });
 
   useEffect(() => {
-    dispatch(fetchUsersData());
+    dispatch(fetchUserData(parseInt(id)))
   }, []);
 
-  useEffect(() => {
-    function userFinder(val) {
-      console.log(val.id);
-      return val.id == id;
-    }
-    let userInfo = users.find(userFinder);
-    console.log(userInfo)
-    setUser(userInfo)
-  }, [users, id]);
+  // useEffect(() => {
+  //   function userFinder(val) {
+  //     console.log(val.id);
+  //     return val.id == id;
+  //   }
+  //   let userInfo = users.find(userFinder);
+  //   setUser(userInfo)
+  // }, [users, id]);
 
-  if (!user) {
-    return null;
-  }
-
-  console.log("---------------", user)
+  // if (!user) {
+  //   return null;
+  // }
   return (
     <>
       {user && <h1>{user.username}</h1>}
