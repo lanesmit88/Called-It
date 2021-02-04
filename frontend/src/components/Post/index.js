@@ -26,7 +26,7 @@ function Post({ post }) {
   // console.log(users)
   return (
     <div className="postContainer">
-      {<UserInfo profPhoto={profPhoto} username={username} />}
+      {<UserInfo profPhoto={profPhoto} username={username} userId={userId} />}
       <h1>{text}</h1>
       <div className="postInteraction">
         <h3>By: {date.toDateString()}</h3>

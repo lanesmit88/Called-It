@@ -1,6 +1,6 @@
 import "./index.css";
 
-function UserInfo({ profPhoto, username }) {
+function UserInfo({ profPhoto, username, userId }) {
   return (
     <div id="postUserInfo">
       <img
@@ -8,7 +8,7 @@ function UserInfo({ profPhoto, username }) {
         src={profPhoto}
         alt="Not Found"
       ></img>
-      <h5>{username}</h5>
+      <a href={`/profile/${userId}`} >{username}</a>
     </div>
   );
 }
