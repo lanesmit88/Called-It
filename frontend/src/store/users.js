@@ -13,7 +13,7 @@ export const fetchUsersData = () => {
   };
 };
 
-const initialState = { users: [] };
+const initialState = [];
 
 function usersReducer(state = initialState, action) {
   let newState;
