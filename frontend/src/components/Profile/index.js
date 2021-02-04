@@ -54,7 +54,7 @@ function Profile() {
               </div>
             </PostModal>
           )} */}
-          <CreatePost />
+          <CreatePost userId={id}/>
         </div>
         <div>
           {posts &&
