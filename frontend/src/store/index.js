@@ -5,6 +5,7 @@ import feedReducer from "./feed";
 import agreeReducer from './agree';
 import userReducer from './user';
 import usersReducer from './users';
+import usersPostsReducer from './users';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   feed: feedReducer,
   agree: agreeReducer,
   user: userReducer,
-  users: usersReducer
+  userPosts: usersPostsReducer,
+  users: usersReducer,
 });
 
 let enhancer;
