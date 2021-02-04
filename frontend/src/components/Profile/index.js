@@ -2,6 +2,7 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserData } from "../../store/user";
 import { fetchUserPostsData } from "../../store/userPosts";
+import { fetchAgreeData } from "../../store/agree";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "../Post";
@@ -13,7 +14,7 @@ function Profile() {
   // const { postsState, setPostsState } = useState(null);
   
   const posts = useSelector((reduxState) => {
-    return reduxState.posts;
+    return reduxState.userPosts;
   });
 
   const user = useSelector((reduxState) => {
@@ -29,6 +30,10 @@ function Profile() {
     dispatch(fetchUserPostsData(id));
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchAgreeData());
+  }, []);
+
   // useEffect(() => {geting 
 
   //   setUserState(userInfo)
@@ -37,11 +42,7 @@ function Profile() {
   if (!user) {
     return null;
   }
-
-  if (!posts) {
-    return null;
-  }
-
+console.log(posts)
   return (
     <div>
       <div id="profile-container">
@@ -54,12 +55,7 @@ function Profile() {
           return (
             <Post
               key={post.id}
-              postId={post.id}
-              text={post.text}
-              dueDate={post.dueDate}
-              userId={post.userId}
-              createdAt={post.createdAt}
-              updatedAt={post.updatedAt}
+              post={post}
             />
           );
         })}

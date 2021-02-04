@@ -7,52 +7,26 @@ import Agree from "../Agree";
 import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
 
-function Post({ text, postId, userId, dueDate }) {
-  const agrees = useSelector((reduxState) => {
-    return reduxState.agree;
-  });
-  const users = useSelector((reduxState) => {
-    return reduxState.users;
-  });
+function Post({ post }) {
+  const { text, postId, userId, dueDate, PostInteractions, User: { profilePhotoUrl: profPhoto, username } } = post;
 
-  let interactions = agrees.filter((temp) => {
-    return temp.postId === postId;
-  });
-
-  if (!interactions) {
-    return null;
-  }
-
-  let interactionAgree = interactions.filter((temp) => {
+  let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
   });
-  let interactionDisagree = interactions.filter((temp) => {
+  let interactionDisagree = PostInteractions.filter((temp) => {
     return temp.agree === false;
   });
   let agreeCount = interactionAgree.length;
   let disagreeCount = interactionDisagree.length;
 
-  function userFinder(val) {
-    return val.id === userId;
-  }
-  if (!users) {
-    return null;
-  }
-  let userInfo = users.find(userFinder);
-  if (!userInfo) {
-    return null;
-  }
-
   const date = new Date(dueDate);
 
+
+  // console.log(userInfo)
+  // console.log(users)
   return (
     <div className="postContainer">
-      {userInfo && (
-        <UserInfo
-          profPhoto={userInfo.profilePhotoUrl}
-          username={userInfo.username}
-        />
-      )}
+      {<UserInfo profPhoto={profPhoto} username={username} />}
       <h1>{text}</h1>
       <div className="postInteraction">
         <h3>By: {date.toDateString()}</h3>

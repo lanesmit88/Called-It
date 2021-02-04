@@ -8,19 +8,18 @@ const userData = (user) => ({
 export const fetchUserData = (userId) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${userId}`);
-    const resData = await res.json();
-    dispatch(userData(resData));
+    const {user} = await res.json();
+    dispatch(userData(user));
   };
 };
 
-const initialState = { posts: [], user: [] };
+const initialState = {};
 
 function userReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case USER_DATA:
-      newState = action.user;
-      return newState;
+      return action.user;
     default:
       return state;
   }
