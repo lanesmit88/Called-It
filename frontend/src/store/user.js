@@ -13,7 +13,7 @@ export const fetchUserData = (userId) => {
   };
 };
 
-const initialState = [];
+const initialState = { posts: [], user: [] };
 
 function userReducer(state = initialState, action) {
   let newState;

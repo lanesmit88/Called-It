@@ -37,13 +37,19 @@ router.get(
   "/:id",
   asyncHandler(async (req, res, next) => {
     userId = req.params.id;
-    const user = await User.findOne({ where: {id: userId }});
-    const posts = await Post.findAll({where: {userId: userId}})
-    res.json({posts, user});
+    const user = await User.findOne({ where: { id: userId } });
+    res.json({ user });
   })
 );
 
-
+router.get(
+  "/:id/posts",
+  asyncHandler(async (req, res, next) => {
+    userId = req.params.id;
+    const posts = await Post.findAll({ where: { userId: userId } });
+    res.json({ posts });
+  })
+);
 // Sign up
 router.post(
   "/",
