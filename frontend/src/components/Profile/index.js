@@ -1,6 +1,7 @@
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserData } from "../../store/user";
+import { fetchUserPostsData } from "../../store/userPosts";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "../Post";
@@ -8,33 +9,34 @@ import Post from "../Post";
 function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  // const { userState, setUserState } = useState(null);
+  // const { postsState, setPostsState } = useState(null);
+  
   const posts = useSelector((reduxState) => {
-    return reduxState.user.posts;
+    return reduxState.posts;
   });
 
   const user = useSelector((reduxState) => {
-    return reduxState.user.user;
+    return reduxState.user;
   });
 
-  console.log("big", posts);
 
   useEffect(() => {
-    dispatch(fetchUserData(parseInt(id)));
+    dispatch(fetchUserData(id));
   }, []);
 
-  // useEffect(() => {
-  //   function userFinder(val) {
-  //     console.log(val.id);
-  //     return val.id == id;
-  //   }
-  //   let userInfo = users.find(userFinder);
-  //   setUser(userInfo)
+  useEffect(() => {
+    dispatch(fetchUserPostsData(id));
+  }, []);
+
+  // useEffect(() => {geting 
+
+  //   setUserState(userInfo)
   // }, [users, id]);
 
-  // if (!user) {
-  //   return null;
-  // }
+  if (!user) {
+    return null;
+  }
 
   if (!posts) {
     return null;
@@ -48,7 +50,7 @@ function Profile() {
         {user && <p>{user.bio}</p>}
       </div>
       <div>
-        {posts.map((post) => {
+        {posts && posts.map((post) => {
           return (
             <Post
               key={post.id}
