@@ -33,6 +33,17 @@ router.get(
   })
 );
 
+router.get(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    userId = req.params.id;
+    console.log("--------------------", userId)
+    const user = await User.findOne({ where: {id: userId }});
+    console.log(user)
+    res.json(user);
+  })
+);
+
 // Sign up
 router.post(
   "/",
