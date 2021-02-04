@@ -5,14 +5,15 @@ import { fetchUserPostsData } from "../../store/userPosts";
 import { fetchAgreeData } from "../../store/agree";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PostModal from "../../context/PostModal"
 import Post from "../Post";
+// import CreatePost from "../CreatePost";
+import CreatePost from "../CreatePost/CreatePost";
 
 function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const { userState, setUserState } = useState(null);
-  // const { postsState, setPostsState } = useState(null);
-  
+  const [showModal, setShowModal] = useState(false);
   const posts = useSelector((reduxState) => {
     return reduxState.userPosts;
   });
@@ -20,7 +21,6 @@ function Profile() {
   const user = useSelector((reduxState) => {
     return reduxState.user;
   });
-
 
   useEffect(() => {
     dispatch(fetchUserData(id));
@@ -34,31 +34,34 @@ function Profile() {
     dispatch(fetchAgreeData());
   }, []);
 
-  // useEffect(() => {geting 
-
-  //   setUserState(userInfo)
-  // }, [users, id]);
-
   if (!user) {
     return null;
   }
-console.log(posts)
   return (
-    <div>
+    <div id="profile-page-container">
       <div id="profile-container">
         {user && <h1>{user.username}</h1>}
         {user && <img id="profPhoto" src={user.profilePhotoUrl}></img>}
         {user && <p>{user.bio}</p>}
       </div>
-      <div>
-        {posts && posts.map((post) => {
-          return (
-            <Post
-              key={post.id}
-              post={post}
-            />
-          );
-        })}
+      <div id="profile-posts">
+        <div>
+          {/* <p onClick={() => setShowModal(true)}>Make a Post</p>
+          {showModal && (
+            <PostModal onClose={() => setShowModal(false)}>
+              <div id="modal-div">
+                <CreatePost />
+              </div>
+            </PostModal>
+          )} */}
+          <CreatePost />
+        </div>
+        <div>
+          {posts &&
+            posts.map((post) => {
+              return <Post key={post.id} post={post} />;
+            })}
+        </div>
       </div>
     </div>
   );
