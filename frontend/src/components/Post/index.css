@@ -11,6 +11,11 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  flex-direction: column;
   align-items: center;
   padding-right: 30px;
+}
+
+#agrees{
+  display: flex;
 }
