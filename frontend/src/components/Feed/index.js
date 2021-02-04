@@ -17,9 +17,9 @@ function Feed() {
     return reduxState.feed;
   });
 
-  const users = useSelector((reduxState) => {
-    return reduxState;
-  });
+  // const users = useSelector((reduxState) => {
+  //   return reduxState;
+  // });
 
   useEffect(() => {
     dispatch(fetchFeedData(userId));

@@ -44,7 +44,7 @@ function Post({ text, postId, userId, dueDate }) {
   }
 
   const date = new Date(dueDate);
-  console.log(date);
+
   return (
     <div className="postContainer">
       {userInfo && (

@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import session from './session'
 import feedReducer from "./feed";
 import agreeReducer from './agree';
+import userReducer from './user';
 import usersReducer from './users';
 
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   session,
   feed: feedReducer,
   agree: agreeReducer,
+  user: userReducer,
   users: usersReducer
 });
 

@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
     <ul id="navbar">
       {sessionUser && (
         <li>
-          <NavLink className="navbarElements" to={`/${sessionUser.id}/profile`}>
+          <NavLink className="navbarElements" to={`/profile/${sessionUser.id}`}>
             Profile
           </NavLink>
         </li>
