@@ -1,0 +1,12 @@
+#postUserInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+#profPhoto {
+  max-width: 60px;
+  max-height: 60px;
+}
