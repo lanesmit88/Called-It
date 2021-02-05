@@ -21,9 +21,6 @@ function Post({ post }) {
 
   const date = new Date(dueDate);
 
-
-  // console.log(userInfo)
-  // console.log(users)
   return (
     <div className="postContainer">
       {<UserInfo profPhoto={profPhoto} username={username} userId={userId} />}
