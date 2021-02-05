@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateAgree } from "../../store/agree";
 
 function Agree({ count, postId, agreeableStatus }) {
-  
   const [agree, setAgree] = useState(true);
   const dispatch = useDispatch();
   const userId = useSelector((reduxState) => {
@@ -14,9 +13,9 @@ function Agree({ count, postId, agreeableStatus }) {
     dispatch(fetchCreateAgree({ agree, userId, postId }));
   }
   return (
-    <>
-      <div>
-        {agreeableStatus && <form onSubmit={submitForm}>
+    <div id="agree-button-and-count">
+      {agreeableStatus && (
+        <form onSubmit={submitForm}>
           <button
             placeholder="Due Date"
             value={agree}
@@ -28,10 +27,10 @@ function Agree({ count, postId, agreeableStatus }) {
             Agree
           </button>
           {/* <button type="submit">Post</button> */}
-        </form>}
-      </div>
+        </form>
+      )}
       <h3 id="postAgrees">{count}</h3>
-    </>
+    </div>
   );
 }
 export default Agree;

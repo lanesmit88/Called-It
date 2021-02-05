@@ -2,20 +2,19 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserData } from "../../store/user";
 import { fetchUserPostsData } from "../../store/userPosts";
-import { fetchAgreeData } from "../../store/agree";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import PostModal from "../../context/PostModal";
+
 import Post from "../Post";
-// import CreatePost from "../CreatePost";
 import CreatePost from "../CreatePost/CreatePost";
 
 function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const posts = useSelector((reduxState) => {
-    return reduxState.userPosts;
+
+
+  const feed = useSelector((reduxState) => {
+    return reduxState.userPosts.reverse();
   });
 
   const user = useSelector((reduxState) => {
@@ -25,22 +24,10 @@ function Profile() {
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-
-  useEffect(() => {
-    dispatch(fetchUserData(id));
-  }, []);
-
+  
   useEffect(() => {
     dispatch(fetchUserPostsData(id));
   }, []);
-
-  useEffect(() => {
-    dispatch(fetchAgreeData());
-  }, []);
-
-  if (!user) {
-    return null;
-  }
 
   let allowCreatePost = loggedInUserId == id;
 
@@ -61,13 +48,12 @@ function Profile() {
               </div>
             </PostModal>
           )} */}
-          { allowCreatePost && <CreatePost userId={id} />}
+          {allowCreatePost && <CreatePost userId={id} />}
         </div>
-        <div>
-          {posts &&
-            posts.map((post) => {
-              return <Post key={post.id} post={post} />;
-            })}
+        <div id="feedContainer">
+          {feed.map((post) => {
+            return <Post key={post.id} post={post} />;
+          })}
         </div>
       </div>
     </div>

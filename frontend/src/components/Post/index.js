@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 
 import { useSelector } from "react-redux";
@@ -14,8 +14,7 @@ function Post({ post }) {
     dueDate,
     id,
     PostInteractions,
-    User: { profilePhotoUrl: profPhoto, username },
-    PostInteractions: [{ userId: agreedUserId, postId, agree: agreeStatus }],
+    User: { profilePhotoUrl: profPhoto, username, id: postUserId },
   } = post;
 
   const [agreeableStatus, setAgreeableStatus] = useState(true);
@@ -25,17 +24,38 @@ function Post({ post }) {
     return reduxState.session.user.id;
   });
 
-  if (agreeStatus !== null && agreeableStatus === true) {
-    if (agreeStatus === true && agreedUserId === loggedInUserId) {
+  useEffect(() => {
+    if (postUserId === loggedInUserId) {
       setAgreeableStatus(false);
-    }
-  }
-
-  if (agreeStatus !== null && disagreeableStatus === true) {
-    if (agreeStatus === false && agreedUserId === loggedInUserId) {
       setDisagreeableStatus(false);
+      return;
     }
-  }
+    let userInteraction = PostInteractions.find(
+      (interaction) => loggedInUserId === interaction.userId
+    );
+    if (userInteraction) {
+      if (userInteraction.agree) {
+        setAgreeableStatus(false);
+      } else if (!userInteraction.agree) {
+        setDisagreeableStatus(false);
+      }
+    }
+  }, [PostInteractions]);
+
+  // if (agreeStatus !== null && agreeableStatus === true) {
+  //   if (agreeStatus === true && (agreedUserId === loggedInUserId || postUserId === loggedInUserId)) {
+  //     setAgreeableStatus(false);
+  //   }
+  // }
+
+  // if (agreeStatus !== null && disagreeableStatus === true) {
+  //   if (
+  //     (agreeStatus === false && agreedUserId === loggedInUserId) ||
+  //     postUserId === loggedInUserId
+  //   ) {
+  //     setDisagreeableStatus(false);
+  //   }
+  // }
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
