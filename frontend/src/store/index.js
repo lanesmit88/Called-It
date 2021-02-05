@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import session from './session'
 import feedReducer from "./feed";
 import agreeReducer from './agree';
+import disagreeReducer from './disagree';
 import userReducer from './user';
 import usersReducer from './users';
 import userPostsReducer from './userPosts';
@@ -12,9 +13,11 @@ const rootReducer = combineReducers({
   session,
   feed: feedReducer,
   agree: agreeReducer,
+  disagree: disagreeReducer,
   user: userReducer,
   userPosts: userPostsReducer,
   users: usersReducer,
+
 });
 
 let enhancer;
