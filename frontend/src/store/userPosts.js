@@ -28,7 +28,7 @@ export const createPost = (body) => {
       body: JSON.stringify(body),
     });
 
-    const newPost = res.data.newPost;
+    const newPost = res.data.createPost;
     dispatch(CreatePost(newPost));
   };
 };

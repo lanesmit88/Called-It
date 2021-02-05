@@ -23,7 +23,7 @@ router.get(
       const temp = await Post.findAll({ where: { userId: id }, include:  [PostInteraction, User]});
       feed.push(...temp);
     }));
-
+   
     res.json([...feed]);
   })
 );

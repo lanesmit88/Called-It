@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 
 import { useSelector } from "react-redux";
@@ -8,7 +8,54 @@ import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
 
 function Post({ post }) {
-  const { text, postId, userId, dueDate, PostInteractions, User: { profilePhotoUrl: profPhoto, username } } = post;
+  const {
+    text,
+    userId,
+    dueDate,
+    id,
+    PostInteractions,
+    User: { profilePhotoUrl: profPhoto, username, id: postUserId },
+  } = post;
+
+  const [agreeableStatus, setAgreeableStatus] = useState(true);
+  const [disagreeableStatus, setDisagreeableStatus] = useState(true);
+
+  const loggedInUserId = useSelector((reduxState) => {
+    return reduxState.session.user.id;
+  });
+
+  useEffect(() => {
+    if (postUserId === loggedInUserId) {
+      setAgreeableStatus(false);
+      setDisagreeableStatus(false);
+      return;
+    }
+    let userInteraction = PostInteractions.find(
+      (interaction) => loggedInUserId === interaction.userId
+    );
+    if (userInteraction) {
+      if (userInteraction.agree) {
+        setAgreeableStatus(false);
+      } else if (!userInteraction.agree) {
+        setDisagreeableStatus(false);
+      }
+    }
+  }, [PostInteractions]);
+
+  // if (agreeStatus !== null && agreeableStatus === true) {
+  //   if (agreeStatus === true && (agreedUserId === loggedInUserId || postUserId === loggedInUserId)) {
+  //     setAgreeableStatus(false);
+  //   }
+  // }
+
+  // if (agreeStatus !== null && disagreeableStatus === true) {
+  //   if (
+  //     (agreeStatus === false && agreedUserId === loggedInUserId) ||
+  //     postUserId === loggedInUserId
+  //   ) {
+  //     setDisagreeableStatus(false);
+  //   }
+  // }
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
@@ -28,8 +75,24 @@ function Post({ post }) {
       <div className="postInteraction">
         <h3>By: {date.toDateString()}</h3>
         <div id="agrees">
-          {agreeCount ? <Agree count={agreeCount} /> : <h3>0</h3>}
-          {disagreeCount ? <Disagree count={disagreeCount} /> : <h3>0</h3>}
+          {agreeCount ? (
+            <Agree
+              count={agreeCount}
+              postId={id}
+              agreeableStatus={agreeableStatus}
+            />
+          ) : (
+            <h3>0</h3>
+          )}
+          {disagreeCount ? (
+            <Disagree
+              count={disagreeCount}
+              postId={id}
+              disagreeableStatus={disagreeableStatus}
+            />
+          ) : (
+            <h3>0</h3>
+          )}
         </div>
       </div>
     </div>

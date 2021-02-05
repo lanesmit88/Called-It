@@ -8,7 +8,10 @@ function CreatePost({ userId }) {
   const dispatch = useDispatch()
 
   function submitForm(e) {
+    e.preventDefault()
     dispatch(createPost({userId, text, dueDate}))
+    setText("")
+    setDueDate("")
   }
 
   return (
@@ -30,7 +33,6 @@ function CreatePost({ userId }) {
         />
         <button type="submit">Post</button>
       </form>
-      /
     </div>
   );
 }
