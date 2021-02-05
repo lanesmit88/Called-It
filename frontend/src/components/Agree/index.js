@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateAgree } from "../../store/agree";
 
-function Agree({ count, postId }) {
+function Agree({ count, postId, agreeableStatus }) {
   const [agree, setAgree] = useState(true);
   const dispatch = useDispatch();
   const userId = useSelector((reduxState) => {
@@ -15,7 +15,7 @@ function Agree({ count, postId }) {
   return (
     <>
       <div>
-        <form onSubmit={submitForm}>
+        {agreeableStatus && <form onSubmit={submitForm}>
           <button
             placeholder="Due Date"
             value={agree}
@@ -27,7 +27,7 @@ function Agree({ count, postId }) {
             Agree
           </button>
           {/* <button type="submit">Post</button> */}
-        </form>
+        </form>}
       </div>
       <h3 id="postAgrees">{count}</h3>
     </>
