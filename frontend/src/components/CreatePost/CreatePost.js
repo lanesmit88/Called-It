@@ -30,7 +30,6 @@ function CreatePost({ userId }) {
         />
         <button type="submit">Post</button>
       </form>
-      /
     </div>
   );
 }
