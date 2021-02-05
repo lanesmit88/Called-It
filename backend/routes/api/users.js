@@ -54,7 +54,6 @@ router.post(
       }
     );
     const createPost = await Post.findByPk(newPost.id, {
-      where: { userId: userId },
       include: [PostInteraction, User],
     });
     
