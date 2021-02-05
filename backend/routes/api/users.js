@@ -42,12 +42,34 @@ router.get(
   })
 );
 
+router.post(
+  "/:id/post",
+  asyncHandler(async (req, res, next) => {
+    const { userId, text, dueDate } = req.body;
+    const newPost = await Post.create(
+      {
+        userId,
+        text,
+        dueDate,
+      }
+    );
+    const createPost = await Post.findByPk(newPost.id, {
+      where: { userId: userId },
+      include: [PostInteraction, User],
+    });
+    
+    res.json({ createPost });
+  })
+);
+
 router.get(
   "/:id/posts",
   asyncHandler(async (req, res, next) => {
     userId = req.params.id;
-    const posts = await Post.findAll({ where: { userId: userId },
-    include: [PostInteraction, User] });
+    const posts = await Post.findAll({
+      where: { userId: userId },
+      include: [PostInteraction, User],
+    });
     res.json({ posts });
   })
 );

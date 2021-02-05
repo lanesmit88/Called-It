@@ -1,3 +1,4 @@
+import { fetch } from "./csrf.js";
 const AGREE_DATA = "agree/agreeData";
 
 const agreeData = (agree) => ({
@@ -8,7 +9,7 @@ const agreeData = (agree) => ({
 export const fetchAgreeData = () => {
   return async (dispatch) => {
     const res = await fetch(`/api/agree/`);
-    const resData = await res.json();
+    const resData = await res.data;
     dispatch(agreeData(resData));
   };
 };

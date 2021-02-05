@@ -1,11 +1,7 @@
 import "./index.css";
-import { useSelector, useDispatch } from "react-redux";
-import createPost from"../../store/
+
 
 function UserInfo({ profPhoto, username, userId }) {
-  const dispatch = useDispatch();
-
-  dispatch(createPost( userId, ))
 
   return (
     <div id="postUserInfo">

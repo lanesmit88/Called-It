@@ -1,3 +1,4 @@
+import { fetch } from "./csrf.js";
 const USER_DATA = "user/userData";
 
 const userData = (user) => ({
@@ -8,7 +9,7 @@ const userData = (user) => ({
 export const fetchUserData = (userId) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${userId}`);
-    const {user} = await res.json();
+    const {user} = await res.data;
     dispatch(userData(user));
   };
 };

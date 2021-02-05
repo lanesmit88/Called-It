@@ -1,4 +1,12 @@
+import { fetch } from "./csrf.js";
+
 const USER_POSTS_DATA = "userposts/userPostsData";
+const NEW_POST = "posts/createPost";
+
+const CreatePost = (post) => ({
+  type: NEW_POST,
+  post: post,
+});
 
 const userPostsData = (userPosts) => ({
   type: USER_POSTS_DATA,
@@ -8,8 +16,20 @@ const userPostsData = (userPosts) => ({
 export const fetchUserPostsData = (userId) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${userId}/posts`);
-    const { posts } = await res.json();
+    const { posts } = res.data;
     dispatch(userPostsData(posts));
+  };
+};
+
+export const createPost = (body) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/users/${body.userId}/post`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+
+    const newPost = res.data.newPost;
+    dispatch(CreatePost(newPost));
   };
 };
 
@@ -20,6 +40,8 @@ function userPostsReducer(state = initialState, action) {
   switch (action.type) {
     case USER_POSTS_DATA:
       return action.userPosts;
+    case NEW_POST:
+      return [...state, action.post]
     default:
       return state;
   }

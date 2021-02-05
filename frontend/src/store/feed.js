@@ -1,3 +1,5 @@
+import { fetch } from "./csrf.js";
+
 const FEED_DATA = "feed/feedData";
 
 const feedData = (feed) => ({
@@ -8,7 +10,7 @@ const feedData = (feed) => ({
 export const fetchFeedData = (id) => {
   return async (dispatch) => {
     const res = await fetch(`/api/feed/${id}`);
-    const resData = await res.json();
+    const resData = await res.data;
     dispatch(feedData(resData));
   };
 };
