@@ -1,6 +1,6 @@
 .postContainer {
   width: 100%;
-  height: 240px;
+  height: 100%;
   background-color: rgb(114, 113, 113);
   margin-bottom: 32px;
   display: flex;

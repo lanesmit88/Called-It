@@ -86,6 +86,7 @@ function Post({ post }) {
           </div>
         </div>
         <div id="comments">
+  
           {Comments &&
             Comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
