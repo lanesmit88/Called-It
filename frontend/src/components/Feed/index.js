@@ -36,11 +36,10 @@ function Feed() {
   if (!users) {
     return null;
   }
-console.log(users)
   return (
     <div id="feedContainer">
       {feed.map((post) => {
-        return <Post key={post.id} post={post} users={users} />;
+        return <Post key={post.id} post={post} users={users} feed={feed} />;
       })}
     </div>
   );

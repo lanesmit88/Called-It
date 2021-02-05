@@ -3,15 +3,14 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateAgree } from "../../store/agree";
 
-function Agree({ count }) {
-  const [agree, setAgree] = useState(null);
+function Agree({ count, postId }) {
+  const [agree, setAgree] = useState(true);
   const dispatch = useDispatch();
-
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
   function submitForm() {
-    dispatch(fetchCreateAgree({ agree, userId }));
+    dispatch(fetchCreateAgree({ agree, userId, postId }));
   }
   return (
     <>
