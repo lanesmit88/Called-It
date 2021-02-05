@@ -15,11 +15,9 @@ function Feed() {
     return reduxState.feed;
   });
 
-
   useEffect(() => {
     dispatch(fetchFeedData(userId));
   }, []);
-
 
   return (
     <div id="feedContainer">

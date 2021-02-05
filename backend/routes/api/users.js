@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Post, PostInteraction } = require("../../db/models");
+const { User, Post, PostInteraction, Comment } = require("../../db/models");
 
 const router = express.Router();
 
@@ -46,17 +46,15 @@ router.post(
   "/:id/post",
   asyncHandler(async (req, res, next) => {
     const { userId, text, dueDate } = req.body;
-    const newPost = await Post.create(
-      {
-        userId,
-        text,
-        dueDate,
-      }
-    );
+    const newPost = await Post.create({
+      userId,
+      text,
+      dueDate,
+    });
     const createPost = await Post.findByPk(newPost.id, {
       include: [PostInteraction, User],
     });
-    
+
     res.json({ createPost });
   })
 );
@@ -67,7 +65,7 @@ router.get(
     userId = req.params.id;
     const posts = await Post.findAll({
       where: { userId: userId },
-      include: [PostInteraction, User],
+      include: [PostInteraction, User, Comment],
     });
     res.json({ posts });
   })
