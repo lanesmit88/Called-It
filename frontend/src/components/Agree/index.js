@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateAgree } from "../../store/agree";
 
 function Agree({ count, postId, agreeableStatus }) {
+  
   const [agree, setAgree] = useState(true);
   const dispatch = useDispatch();
   const userId = useSelector((reduxState) => {

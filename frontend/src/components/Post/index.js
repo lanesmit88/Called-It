@@ -65,7 +65,11 @@ function Post({ post }) {
             <h3>0</h3>
           )}
           {disagreeCount ? (
-            <Disagree count={disagreeCount} disagreeableStatus={disagreeableStatus} />
+            <Disagree
+              count={disagreeCount}
+              postId={id}
+              disagreeableStatus={disagreeableStatus}
+            />
           ) : (
             <h3>0</h3>
           )}
