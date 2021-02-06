@@ -9,7 +9,8 @@ function Agree({ count, postId, agreeableStatus }) {
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-  function submitForm() {
+  function submitForm(e) {
+    e.preventDefault();
     dispatch(fetchCreateAgree({ agree, userId, postId }));
   }
   return (
@@ -17,15 +18,14 @@ function Agree({ count, postId, agreeableStatus }) {
       {agreeableStatus && (
         <form onSubmit={submitForm}>
           <button
+            class="far fa-thumbs-up"
             placeholder="Due Date"
             value={agree}
             onChange={(e) => {
               setAgree(e.target.value);
             }}
             type="submit"
-          >
-            Agree
-          </button>
+          ></button>
           {/* <button type="submit">Post</button> */}
         </form>
       )}

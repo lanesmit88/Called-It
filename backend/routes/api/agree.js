@@ -21,7 +21,6 @@ router.post(
       agree,
     });
     const createAgree = await PostInteraction.findByPk(newPost.id, {
-      where: { userId: userId },
       include: [Post, User],
     });
 

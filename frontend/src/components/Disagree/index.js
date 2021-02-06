@@ -9,22 +9,23 @@ function Disagree({ count, postId, disagreeableStatus }) {
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-  function submitForm() {
+  function submitForm(e) {
+    e.preventDefault()
     dispatch(fetchCreateDisagree({ agree, userId, postId }));
   }
   return (
     <div id="disagree-button-and-count">
       {disagreeableStatus && (
         <form onSubmit={submitForm}>
+
           <button
-            placeholder="Due Date"
+            class="far fa-thumbs-down"
             value={agree}
-            onChange={(e) => {
+            onClick={(e) => {
               setAgree(e.target.value);
             }}
             type="submit"
           >
-            Disagree
           </button>
           {/* <button type="submit">Post</button> */}
         </form>
