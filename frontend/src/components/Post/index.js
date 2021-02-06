@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Agree from "../Agree";
 import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
+import Comment from "../Comment";
+import CreateComment from "../CreateComment";
+
+import fetchCommentsData from "../../store/comment";
 
 function Post({ post }) {
+  const dispatch = useDispatch();
   const {
     text,
     userId,
     dueDate,
     id,
+    Comments,
     PostInteractions,
     User: { profilePhotoUrl: profPhoto, username, id: postUserId },
   } = post;
@@ -42,20 +48,9 @@ function Post({ post }) {
     }
   }, [PostInteractions]);
 
-  // if (agreeStatus !== null && agreeableStatus === true) {
-  //   if (agreeStatus === true && (agreedUserId === loggedInUserId || postUserId === loggedInUserId)) {
-  //     setAgreeableStatus(false);
-  //   }
-  // }
-
-  // if (agreeStatus !== null && disagreeableStatus === true) {
-  //   if (
-  //     (agreeStatus === false && agreedUserId === loggedInUserId) ||
-  //     postUserId === loggedInUserId
-  //   ) {
-  //     setDisagreeableStatus(false);
-  //   }
-  // }
+  // useEffect(() => {
+  //   dispatch(fetchCommentsData(id));
+  // }, []);
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
@@ -69,33 +64,44 @@ function Post({ post }) {
   const date = new Date(dueDate);
 
   return (
-    <div className="postContainer">
-      <UserInfo profPhoto={profPhoto} username={username} userId={userId} />
-      <h1>{text}</h1>
-      <div className="postInteraction">
-        <h3>By: {date.toDateString()}</h3>
-        <div id="agrees">
-          {agreeCount ? (
-            <Agree
-              count={agreeCount}
-              postId={id}
-              agreeableStatus={agreeableStatus}
-            />
-          ) : (
-            <h3>0</h3>
-          )}
-          {disagreeCount ? (
-            <Disagree
-              count={disagreeCount}
-              postId={id}
-              disagreeableStatus={disagreeableStatus}
-            />
-          ) : (
-            <h3>0</h3>
-          )}
+    <>
+      <div className="postContainer">
+        <div id="post-container-no-comments">
+          <UserInfo profPhoto={profPhoto} username={username} userId={userId} />
+          <h1>{text}</h1>
+          <div className="postInteraction">
+            <h3>By: {date.toDateString()}</h3>
+            <div id="agrees">
+              {agreeCount ? (
+                <Agree
+                  count={agreeCount}
+                  postId={id}
+                  agreeableStatus={agreeableStatus}
+                />
+              ) : (
+                <h3>0</h3>
+              )}
+              {disagreeCount ? (
+                <Disagree
+                  count={disagreeCount}
+                  postId={id}
+                  disagreeableStatus={disagreeableStatus}
+                />
+              ) : (
+                <h3>0</h3>
+              )}
+            </div>
+          </div>
+        </div>
+        <div id="comments">
+          {Comments &&
+            Comments.map((comment) => {
+              return <Comment key={comment.id} comment={comment} />;
+            })}
+          <CreateComment />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

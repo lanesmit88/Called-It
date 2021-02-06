@@ -12,14 +12,12 @@ function Feed() {
   });
 
   const feed = useSelector((reduxState) => {
-    return reduxState.feed;
+    return reduxState.feed.reverse();
   });
-
 
   useEffect(() => {
     dispatch(fetchFeedData(userId));
   }, []);
-
 
   return (
     <div id="feedContainer">
