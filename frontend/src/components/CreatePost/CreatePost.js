@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../store/userPosts"
+import { createPost } from "../../store/userPosts";
 
 function CreatePost({ userId }) {
   const [text, setText] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   function submitForm(e) {
-    e.preventDefault()
-    dispatch(createPost({userId, text, dueDate}))
-    setText("")
-    setDueDate("")
+    e.preventDefault();
+    dispatch(createPost({ userId, text, dueDate }));
+    setText("");
+    setDueDate("");
   }
 
   return (
     <div>
-      <form onSubmit={submitForm} >
+      <form onSubmit={submitForm}>
         <textarea
           placeholder="Enter prediction..."
           value={text}

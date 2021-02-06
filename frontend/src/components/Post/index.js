@@ -77,6 +77,9 @@ function Post({ post }) {
                   count={agreeCount}
                   postId={id}
                   agreeableStatus={agreeableStatus}
+                  PostInteractions={PostInteractions}
+                  loggedInUserId={loggedInUserId}
+                  postUserId={postUserId}
                 />
               ) : (
                 <h3>0</h3>

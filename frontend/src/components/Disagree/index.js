@@ -19,7 +19,7 @@ function Disagree({ count, postId, disagreeableStatus }) {
         <form onSubmit={submitForm}>
 
           <button
-            class="far fa-thumbs-down"
+            className="far fa-thumbs-down"
             value={agree}
             onClick={(e) => {
               setAgree(e.target.value);
