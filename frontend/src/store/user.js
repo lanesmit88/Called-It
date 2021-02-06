@@ -9,7 +9,7 @@ const userData = (user) => ({
 export const fetchUserData = (userId) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${userId}`);
-    const {user} = await res.data;
+    const { user } = await res.data;
     dispatch(userData(user));
   };
 };
