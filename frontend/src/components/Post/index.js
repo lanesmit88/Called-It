@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Agree from "../Agree";
 import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
 import Comment from "../Comment";
+import CreateComment from "../CreateComment";
+
+import fetchCommentsData from "../../store/comment";
 
 function Post({ post }) {
+  const dispatch = useDispatch();
   const {
     text,
     userId,
@@ -43,6 +47,10 @@ function Post({ post }) {
       }
     }
   }, [PostInteractions]);
+
+  // useEffect(() => {
+  //   dispatch(fetchCommentsData(id));
+  // }, []);
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
@@ -86,11 +94,11 @@ function Post({ post }) {
           </div>
         </div>
         <div id="comments">
-  
           {Comments &&
             Comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
             })}
+          <CreateComment />
         </div>
       </div>
     </>

@@ -53,6 +53,6 @@ router.use("/agree", agreeRouter)
 
 router.use("/disagree", disagreeRouter)
 
-router.use("/comment", commentRouter)
+router.use("/comments", commentRouter)
 
 module.exports = router;
