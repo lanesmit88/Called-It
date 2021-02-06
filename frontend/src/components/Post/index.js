@@ -72,7 +72,7 @@ function Post({ post }) {
           <div className="postInteraction">
             <h3>By: {date.toDateString()}</h3>
             <div id="agrees">
-              {agreeCount ? (
+              { (
                 <Agree
                   count={agreeCount}
                   postId={id}
@@ -81,8 +81,6 @@ function Post({ post }) {
                   loggedInUserId={loggedInUserId}
                   postUserId={postUserId}
                 />
-              ) : (
-                <h3>0</h3>
               )}
               {disagreeCount ? (
                 <Disagree
