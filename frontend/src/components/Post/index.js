@@ -9,7 +9,7 @@ import UserInfo from "../UserInfo";
 import Comment from "../Comment";
 import CreateComment from "../CreateComment";
 
-import fetchCommentsData from "../../store/comment";
+import  { fetchCommentsData } from "../../store/comment";
 
 function Post({ post }) {
   const dispatch = useDispatch();
@@ -48,9 +48,10 @@ function Post({ post }) {
   //   }
   // }, [PostInteractions]);
 
-  // useEffect(() => {
-  //   dispatch(fetchCommentsData(id));
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchCommentsData(id));
+  }, []);
+
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
