@@ -30,6 +30,10 @@ function Post({ post }) {
     return reduxState.session.user.id;
   });
 
+  // nice comment
+  // useEffect(() => {
+  //   dispatch(fetchCommentsData(id));
+  // }, []);
   // useEffect(() => {
   //   if (postUserId === loggedInUserId) {
   //     setAgreeableStatus(false);
@@ -47,6 +51,7 @@ function Post({ post }) {
   //     }
   //   }
   // }, [PostInteractions]);
+
 
   useEffect(() => {
     dispatch(fetchCommentsData(id));
