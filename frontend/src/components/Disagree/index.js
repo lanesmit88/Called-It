@@ -38,12 +38,14 @@ function Disagree({
     setDisagreeableStatus(false);
     dispatch(fetchCreateDisagree({ agree, userId, postId }));
   }
+  
   return (
     <div id="disagree-button-and-count">
       {disagreeableStatus ? (
         <form onSubmit={submitForm}>
           <button
-            className="far fa-thumbs-down"
+            className="fas fa-thumbs-down"
+            id="disagreeable-button"
             value={agree}
             onClick={(e) => {
               setAgree(e.target.value);
@@ -53,7 +55,10 @@ function Disagree({
           {/* <button type="submit">Post</button> */}
         </form>
       ) : (
-        <button className="far fa-thumbs-down"></button>
+        <button
+          className="fas fa-thumbs-down"
+          id="not-disagreeable-button"
+        ></button>
       )}
 
       <h3 id="postAgrees">{count}</h3>

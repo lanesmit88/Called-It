@@ -1,0 +1,11 @@
+#postDisagrees{
+padding-right: 12px;
+}
+
+#not-disagreeable-button{
+    background-color: rgba(128, 255, 0, 0);
+    font-size: 26px;
+    border: 0;
+    padding: 0;
+    color: rgb(168, 0, 0);
+}

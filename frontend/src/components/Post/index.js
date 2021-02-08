@@ -30,23 +30,23 @@ function Post({ post }) {
     return reduxState.session.user.id;
   });
 
-  useEffect(() => {
-    if (postUserId === loggedInUserId) {
-      setAgreeableStatus(false);
-      setDisagreeableStatus(false);
-      return;
-    }
-    let userInteraction = PostInteractions.find(
-      (interaction) => loggedInUserId === interaction.userId
-    );
-    if (userInteraction) {
-      if (userInteraction.agree) {
-        setAgreeableStatus(false);
-      } else if (!userInteraction.agree) {
-        setDisagreeableStatus(false);
-      }
-    }
-  }, [PostInteractions]);
+  // useEffect(() => {
+  //   if (postUserId === loggedInUserId) {
+  //     setAgreeableStatus(false);
+  //     setDisagreeableStatus(false);
+  //     return;
+  //   }
+  //   let userInteraction = PostInteractions.find(
+  //     (interaction) => loggedInUserId === interaction.userId
+  //   );
+  //   if (userInteraction) {
+  //     if (userInteraction.agree) {
+  //       setAgreeableStatus(false);
+  //     } else if (!userInteraction.agree) {
+  //       setDisagreeableStatus(false);
+  //     }
+  //   }
+  // }, [PostInteractions]);
 
   // useEffect(() => {
   //   dispatch(fetchCommentsData(id));

@@ -45,7 +45,7 @@ function Agree({
       {agreeableStatus ? (
         <form onSubmit={submitForm}>
           <button
-            className="far fa-thumbs-up"
+            className="fas fa-thumbs-up"
             id="agreeable-button"
             value={agree}
             onChange={(e) => {
@@ -56,7 +56,7 @@ function Agree({
           {/* <button type="submit">Post</button> */}
         </form>
       ) : (
-        <button className="far fa-thumbs-up" id="not-agreeable-button"></button>
+        <button className="fas fa-thumbs-up" id="not-agreeable-button"></button>
       )}
       <h3 id="postAgrees">{count}</h3>
     </div>
