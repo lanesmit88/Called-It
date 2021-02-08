@@ -1,10 +1,10 @@
 import { fetch } from "./csrf.js";
 
-const COMMENTS_DATA = "comment/commentsData";
+const COMMENTS_DATA = "comments/commentData";
 
 const commentsData = (comments) => ({
   type: COMMENTS_DATA,
-  comments: comments,
+  comments
 });
 
 export const fetchCommentsData = (postId) => {

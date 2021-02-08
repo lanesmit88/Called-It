@@ -6,7 +6,10 @@ const { Post, PostInteraction, User, Comment } = require("../../db/models");
 router.get(
   "/:postId",
   asyncHandler(async (req, res, next) => {
-    const comments = await Comment.findAll({ where: { postId: postId } });
+    const comments = await Comment.findAll({
+      where: { postId: postId },
+      include: [User],
+    });
     res.json(comments);
   })
 );
