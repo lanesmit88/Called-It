@@ -1,33 +1,64 @@
 import "./index.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateDisagree } from "../../store/disagree";
 
-function Disagree({ count, postId, disagreeableStatus }) {
+function Disagree({
+  count,
+  postId,
+  PostInteractions,
+  loggedInUserId,
+  postUserId,
+}) {
   const [agree, setAgree] = useState(false);
+  const [disagreeableStatus, setDisagreeableStatus] = useState(true);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (postUserId === loggedInUserId) {
+      setDisagreeableStatus(false);
+      return;
+    }
+    let userInteraction = PostInteractions.find(
+      (interaction) => loggedInUserId === interaction.userId
+    );
+    if (userInteraction) {
+      if (userInteraction.agree) {
+        setDisagreeableStatus(false);
+      }
+    }
+  }, [PostInteractions]);
+
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-  function submitForm() {
+
+  function submitForm(e) {
+    e.preventDefault();
+    setDisagreeableStatus(false);
     dispatch(fetchCreateDisagree({ agree, userId, postId }));
   }
+  
   return (
     <div id="disagree-button-and-count">
-      {disagreeableStatus && (
+      {disagreeableStatus ? (
         <form onSubmit={submitForm}>
           <button
-            placeholder="Due Date"
+            className="fas fa-thumbs-down"
+            id="disagreeable-button"
             value={agree}
-            onChange={(e) => {
+            onClick={(e) => {
               setAgree(e.target.value);
             }}
             type="submit"
-          >
-            Disagree
-          </button>
+          ></button>
           {/* <button type="submit">Post</button> */}
         </form>
+      ) : (
+        <button
+          className="fas fa-thumbs-down"
+          id="not-disagreeable-button"
+        ></button>
       )}
 
       <h3 id="postAgrees">{count}</h3>

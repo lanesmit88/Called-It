@@ -5,7 +5,7 @@ const NEW_DISAGREE = "disagree/createDisagree";
 
 
 
-const createDisagree = (disagree) => ({
+const CreateDisagree = (disagree) => ({
   type: NEW_DISAGREE,
   disagree: disagree,
 });
@@ -19,8 +19,8 @@ export const fetchCreateDisagree = (body) => {
       body: JSON.stringify(body),
     });
 
-    const newDisagree = res.data.newDisagree;
-    dispatch(createDisagree(newDisagree));
+    const createDisagree = res.data.createDisagree;
+    dispatch(CreateDisagree(createDisagree));
   };
 };
 

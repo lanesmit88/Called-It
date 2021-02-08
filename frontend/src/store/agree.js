@@ -8,7 +8,7 @@ const agreeData = (agree) => ({
   agree: agree,
 });
 
-const createAgree = (agree) => ({
+const CreateAgree = (agree) => ({
   type: NEW_AGREE,
   agree: agree
 })
@@ -28,8 +28,8 @@ export const fetchCreateAgree = (body) => {
       body: JSON.stringify(body)
     });
 
-    const newAgree = res.data.newAgree;
-    dispatch(createAgree(newAgree))
+    const createAgree = res.data.createAgree;
+    dispatch(CreateAgree(createAgree))
   }
 }
 

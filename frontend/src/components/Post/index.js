@@ -30,23 +30,23 @@ function Post({ post }) {
     return reduxState.session.user.id;
   });
 
-  useEffect(() => {
-    if (postUserId === loggedInUserId) {
-      setAgreeableStatus(false);
-      setDisagreeableStatus(false);
-      return;
-    }
-    let userInteraction = PostInteractions.find(
-      (interaction) => loggedInUserId === interaction.userId
-    );
-    if (userInteraction) {
-      if (userInteraction.agree) {
-        setAgreeableStatus(false);
-      } else if (!userInteraction.agree) {
-        setDisagreeableStatus(false);
-      }
-    }
-  }, [PostInteractions]);
+  // useEffect(() => {
+  //   if (postUserId === loggedInUserId) {
+  //     setAgreeableStatus(false);
+  //     setDisagreeableStatus(false);
+  //     return;
+  //   }
+  //   let userInteraction = PostInteractions.find(
+  //     (interaction) => loggedInUserId === interaction.userId
+  //   );
+  //   if (userInteraction) {
+  //     if (userInteraction.agree) {
+  //       setAgreeableStatus(false);
+  //     } else if (!userInteraction.agree) {
+  //       setDisagreeableStatus(false);
+  //     }
+  //   }
+  // }, [PostInteractions]);
 
   // useEffect(() => {
   //   dispatch(fetchCommentsData(id));
@@ -72,14 +72,15 @@ function Post({ post }) {
           <div className="postInteraction">
             <h3>By: {date.toDateString()}</h3>
             <div id="agrees">
-              {agreeCount ? (
+              { (
                 <Agree
                   count={agreeCount}
                   postId={id}
                   agreeableStatus={agreeableStatus}
+                  PostInteractions={PostInteractions}
+                  loggedInUserId={loggedInUserId}
+                  postUserId={postUserId}
                 />
-              ) : (
-                <h3>0</h3>
               )}
               {disagreeCount ? (
                 <Disagree
