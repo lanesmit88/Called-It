@@ -19,7 +19,6 @@ const rootReducer = combineReducers({
   userPosts: userPostsReducer,
   users: usersReducer,
   comments: commentsReducer
-
 });
 
 let enhancer;

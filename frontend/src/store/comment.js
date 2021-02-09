@@ -4,7 +4,7 @@ const COMMENTS_DATA = "comments/commentData";
 
 const commentsData = (comments) => ({
   type: COMMENTS_DATA,
-  comments
+  comments: comments,
 });
 
 export const fetchCommentsData = (postId) => {
@@ -15,14 +15,23 @@ export const fetchCommentsData = (postId) => {
   };
 };
 
-const initialState = [];
+const initialState = {};
 
 function commentsReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case COMMENTS_DATA:
-      newState = action.comments;
-      return newState;
+      const newComments = {};
+      action.comments.forEach((comment) => {
+        if (newComments[comment.postId]) {
+          newComments[comment.postId].push(comment);
+        } else {
+          newComments[comment.postId] = [comment];
+        }
+      });
+      return { ...state, ...newComments };
+    // newState = action.comments;
+    // return newState;
     default:
       return state;
   }
