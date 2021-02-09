@@ -1,8 +1,17 @@
 import "./index.css";
 
 function Comment({ comment }) {
-
-  return <h1>{comment.text}</h1>;
+  const {
+    text,
+    User: { id, username, profilePhotoUrl, bio },
+  } = comment;
+  console.log(comment);
+  return (
+    <>
+      <p>{username}</p>
+      <h2>{text}</h2>
+    </>
+  );
 }
 
 export default Comment;

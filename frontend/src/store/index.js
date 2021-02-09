@@ -7,6 +7,7 @@ import disagreeReducer from './disagree';
 import userReducer from './user';
 import usersReducer from './users';
 import userPostsReducer from './userPosts';
+import commentsReducer from './comment';
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   userPosts: userPostsReducer,
   users: usersReducer,
-
+  comments: commentsReducer
 });
 
 let enhancer;

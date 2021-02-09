@@ -9,7 +9,7 @@ import UserInfo from "../UserInfo";
 import Comment from "../Comment";
 import CreateComment from "../CreateComment";
 
-import fetchCommentsData from "../../store/comment";
+import { fetchCommentsData } from "../../store/comment";
 
 function Post({ post }) {
   const dispatch = useDispatch();
@@ -30,6 +30,17 @@ function Post({ post }) {
     return reduxState.session.user.id;
   });
 
+  const comments = useSelector((reduxState) => {
+    return reduxState.comments[id];
+  });
+
+  useEffect(() => {
+    dispatch(fetchCommentsData(id));
+  }, []);
+
+  // useEffect(() => {
+  //   dispatch(fetchCommentsData(id));
+  // }, []);
   // useEffect(() => {
   //   if (postUserId === loggedInUserId) {
   //     setAgreeableStatus(false);
@@ -47,10 +58,6 @@ function Post({ post }) {
   //     }
   //   }
   // }, [PostInteractions]);
-
-  // useEffect(() => {
-  //   dispatch(fetchCommentsData(id));
-  // }, []);
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
@@ -72,7 +79,7 @@ function Post({ post }) {
           <div className="postInteraction">
             <h3>By: {date.toDateString()}</h3>
             <div id="agrees">
-              { (
+              {
                 <Agree
                   count={agreeCount}
                   postId={id}
@@ -81,7 +88,7 @@ function Post({ post }) {
                   loggedInUserId={loggedInUserId}
                   postUserId={postUserId}
                 />
-              )}
+              }
               {disagreeCount ? (
                 <Disagree
                   count={disagreeCount}
@@ -95,11 +102,11 @@ function Post({ post }) {
           </div>
         </div>
         <div id="comments">
-          {Comments &&
-            Comments.map((comment) => {
+          {Comments && comments &&
+            comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
             })}
-          <CreateComment />
+          <CreateComment userId={loggedInUserId} postId={id}/>
         </div>
       </div>
     </>

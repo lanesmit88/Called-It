@@ -18,17 +18,20 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  useEffect(() => {
-
-  });
+  useEffect(() => {});
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       {!loggedInUser && (
-        <Route exact path="/">
-          <LoginFormPage />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
+        </Switch>
       )}
       {isLoaded && loggedInUser && (
         <Switch>
