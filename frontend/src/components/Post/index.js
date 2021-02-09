@@ -106,7 +106,7 @@ function Post({ post }) {
             comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
             })}
-          <CreateComment />
+          <CreateComment userId={loggedInUserId} postId={id}/>
         </div>
       </div>
     </>

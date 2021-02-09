@@ -15,4 +15,21 @@ router.get(
   })
 );
 
+router.post(
+  "/",
+  asyncHandler(async (req, res, next) => {
+    const { userId, text, postId } = req.body;
+    const newComment = await Comment.create({
+      userId,
+      postId,
+      text,
+    });
+    const createComment = await Comment.findByPk(newComment.id, {
+      include: [Post, User],
+    });
+
+    res.json({ createComment });
+  })
+);
+
 module.exports = router;

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./index.css";
+import fetchCreateComment from "../../store/comment";
 
-function CreateComment() {
+function CreateComment({ userId, postId }) {
   const dispatch = useDispatch();
+  const [text, setText] = useState("");
   function submitForm(e) {
-    const [text, setText] = useState("");
     e.preventDefault();
     dispatch(fetchCreateComment({ text, userId, postId }));
   }
