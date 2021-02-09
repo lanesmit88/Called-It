@@ -23,7 +23,7 @@ export const fetchCommentsData = (postId) => {
 
 export const fetchCreateComment = (body) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/comments/`, {
+    const res = await fetch(`/api/comments/post`, {
       method: "POST",
       body: JSON.stringify(body),
     });

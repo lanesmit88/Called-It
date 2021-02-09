@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./index.css";
-import fetchCreateComment from "../../store/comment";
+import { fetchCreateComment } from "../../store/comment";
 
 function CreateComment({ userId, postId }) {
   const dispatch = useDispatch();
@@ -9,22 +9,22 @@ function CreateComment({ userId, postId }) {
   function submitForm(e) {
     e.preventDefault();
     dispatch(fetchCreateComment({ text, userId, postId }));
+    setText("")
   }
 
   return (
     <>
-      <form>
-        <button
-          id="agreeable-button"
+      <form onSubmit={submitForm}>
+        <textarea
+          placeholder="Type here..."
           value={text}
           onChange={(e) => {
             setText(e.target.value);
           }}
-          type="submit"
-        >
+        ></textarea>
+        <button id="agreeable-button" type="submit">
           Add Comment
         </button>
-        <textarea placeholder="Type here..."></textarea>
       </form>
     </>
   );

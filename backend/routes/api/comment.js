@@ -16,7 +16,7 @@ router.get(
 );
 
 router.post(
-  "/",
+  "/post",
   asyncHandler(async (req, res, next) => {
     const { userId, text, postId } = req.body;
     const newComment = await Comment.create({
