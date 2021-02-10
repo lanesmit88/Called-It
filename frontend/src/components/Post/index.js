@@ -41,23 +41,6 @@ function Post({ post }) {
   // useEffect(() => {
   //   dispatch(fetchCommentsData(id));
   // }, []);
-  // useEffect(() => {
-  //   if (postUserId === loggedInUserId) {
-  //     setAgreeableStatus(false);
-  //     setDisagreeableStatus(false);
-  //     return;
-  //   }
-  //   let userInteraction = PostInteractions.find(
-  //     (interaction) => loggedInUserId === interaction.userId
-  //   );
-  //   if (userInteraction) {
-  //     if (userInteraction.agree) {
-  //       setAgreeableStatus(false);
-  //     } else if (!userInteraction.agree) {
-  //       setDisagreeableStatus(false);
-  //     }
-  //   }
-  // }, [PostInteractions]);
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
@@ -109,7 +92,8 @@ function Post({ post }) {
           <CreateComment userId={loggedInUserId} postId={id}/>
         </div>
       </div>
-    </>
+   </>
+
   );
 }
 

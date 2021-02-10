@@ -31,8 +31,9 @@ export const fetchCreateComment = (body) => {
     dispatch(CreateComment(createComment));
   };
 };
-const initialState = {};
 
+const initialState = {};
+// comments is a object where the key is the postId and the value is an array of  comment objects for that post
 function commentsReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
@@ -47,7 +48,8 @@ function commentsReducer(state = initialState, action) {
       });
       return { ...state, ...newComments };
     case CREATE_COMMENT:
-      newState = action.comment;
+      newState = JSON.parse(JSON.stringify(state))
+      newState[action.comment.postId].push(action.comment);
       return newState;
     default:
       return state;

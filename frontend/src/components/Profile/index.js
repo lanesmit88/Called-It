@@ -12,31 +12,36 @@ function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
 
-  const user = useSelector((reduxState) => {
-    return reduxState.user;
+  let profileUser;
+
+  useSelector((reduxState) => {
+    reduxState.userPosts.find((post) => {
+      profileUser = post.User;
+    });
   });
 
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-  
+
   useEffect(() => {
     dispatch(fetchUserPostsData(id));
-  }, []);
+  }, [id]);
 
   let allowCreatePost = loggedInUserId == id;
 
   return (
     <div id="profile-page-container">
       <div id="profile-container">
-        {user && <h1>{user.username}</h1>}
-        {user && <img id="profPhoto" src={user.profilePhotoUrl}></img>}
-        {user && <p>{user.bio}</p>}
+        {profileUser && <h1>{profileUser.username}</h1>}
+        {profileUser && (
+          <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
+        )}
+        {profileUser && <p>{profileUser.bio}</p>}
       </div>
       <div id="profile-posts">
         <div>
