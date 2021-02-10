@@ -12,22 +12,23 @@ function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
-
+  
   const user = useSelector((reduxState) => {
-    return reduxState.user;
+    return reduxState.userPosts
   });
+  console.log(user)
 
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
-  
+
   useEffect(() => {
     dispatch(fetchUserPostsData(id));
   }, []);
+
 
   let allowCreatePost = loggedInUserId == id;
 

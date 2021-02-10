@@ -5,10 +5,10 @@ function Comment({ comment }) {
     text,
     User: { id, username, profilePhotoUrl, bio },
   } = comment;
-  console.log(comment);
+
   return (
     <>
-      <p>{username}</p>
+      <a href={`/profile/${id}`}>{username}</a>
       <h2>{text}</h2>
     </>
   );

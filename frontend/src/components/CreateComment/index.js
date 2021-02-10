@@ -6,10 +6,11 @@ import { fetchCreateComment } from "../../store/comment";
 function CreateComment({ userId, postId }) {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+
   function submitForm(e) {
     e.preventDefault();
     dispatch(fetchCreateComment({ text, userId, postId }));
-    setText("")
+    setText("");
   }
 
   return (
