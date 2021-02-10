@@ -27,7 +27,6 @@ router.post(
     const createComment = await Comment.findByPk(newComment.id, {
       include: [Post, User],
     });
-
     res.json({ createComment });
   })
 );
