@@ -5,6 +5,7 @@ const feedRouter = require("./feed");
 const agreeRouter = require("./agree");
 const disagreeRouter = require("./disagree");
 const commentRouter = require("./comment");
+const followRouter = require("./follow");
 
 // GET /api/set-token-cookie
 const asyncHandler = require("express-async-handler");
@@ -54,5 +55,7 @@ router.use("/agree", agreeRouter)
 router.use("/disagree", disagreeRouter)
 
 router.use("/comments", commentRouter)
+
+router.use("/follow", followRouter)
 
 module.exports = router;
