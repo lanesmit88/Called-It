@@ -5,6 +5,7 @@ import { fetchUserPostsData } from "../../store/userPosts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import Follow from "../Follow"
 import Post from "../Post";
 import CreatePost from "../CreatePost/CreatePost";
 
@@ -38,6 +39,7 @@ function Profile() {
     <div id="profile-page-container">
       <div id="profile-container">
         {profileUser && <h1>{profileUser.username}</h1>}
+        <Follow />
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
