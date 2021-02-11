@@ -69,7 +69,7 @@ function Agree({
         {agreeableStatus ? (
           <form onSubmit={submitAgree}>
             <button
-              className="fas fa-thumbs-up"
+              className="far fa-thumbs-up"
               id="agreeable-button"
               value={agree}
               onChange={(e) => {
@@ -91,7 +91,7 @@ function Agree({
         {disagreeableStatus ? (
           <form onSubmit={submitDisagree}>
             <button
-              className="fas fa-thumbs-down"
+              className="far fa-thumbs-down"
               id="disagreeable-button"
               value={disagree}
               onClick={(e) => {

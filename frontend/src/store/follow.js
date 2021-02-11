@@ -33,8 +33,8 @@ export const fetchCreateFollow = (body) => {
       method: "POST",
       body: JSON.stringify(body),
     });
-    const createFollow = res.data.CreateFollow;
-    dispatch(CreateFollow(body));
+    const createFollow = res.data.createFollow;
+    dispatch(CreateFollow(createFollow));
   };
 };
 
@@ -60,13 +60,9 @@ function followReducer(state = initialState, action) {
     case CREATE_FOLLOW:
       return [...state, action.follow];
     case REMOVE_FOLLOW:
-      newState = [];
-      state.forEach((piece) => {
-        if (piece.followedId !== action.follow.followedId) {
-          newState.push(piece);
-        }
-      });
-      return newState;
+      return state.filter(
+        (piece) => piece.followedId !== action.follow.followedId
+      );
     default:
       return state;
   }

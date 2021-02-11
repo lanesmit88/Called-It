@@ -11,7 +11,6 @@ function Follow({ followStatus, followerId, followedId }) {
   function submitFollow(e) {
     e.preventDefault();
     dispatch(fetchCreateFollow({ followerId, followedId }));
-    
   }
   function submitUnfollow(e) {
     e.preventDefault();
@@ -31,7 +30,8 @@ function Follow({ followStatus, followerId, followedId }) {
                   setFollow(e.target.value);
                 }}
                 type="submit"
-              >unfollow
+              >
+                unfollow
               </button>
             </form>
           }
