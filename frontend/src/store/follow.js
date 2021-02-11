@@ -59,7 +59,7 @@ function followReducer(state = initialState, action) {
     case CREATE_FOLLOW:
       return [...state, action.follow];
     case REMOVE_FOLLOW:
-      [...state, action.follow];
+      return [...state, action.follow];
     default:
       return state;
   }

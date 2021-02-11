@@ -31,7 +31,7 @@ router.delete(
   asyncHandler(async (req, res, next) => {
     const { followerId, followedId } = req.body;
 
-    const unfollow = await Follow.FindOne({
+    const unfollow = await Follow.findOne({
       where: { followedId: followedId, followerId: followerId },
     });
 
