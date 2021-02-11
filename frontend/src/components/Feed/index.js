@@ -2,6 +2,7 @@ import React from "react";
 import Post from "../Post";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeedData } from "../../store/feed";
+
 import { useEffect } from "react";
 import "./index.css";
 
@@ -19,10 +20,11 @@ function Feed() {
     dispatch(fetchFeedData(userId));
   }, []);
 
+
   return (
     <div id="feedContainer">
       {feed.map((post) => {
-        return <Post key={post.id} post={post}  />;
+        return <Post key={post.id} post={post} />;
       })}
     </div>
   );

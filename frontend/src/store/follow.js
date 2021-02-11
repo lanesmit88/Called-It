@@ -22,7 +22,7 @@ function followReducer(state = initialState, action) {
   switch (action.type) {
     case FOLLOW_DATA:
       newState = action.follow;
-      return newState;
+      return [...newState];
     default:
       return state;
   }

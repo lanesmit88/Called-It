@@ -1,6 +1,7 @@
 import "./index.css"
 
-function Follow() {
+function Follow(followStatus) {
+    console.log(followStatus)
     return <button>follow</button>
 }
 

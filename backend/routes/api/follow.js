@@ -8,8 +8,7 @@ router.get(
   asyncHandler(async (req, res, next) => {
     userId = req.params.id;
     const follow = await Follow.findAll({ where: { followerId: userId } });
-
-    res.json({ follow });
+    res.json( follow );
   })
 );
 
