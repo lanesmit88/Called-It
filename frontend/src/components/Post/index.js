@@ -4,7 +4,6 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import Agree from "../Agree";
-import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
 import Comment from "../Comment";
 import CreateComment from "../CreateComment";
@@ -53,6 +52,17 @@ function Post({ post }) {
 
   const date = new Date(dueDate);
 
+  if (agreeableStatus || disagreeableStatus) {
+    let cancelInteractions = PostInteractions.find(
+      (eachInteraction) => eachInteraction.userId === loggedInUserId
+    );
+    if (cancelInteractions) {
+      setAgreeableStatus(false);
+      setDisagreeableStatus(false);
+      return
+    }
+  }
+
   return (
     <>
       <div className="postContainer">
@@ -64,36 +74,29 @@ function Post({ post }) {
             <div id="agrees">
               {
                 <Agree
-                  count={agreeCount}
+                  agreeCount={agreeCount}
+                  disagreeCount={disagreeCount}
                   postId={id}
-                  agreeableStatus={agreeableStatus}
                   PostInteractions={PostInteractions}
                   loggedInUserId={loggedInUserId}
                   postUserId={postUserId}
+                  oldAgreeableStatus={agreeableStatus}
+                  oldDisagreeableStatus={disagreeableStatus}
                 />
               }
-              {disagreeCount ? (
-                <Disagree
-                  count={disagreeCount}
-                  postId={id}
-                  disagreeableStatus={disagreeableStatus}
-                />
-              ) : (
-                <h3>0</h3>
-              )}
             </div>
           </div>
         </div>
         <div id="comments">
-          {Comments && comments &&
+          {Comments &&
+            comments &&
             comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
             })}
-          <CreateComment userId={loggedInUserId} postId={id}/>
+          <CreateComment userId={loggedInUserId} postId={id} />
         </div>
       </div>
-   </>
-
+    </>
   );
 }
 

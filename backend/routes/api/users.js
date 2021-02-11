@@ -46,10 +46,14 @@ router.post(
   "/:id/post",
   asyncHandler(async (req, res, next) => {
     const { userId, text, dueDate } = req.body;
+    createdAt = new Date
+    updatedAt = new Date
     const newPost = await Post.create({
       userId,
       text,
       dueDate,
+      createdAt,
+      updatedAt
     });
     const createPost = await Post.findByPk(newPost.id, {
       include: [PostInteraction, User],

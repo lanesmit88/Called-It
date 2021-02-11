@@ -1,21 +1,23 @@
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUserData } from "../../store/user";
-import { fetchUserPostsData } from "../../store/userPosts";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 
+import { fetchUserPostsData } from "../../store/userPosts";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchFollowData } from "../../store/follow";
+
+import Follow from "../Follow";
 import Post from "../Post";
 import CreatePost from "../CreatePost/CreatePost";
 
 function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const [followStatus, setFollowStatus] = useState(false);
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
-
+  let profileUserId = parseInt(id)
   let profileUser;
 
   useSelector((reduxState) => {
@@ -28,16 +30,40 @@ function Profile() {
     return reduxState.session.user.id;
   });
 
+  const follow = useSelector((reduxState) => {
+    return reduxState.follow;
+  });
+
   useEffect(() => {
     dispatch(fetchUserPostsData(id));
   }, [id]);
 
-  let allowCreatePost = loggedInUserId == id;
+  useEffect(() => {
+    dispatch(fetchFollowData(loggedInUserId));
+  }, []);
+
+  let allowCreatePost = loggedInUserId === profileUserId;
+  if (!followStatus) {
+    follow.filter((temp) => {
+      if (temp.followedId === profileUserId) {
+        setFollowStatus(true);
+      }
+    });
+  }
+  if (followStatus !== null) {
+    if (profileUserId === loggedInUserId) {
+      setFollowStatus(null);
+      return;
+    }
+  }
 
   return (
     <div id="profile-page-container">
       <div id="profile-container">
         {profileUser && <h1>{profileUser.username}</h1>}
+        {followStatus !== null && (
+          <Follow followStatus={followStatus} follow={follow} followerId={loggedInUserId} followedId={profileUserId}/>
+        )}
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}

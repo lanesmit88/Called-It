@@ -20,7 +20,7 @@ router.get(
     
     await Promise.all(stuff.map(async (id) => {
 
-      const temp = await Post.findAll({ where: { userId: id }, include:  [PostInteraction, User, Comment]});
+      const temp = await Post.findAll({ where: { userId: id }, include:  [PostInteraction, User, Comment ]});
       feed.push(...temp);
     }));
    
