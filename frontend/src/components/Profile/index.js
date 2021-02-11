@@ -46,7 +46,8 @@ function Profile() {
 
   if (!followStatus) {
     follow.filter((temp) => {
-      if (temp.followerId === id) {
+      console.log(temp.followedId, "-----------", id)
+      if (temp.followedId == id) {
         setFollowStatus(true);
       }
     });
@@ -57,7 +58,7 @@ function Profile() {
     <div id="profile-page-container">
       <div id="profile-container">
         {profileUser && <h1>{profileUser.username}</h1>}
-        {followStatus && <Follow followStatus={followStatus} follow={follow}/>}
+        {followStatus !== null && <Follow followStatus={followStatus} follow={follow}/>}
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
