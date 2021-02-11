@@ -1,4 +1,5 @@
 import "./index.css";
+import { NavLink } from "react-router-dom";
 
 function Comment({ comment }) {
   const {
@@ -8,7 +9,9 @@ function Comment({ comment }) {
 
   return (
     <>
-      <a href={`/profile/${id}`}>{username}</a>
+      <NavLink to={`/profile/${id}`} exact>
+        {username}
+      </NavLink>
       <h2>{text}</h2>
     </>
   );

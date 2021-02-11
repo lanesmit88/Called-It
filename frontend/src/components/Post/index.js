@@ -37,9 +37,7 @@ function Post({ post }) {
     dispatch(fetchCommentsData(id));
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(fetchCommentsData(id));
-  // }, []);
+
 
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
