@@ -40,7 +40,6 @@ function Disagree({
     setDisagreeableStatus(false);
     dispatch(fetchCreateDisagree({ agree, userId, postId }));
   }
-  console.log(disagreeableStatus, "disagreeableStatus");
 
   return (
     <div id="disagree-button-and-count">

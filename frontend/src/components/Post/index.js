@@ -74,23 +74,14 @@ function Post({ post }) {
             <div id="agrees">
               { (
                 <Agree
-                  count={agreeCount}
+                  agreeCount={agreeCount}
+                  disagreeCount={disagreeCount}
                   postId={id}
                   agreeableStatus={agreeableStatus}
                   PostInteractions={PostInteractions}
                   loggedInUserId={loggedInUserId}
                   postUserId={postUserId}
                   oldAgreeableStatus={agreeableStatus}
-                />
-              )}
-              {(
-                <Disagree
-                  count={disagreeCount}
-                  postId={id}
-                  disagreeableStatus={disagreeableStatus}
-                  PostInteractions={PostInteractions}
-                  loggedInUserId={loggedInUserId}
-                  postUserId={postUserId}
                   oldDisagreeableStatus={disagreeableStatus}
                 />
               )}
