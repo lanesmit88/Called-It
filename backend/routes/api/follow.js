@@ -26,4 +26,18 @@ router.post(
   })
 );
 
+router.delete(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    const { followerId, followedId } = req.body;
+
+    const unfollow = await Follow.FindOne({
+      where: { followedId: followedId, followerId: followerId },
+    });
+
+    await unfollow.destroy();
+    res.json({ message: "deleted" });
+  })
+);
+
 module.exports = router;
