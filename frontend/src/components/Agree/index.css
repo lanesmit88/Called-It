@@ -9,3 +9,11 @@ padding-right: 12px;
     padding: 0;
     color: green;
 }
+
+#not-disagreeable-button{
+    background-color: rgba(128, 255, 0, 0);
+    font-size: 26px;
+    border: 0;
+    padding: 0;
+    color: rgb(175, 0, 0);
+}

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateAgree } from "../../store/agree";
 import { fetchCreateDisagree } from "../../store/disagree";
 
-
 function Agree({
   agreeCount,
   disagreeCount,
@@ -16,6 +15,7 @@ function Agree({
   oldDisagreeableStatus,
 }) {
   const [agree, setAgree] = useState(true);
+  const [disagree, setDisagree] = useState(false);
   const [agreeableStatus, setAgreeableStatus] = useState(oldAgreeableStatus);
   const [disagreeableStatus, setDisagreeableStatus] = useState(
     oldDisagreeableStatus
@@ -24,31 +24,23 @@ function Agree({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (postUserId === loggedInUserId) {
-      setAgreeableStatus(false);
-      return;
-    }
-    let userInteraction = PostInteractions.find(
-      (interaction) => loggedInUserId === interaction.userId
-    );
-    if (userInteraction) {
-      if (userInteraction.agree) {
+    if (agreeableStatus || disagreeableStatus) {
+      if (postUserId === loggedInUserId) {
         setAgreeableStatus(false);
-      }
-    }
-  }, [PostInteractions]);
-
-  useEffect(() => {
-    if (postUserId === loggedInUserId) {
-      setDisagreeableStatus(false);
-      return;
-    }
-    let userInteraction = PostInteractions.find(
-      (interaction) => loggedInUserId === interaction.userId
-    );
-    if (userInteraction) {
-      if (userInteraction.agree === false) {
         setDisagreeableStatus(false);
+        return;
+      }
+
+      let userInteraction = PostInteractions.find(
+        (interaction) => loggedInUserId === interaction.userId
+      );
+
+      if (userInteraction) {
+        if (userInteraction.agree) {
+          setAgreeableStatus(false);
+        } else if (userInteraction.agree === false) {
+          setDisagreeableStatus(false);
+        }
       }
     }
   }, [PostInteractions]);
@@ -63,6 +55,7 @@ function Agree({
     setDisagreeableStatus(false);
     dispatch(fetchCreateAgree({ agree, userId, postId }));
   }
+
   function submitDisagree(e) {
     e.preventDefault();
     setDisagreeableStatus(false);
@@ -100,7 +93,7 @@ function Agree({
             <button
               className="fas fa-thumbs-down"
               id="disagreeable-button"
-              value={agree}
+              value={disagree}
               onClick={(e) => {
                 setAgree(e.target.value);
               }}

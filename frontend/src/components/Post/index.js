@@ -4,7 +4,6 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import Agree from "../Agree";
-import Disagree from "../Disagree";
 import UserInfo from "../UserInfo";
 import Comment from "../Comment";
 import CreateComment from "../CreateComment";
@@ -60,6 +59,7 @@ function Post({ post }) {
     if (cancelInteractions) {
       setAgreeableStatus(false);
       setDisagreeableStatus(false);
+      return
     }
   }
 
@@ -72,19 +72,18 @@ function Post({ post }) {
           <div className="postInteraction">
             <h3>By: {date.toDateString()}</h3>
             <div id="agrees">
-              { (
+              {
                 <Agree
                   agreeCount={agreeCount}
                   disagreeCount={disagreeCount}
                   postId={id}
-                  agreeableStatus={agreeableStatus}
                   PostInteractions={PostInteractions}
                   loggedInUserId={loggedInUserId}
                   postUserId={postUserId}
                   oldAgreeableStatus={agreeableStatus}
                   oldDisagreeableStatus={disagreeableStatus}
                 />
-              )}
+              }
             </div>
           </div>
         </div>
