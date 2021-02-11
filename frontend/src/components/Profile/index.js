@@ -17,7 +17,7 @@ function Profile() {
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
-
+  let profileUserId = parseInt(id)
   let profileUser;
 
   useSelector((reduxState) => {
@@ -42,18 +42,18 @@ function Profile() {
     dispatch(fetchFollowData(loggedInUserId));
   }, []);
 
-  let allowCreatePost = loggedInUserId == id;
+  let allowCreatePost = loggedInUserId === profileUserId;
 
   if (!followStatus) {
     follow.filter((temp) => {
-      console.log(temp.followedId, "-----------", id);
-      if (temp.followedId == id) {
+
+      if (temp.followedId === profileUserId) {
         setFollowStatus(true);
       }
     });
   }
   if (followStatus !== null) {
-    if (id == loggedInUserId) {
+    if (profileUserId === loggedInUserId) {
       setFollowStatus(null);
       return;
     }
@@ -64,7 +64,7 @@ function Profile() {
       <div id="profile-container">
         {profileUser && <h1>{profileUser.username}</h1>}
         {followStatus !== null && (
-          <Follow followStatus={followStatus} follow={follow} />
+          <Follow followStatus={followStatus} follow={follow} followerId={loggedInUserId} followedId={profileUserId}/>
         )}
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
