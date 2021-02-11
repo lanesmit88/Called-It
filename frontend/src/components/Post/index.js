@@ -53,6 +53,16 @@ function Post({ post }) {
 
   const date = new Date(dueDate);
 
+  if (agreeableStatus || disagreeableStatus) {
+    let cancelInteractions = PostInteractions.find(
+      (eachInteraction) => eachInteraction.userId === loggedInUserId
+    );
+    if (cancelInteractions) {
+      setAgreeableStatus(false);
+      setDisagreeableStatus(false);
+    }
+  }
+
   return (
     <>
       <div className="postContainer">
@@ -62,7 +72,7 @@ function Post({ post }) {
           <div className="postInteraction">
             <h3>By: {date.toDateString()}</h3>
             <div id="agrees">
-              {
+              { (
                 <Agree
                   count={agreeCount}
                   postId={id}
@@ -70,30 +80,33 @@ function Post({ post }) {
                   PostInteractions={PostInteractions}
                   loggedInUserId={loggedInUserId}
                   postUserId={postUserId}
+                  oldAgreeableStatus={agreeableStatus}
                 />
-              }
-              {disagreeCount ? (
+              )}
+              {(
                 <Disagree
                   count={disagreeCount}
                   postId={id}
                   disagreeableStatus={disagreeableStatus}
+                  PostInteractions={PostInteractions}
+                  loggedInUserId={loggedInUserId}
+                  postUserId={postUserId}
+                  oldDisagreeableStatus={disagreeableStatus}
                 />
-              ) : (
-                <h3>0</h3>
               )}
             </div>
           </div>
         </div>
         <div id="comments">
-          {Comments && comments &&
+          {Comments &&
+            comments &&
             comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
             })}
-          <CreateComment userId={loggedInUserId} postId={id}/>
+          <CreateComment userId={loggedInUserId} postId={id} />
         </div>
       </div>
-   </>
-
+    </>
   );
 }
 

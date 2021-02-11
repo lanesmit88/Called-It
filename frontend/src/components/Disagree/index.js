@@ -9,9 +9,10 @@ function Disagree({
   PostInteractions,
   loggedInUserId,
   postUserId,
+  oldDisagreeableStatus
 }) {
   const [agree, setAgree] = useState(false);
-  const [disagreeableStatus, setDisagreeableStatus] = useState(true);
+  const [disagreeableStatus, setDisagreeableStatus] = useState(oldDisagreeableStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,11 +24,12 @@ function Disagree({
       (interaction) => loggedInUserId === interaction.userId
     );
     if (userInteraction) {
-      if (userInteraction.agree) {
+      if (userInteraction.agree === false) {
         setDisagreeableStatus(false);
       }
     }
   }, [PostInteractions]);
+    
 
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
@@ -38,7 +40,8 @@ function Disagree({
     setDisagreeableStatus(false);
     dispatch(fetchCreateDisagree({ agree, userId, postId }));
   }
-  
+  console.log(disagreeableStatus, "disagreeableStatus");
+
   return (
     <div id="disagree-button-and-count">
       {disagreeableStatus ? (
@@ -65,4 +68,5 @@ function Disagree({
     </div>
   );
 }
+
 export default Disagree;

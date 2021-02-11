@@ -43,7 +43,6 @@ function Profile() {
   }, []);
 
   let allowCreatePost = loggedInUserId === profileUserId;
-
   if (!followStatus) {
     follow.filter((temp) => {
       if (temp.followedId === profileUserId) {

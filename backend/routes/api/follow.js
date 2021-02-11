@@ -16,9 +16,13 @@ router.post(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const { followerId, followedId } = req.body;
+    createdAt = new Date();
+    updatedAt = new Date();
     const newFollow = await Follow.create({
       followerId,
       followedId,
+      createdAt,
+      updatedAt,
     });
     const createFollow = await Follow.findByPk(newFollow.id);
 
@@ -36,7 +40,8 @@ router.delete(
     });
 
     await unfollow.destroy();
-    res.json({ message: "deleted" });
+    removeFollow = { followerId, followedId}
+    res.json({ removeFollow });
   })
 );
 

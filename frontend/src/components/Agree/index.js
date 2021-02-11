@@ -9,9 +9,10 @@ function Agree({
   PostInteractions,
   loggedInUserId,
   postUserId,
+  oldAgreeableStatus
 }) {
   const [agree, setAgree] = useState(true);
-  const [agreeableStatus, setAgreeableStatus] = useState(true);
+  const [agreeableStatus, setAgreeableStatus] = useState(oldAgreeableStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
