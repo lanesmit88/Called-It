@@ -46,7 +46,6 @@ function Profile() {
 
   if (!followStatus) {
     follow.filter((temp) => {
-
       if (temp.followedId === profileUserId) {
         setFollowStatus(true);
       }

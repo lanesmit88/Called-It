@@ -2,27 +2,25 @@ import "./index.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { fetchCreateFollow } from "../../store/follow"
+import { fetchCreateFollow } from "../../store/follow";
 
 function Follow({ followStatus, followerId, followedId }) {
   const dispatch = useDispatch();
   const [follow, setFollow] = useState(true);
 
-
-    function submitForm(e) {
-      e.preventDefault();
-      setFollow(true);
-      dispatch(fetchCreateFollow({ follow, followerId, followedId }));
-    }
+  function submitForm(e) {
+    e.preventDefault();
+    dispatch(fetchCreateFollow({ followerId, followedId }));
+  }
 
   return (
     <>
       {followStatus ? (
+        <button>unfollow</button>
+      ) : (
         <div id="agree-button-and-count">
           {
-            <form
-            onSubmit={submitForm}
-            >
+            <form onSubmit={submitForm}>
               <button
                 id="follow-button"
                 value={follow}
@@ -31,13 +29,11 @@ function Follow({ followStatus, followerId, followedId }) {
                 }}
                 type="submit"
               >
-                unfollow
+                follow
               </button>
             </form>
           }
         </div>
-      ) : (
-        <button>follow</button>
       )}
     </>
   );
