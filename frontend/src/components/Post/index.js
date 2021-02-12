@@ -17,6 +17,7 @@ function Post({ post }) {
     userId,
     dueDate,
     id,
+    active,
     Comments,
     PostInteractions,
     User: { profilePhotoUrl: profPhoto, username, id: postUserId },
@@ -37,8 +38,6 @@ function Post({ post }) {
     dispatch(fetchCommentsData(id));
   }, []);
 
-
-
   let interactionAgree = PostInteractions.filter((temp) => {
     return temp.agree === true;
   });
@@ -57,7 +56,7 @@ function Post({ post }) {
     if (cancelInteractions) {
       setAgreeableStatus(false);
       setDisagreeableStatus(false);
-      return
+      return;
     }
   }
 
@@ -68,7 +67,21 @@ function Post({ post }) {
           <UserInfo profPhoto={profPhoto} username={username} userId={userId} />
           <h1>{text}</h1>
           <div className="postInteraction">
-            <h3>By: {date.toDateString()}</h3>
+            <div id="date-and-status">
+              <h3 id="post-date">By: {date.toDateString()}</h3>
+              {active && loggedInUserId === userId && (
+                <h1 id="active-post">Active</h1>
+              )}
+              {!active && loggedInUserId === userId && (
+                <button>Complete</button>
+              )}
+              {active && loggedInUserId !== userId && (
+                <h1 id="active-post">Active</h1>
+              )}
+              {!active && loggedInUserId !== userId && (
+                <h1 id="inactive-post">complete</h1>
+              )}
+            </div>
             <div id="agrees">
               {
                 <Agree

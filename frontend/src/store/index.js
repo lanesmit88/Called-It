@@ -9,6 +9,8 @@ import usersReducer from "./users";
 import userPostsReducer from "./userPosts";
 import commentsReducer from "./comment";
 import followReducer from "./follow";
+import trendingReducer from "./trending";
+
 
 const rootReducer = combineReducers({
   session,
@@ -20,6 +22,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   comments: commentsReducer,
   follow: followReducer,
+  trending: trendingReducer,
 });
 
 let enhancer;

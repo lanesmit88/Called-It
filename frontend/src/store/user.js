@@ -1,10 +1,12 @@
 import { fetch } from "./csrf.js";
+
 const USER_DATA = "user/userData";
 
 const userData = (user) => ({
   type: USER_DATA,
   user: user,
 });
+
 
 export const fetchUserData = (userId) => {
   return async (dispatch) => {
@@ -13,6 +15,8 @@ export const fetchUserData = (userId) => {
     dispatch(userData(user));
   };
 };
+
+
 
 const initialState = {};
 
