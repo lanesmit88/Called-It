@@ -5,11 +5,12 @@ import { createPost } from "../../store/userPosts";
 function CreatePost({ userId }) {
   const [text, setText] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [active, setActive] = useState(true);
   const dispatch = useDispatch();
 
   function submitForm(e) {
     e.preventDefault();
-    dispatch(createPost({ userId, text, dueDate }));
+    dispatch(createPost({ userId, text, dueDate, active }));
     setText("");
     setDueDate("");
   }

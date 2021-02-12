@@ -21,11 +21,10 @@
 #post-container-no-comments {
   width: 100%;
   display: flex;
-
 }
-#comments{
-background-color: azure;
-width: 100%;
+#comments {
+  background-color: azure;
+  width: 100%;
 }
 
 #agrees {
@@ -36,7 +35,7 @@ width: 100%;
   display: flex;
   flex-direction: column;
 }
-#agree-button-and-count > h3{
+#agree-button-and-count > h3 {
   display: flex;
   justify-content: center;
 }
@@ -44,12 +43,29 @@ width: 100%;
   display: flex;
   flex-direction: column;
 }
-#disagree-button-and-count > h3{
+#disagree-button-and-count > h3 {
   display: flex;
   justify-content: center;
 }
 .postContainer > h1 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 30px;
   width: 100%;
+}
+
+#date-and-status {
+  display: flex;
+  justify-content: space-between;
+}
+
+#post-date {
+  padding-right: 16px;
+}
+
+#active-post {
+background-color: green;
+}
+
+#inactive-post {
+background-color: red;
 }

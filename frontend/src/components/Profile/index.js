@@ -14,6 +14,7 @@ function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [followStatus, setFollowStatus] = useState(false);
+  const [text, setText] = useState("");
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
@@ -55,6 +56,11 @@ function Profile() {
     setFollowStatus(status);
   }, [follow, profileUserId]);
 
+  function editBio(e) {
+    e.preventDefault();
+    dispatch(updateBio({ text, userId, postId }));
+  }
+
   return (
     <div id="profile-page-container">
       <div id="profile-container">
@@ -73,13 +79,29 @@ function Profile() {
           )}
         </div>
 
-        {profileUser && <p id="profile-bio">{profileUser.bio}</p>}
+        {profileUser && loggedInUserId === profileUserId ? (
+          <>
+            <p id="profile-bio">{profileUser.bio}</p>
+            <form onSubmit={editBio}>
+              <textarea
+                placeholder="Type here..."
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value);
+                }}
+              ></textarea>
+              <button>Edit Bio</button>
+            </form>
+          </>
+        ) : (
+          <p id="profile-bio">{profileUser.bio}</p>
+        )}
       </div>
-          {allowCreatePost && <CreatePost userId={id} />}
-        <div id="feedContainer">
-          {feed.map((post) => {
-            return <Post key={post.id} post={post} />;
-          })}
+      {allowCreatePost && <CreatePost userId={id} />}
+      <div id="feedContainer">
+        {feed.map((post) => {
+          return <Post key={post.id} post={post} />;
+        })}
       </div>
     </div>
   );
