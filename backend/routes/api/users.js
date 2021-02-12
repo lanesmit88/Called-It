@@ -94,14 +94,21 @@ router.post(
 router.put(
   "/:id/bio",
   asyncHandler(async (req, res, next) => {
-    const { text, userId } = req.body;
+    userId = req.params.id;
+    const { text } = req.body;
     const user = await User.findOne({
       where: { id: userId },
+      include: [PostInteraction, Comment, Post],
+    });
+
+    await user.update({ bio: text });
+    
+    const posts = await Post.findAll({
+      where: { userId: userId },
       include: [PostInteraction, User, Comment],
     });
 
-    await user.update({ text: text });
-    res.json({ user });
+    res.json({ posts });
   })
 );
 

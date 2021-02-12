@@ -5,6 +5,7 @@ import { fetchUserPostsData } from "../../store/userPosts";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchFollowData } from "../../store/follow";
+import { updateBio } from "../../store/userPosts";
 
 import Follow from "../Follow";
 import Post from "../Post";
@@ -18,7 +19,9 @@ function Profile() {
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
+
   let profileUserId = parseInt(id);
+  
   let profileUser;
 
   useSelector((reduxState) => {
@@ -43,6 +46,7 @@ function Profile() {
     dispatch(fetchFollowData(loggedInUserId));
   }, []);
 
+
   let allowCreatePost = loggedInUserId === profileUserId;
 
   useEffect(() => {
@@ -58,7 +62,8 @@ function Profile() {
 
   function editBio(e) {
     e.preventDefault();
-    dispatch(updateBio({ text, userId, postId }));
+    dispatch(updateBio({ text, profileUserId }));
+    setText("");
   }
 
   return (
@@ -94,7 +99,9 @@ function Profile() {
             </form>
           </>
         ) : (
-          <p id="profile-bio">{profileUser.bio}</p>
+          <p id="profile-bio">{
+            // profileUser.bio
+          }</p>
         )}
       </div>
       {allowCreatePost && <CreatePost userId={id} />}

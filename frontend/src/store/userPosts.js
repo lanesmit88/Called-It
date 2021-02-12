@@ -1,7 +1,10 @@
 import { fetch } from "./csrf.js";
 
 const USER_POSTS_DATA = "userposts/userPostsData";
+
 const NEW_POST = "posts/createPost";
+
+const UPDATE_BIO = "user/updateBio";
 
 const CreatePost = (post) => ({
   type: NEW_POST,
@@ -11,6 +14,11 @@ const CreatePost = (post) => ({
 const userPostsData = (userPosts) => ({
   type: USER_POSTS_DATA,
   userPosts: userPosts,
+});
+
+const UpdateBio = (bio) => ({
+  type: UPDATE_BIO,
+  bio: bio,
 });
 
 export const fetchUserPostsData = (userId) => {
@@ -33,6 +41,17 @@ export const createPost = (body) => {
   };
 };
 
+export const updateBio = (body) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/users/${body.profileUserId}/bio`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    });
+    const updateBio = res.data.posts;
+    dispatch(UpdateBio(updateBio));
+  };
+};
+
 const initialState = [];
 
 function userPostsReducer(state = initialState, action) {
@@ -41,7 +60,9 @@ function userPostsReducer(state = initialState, action) {
     case USER_POSTS_DATA:
       return action.userPosts;
     case NEW_POST:
-      return [...state, action.post]
+      return [...state, action.post];
+    case UPDATE_BIO:
+      return action.bio;
     default:
       return state;
   }
