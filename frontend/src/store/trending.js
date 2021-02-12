@@ -14,7 +14,6 @@ export const fetchTrendingData = () => {
     dispatch(TrendingData(resData));
   };
 };
-
 const initialState = [];
 
 function trendingReducer(state = initialState, action) {

@@ -12,7 +12,9 @@ const {
 router.get(
   "/",
   asyncHandler(async (req, res, next) => {
-    const posts = await Post.findAll({include: [PostInteraction]})
+    const posts = await Post.findAll({
+      include: [PostInteraction, User, Comment],
+    });
 
     newPosts = posts.sort((a,b) =>
     ( b.PostInteractions.length - a.PostInteractions.length ))
