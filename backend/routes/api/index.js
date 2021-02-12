@@ -6,6 +6,7 @@ const agreeRouter = require("./agree");
 const disagreeRouter = require("./disagree");
 const commentRouter = require("./comment");
 const followRouter = require("./follow");
+const trendingRouter = require("./trending");
 
 // GET /api/set-token-cookie
 const asyncHandler = require("express-async-handler");
@@ -26,6 +27,7 @@ router.get(
 
 // GET /api/restore-user
 const { restoreUser } = require("../../utils/auth.js");
+
 router.get("/restore-user", restoreUser, (req, res) => {
   return res.json(req.user);
 });
@@ -57,5 +59,7 @@ router.use("/disagree", disagreeRouter)
 router.use("/comments", commentRouter)
 
 router.use("/follow", followRouter)
+
+router.use("/trending", trendingRouter)
 
 module.exports = router;
