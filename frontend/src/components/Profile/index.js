@@ -21,7 +21,7 @@ function Profile() {
   });
 
   let profileUserId = parseInt(id);
-  
+
   let profileUser;
 
   useSelector((reduxState) => {
@@ -45,7 +45,6 @@ function Profile() {
   useEffect(() => {
     dispatch(fetchFollowData(loggedInUserId));
   }, []);
-
 
   let allowCreatePost = loggedInUserId === profileUserId;
 
@@ -83,8 +82,7 @@ function Profile() {
             />
           )}
         </div>
-
-        {profileUser && loggedInUserId === profileUserId ? (
+        {profileUser && loggedInUserId === profileUserId && (
           <>
             <p id="profile-bio">{profileUser.bio}</p>
             <form onSubmit={editBio}>
@@ -98,10 +96,9 @@ function Profile() {
               <button>Edit Bio</button>
             </form>
           </>
-        ) : (
-          <p id="profile-bio">{
-            // profileUser.bio
-          }</p>
+        )}
+        {profileUser && loggedInUserId !== profileUserId && (
+          <p id="profile-bio">{profileUser.bio}</p>
         )}
       </div>
       {allowCreatePost && <CreatePost userId={id} />}
