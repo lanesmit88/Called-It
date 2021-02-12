@@ -20,7 +20,7 @@ function Follow({ followStatus, followerId, followedId }) {
   return (
     <>
       {followStatus ? (
-        <div>
+        <>
           {
             <form onSubmit={submitUnfollow}>
               <button
@@ -35,9 +35,9 @@ function Follow({ followStatus, followerId, followedId }) {
               </button>
             </form>
           }
-        </div>
+        </>
       ) : (
-        <div>
+        <>
           {
             <form onSubmit={submitFollow}>
               <button
@@ -52,7 +52,7 @@ function Follow({ followStatus, followerId, followedId }) {
               </button>
             </form>
           }
-        </div>
+        </>
       )}
     </>
   );

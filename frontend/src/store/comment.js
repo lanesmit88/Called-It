@@ -48,9 +48,16 @@ function commentsReducer(state = initialState, action) {
       });
       return { ...state, ...newComments };
     case CREATE_COMMENT:
-      newState = JSON.parse(JSON.stringify(state))
-      newState[action.comment.postId].push(action.comment);
-      return newState;
+      newState = JSON.parse(JSON.stringify(state));
+      console.log(newState, "--------------------", action.comment);
+      if (newState[action.comment.postId]) {
+        newState[action.comment.postId].push(action.comment);
+        return newState;
+      } else {
+        newState[action.comment.postId] = [action.comment];
+        return newState;
+      }
+
     default:
       return state;
   }
