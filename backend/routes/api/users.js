@@ -46,14 +46,14 @@ router.post(
   "/:id/post",
   asyncHandler(async (req, res, next) => {
     const { userId, text, dueDate } = req.body;
-    createdAt = new Date
-    updatedAt = new Date
+    createdAt = new Date();
+    updatedAt = new Date();
     const newPost = await Post.create({
       userId,
       text,
       dueDate,
       createdAt,
-      updatedAt
+      updatedAt,
     });
     const createPost = await Post.findByPk(newPost.id, {
       include: [PostInteraction, User],
@@ -88,6 +88,20 @@ router.post(
     return res.json({
       user,
     });
+  })
+);
+
+router.put(
+  "/:id/bio",
+  asyncHandler(async (req, res, next) => {
+    const { text, userId } = req.body;
+    const user = await User.findOne({
+      where: { id: userId },
+      include: [PostInteraction, User, Comment],
+    });
+
+    await user.update({ text: text });
+    res.json({ user });
   })
 );
 
