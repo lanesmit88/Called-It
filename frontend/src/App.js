@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
 import Profile from "./components/Profile";
+import Trending from "./components/Trending";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/profile/:id">
             <Profile />
+          </Route>
+          <Route path="/trending">
+            <Trending />
           </Route>
           <Route exact path="/">
             <Feed />
