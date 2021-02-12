@@ -20,12 +20,13 @@ function Feed() {
     dispatch(fetchFeedData(userId));
   }, []);
 
-
   return (
     <div id="feedContainer">
-      {feed.map((post) => {
-        return <Post key={post.id} post={post} />;
-      })}
+      <div id="feed-inner-container">
+        {feed.map((post) => {
+          return <Post key={post.id} post={post} />;
+        })}
+      </div>
     </div>
   );
 }

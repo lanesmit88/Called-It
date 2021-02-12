@@ -17,7 +17,7 @@ function Profile() {
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
-  let profileUserId = parseInt(id)
+  let profileUserId = parseInt(id);
   let profileUser;
 
   useSelector((reduxState) => {
@@ -43,49 +43,43 @@ function Profile() {
   }, []);
 
   let allowCreatePost = loggedInUserId === profileUserId;
-  if (!followStatus) {
-    follow.filter((temp) => {
-      if (temp.followedId === profileUserId) {
-        setFollowStatus(true);
-      }
-    });
-  }
-  if (followStatus !== null) {
+
+  useEffect(() => {
     if (profileUserId === loggedInUserId) {
       setFollowStatus(null);
       return;
     }
-  }
+    const status = follow.some(
+      (eachFollow) => eachFollow.followedId === profileUserId
+    );
+    setFollowStatus(status);
+  }, [follow, profileUserId]);
 
   return (
     <div id="profile-page-container">
       <div id="profile-container">
-        {profileUser && <h1>{profileUser.username}</h1>}
-        {followStatus !== null && (
-          <Follow followStatus={followStatus} follow={follow} followerId={loggedInUserId} followedId={profileUserId}/>
-        )}
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
-        {profileUser && <p>{profileUser.bio}</p>}
-      </div>
-      <div id="profile-posts">
-        <div>
-          {/* <p onClick={() => setShowModal(true)}>Make a Post</p>
-          {showModal && (
-            <PostModal onClose={() => setShowModal(false)}>
-              <div id="modal-div">
-                <CreatePost />
-              </div>
-            </PostModal>
-          )} */}
-          {allowCreatePost && <CreatePost userId={id} />}
+        <div id="username&follow">
+          {profileUser && <h1 id="profile-username">{profileUser.username}</h1>}
+          {followStatus !== null && (
+            <Follow
+              followStatus={followStatus}
+              follow={follow}
+              followerId={loggedInUserId}
+              followedId={profileUserId}
+            />
+          )}
         </div>
+
+        {profileUser && <p id="profile-bio">{profileUser.bio}</p>}
+      </div>
+          {allowCreatePost && <CreatePost userId={id} />}
         <div id="feedContainer">
           {feed.map((post) => {
             return <Post key={post.id} post={post} />;
           })}
-        </div>
       </div>
     </div>
   );

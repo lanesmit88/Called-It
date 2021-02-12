@@ -1,13 +1,38 @@
-#profile-container{
-    margin-top: 16px;
-    background-color: grey;
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    border-radius: 6px;
+#profile-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 48px;
+  width: 100%;
 }
 
-#profPhoto{
-    max-height: 300px;
-    max-width: 300px;
+#profile-container {
+  margin-top: 16px;
+  background-color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  height: 16em;
+}
+
+#profPhoto {
+  max-height: 240px;
+  max-width: 250px;
+  min-height: 160px;
+  min-width: 160px;
+  border-radius: 50%;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
+#profile-username {
+  color: azure;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+#profile-bio {
+  font-size: 24px;
+  color: azure;
 }

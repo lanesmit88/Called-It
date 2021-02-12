@@ -16,15 +16,11 @@ router.post(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const { followerId, followedId } = req.body;
-    createdAt = new Date();
-    updatedAt = new Date();
-    const newFollow = await Follow.create({
+    const createFollow = await Follow.create({
       followerId,
       followedId,
-      createdAt,
-      updatedAt,
     });
-    const createFollow = await Follow.findByPk(newFollow.id);
+
 
     res.json({ createFollow });
   })

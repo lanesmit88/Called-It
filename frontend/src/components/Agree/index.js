@@ -16,6 +16,8 @@ function Agree({
 }) {
   const [agree, setAgree] = useState(true);
   const [disagree, setDisagree] = useState(false);
+  const [agreeCounter, setAgreeCounter] = useState(agreeCount);
+  const [disagreeCounter, setDisagreeCounter] = useState(disagreeCount);
   const [agreeableStatus, setAgreeableStatus] = useState(oldAgreeableStatus);
   const [disagreeableStatus, setDisagreeableStatus] = useState(
     oldDisagreeableStatus
@@ -53,6 +55,7 @@ function Agree({
     e.preventDefault();
     setAgreeableStatus(false);
     setDisagreeableStatus(false);
+    setAgreeCounter((agreeCount += 1));
     dispatch(fetchCreateAgree({ agree, userId, postId }));
   }
 
@@ -60,6 +63,7 @@ function Agree({
     e.preventDefault();
     setDisagreeableStatus(false);
     setAgreeableStatus(false);
+    setDisagreeCounter((disagreeCount += 1));
     dispatch(fetchCreateDisagree({ agree, userId, postId }));
   }
 
@@ -69,7 +73,7 @@ function Agree({
         {agreeableStatus ? (
           <form onSubmit={submitAgree}>
             <button
-              className="fas fa-thumbs-up"
+              className="far fa-thumbs-up"
               id="agreeable-button"
               value={agree}
               onChange={(e) => {
@@ -85,13 +89,13 @@ function Agree({
             id="not-agreeable-button"
           ></button>
         )}
-        <h3 id="postAgrees">{agreeCount}</h3>
+        <h3 id="postAgrees">{agreeCounter}</h3>
       </div>
       <div id="disagree-button-and-count">
         {disagreeableStatus ? (
           <form onSubmit={submitDisagree}>
             <button
-              className="fas fa-thumbs-down"
+              className="far fa-thumbs-down"
               id="disagreeable-button"
               value={disagree}
               onClick={(e) => {
@@ -108,7 +112,7 @@ function Agree({
           ></button>
         )}
 
-        <h3 id="postAgrees">{disagreeCount}</h3>
+        <h3 id="postDisagrees">{disagreeCounter}</h3>
       </div>
     </>
   );

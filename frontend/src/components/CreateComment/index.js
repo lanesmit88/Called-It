@@ -23,7 +23,7 @@ function CreateComment({ userId, postId }) {
             setText(e.target.value);
           }}
         ></textarea>
-        <button id="agreeable-button" type="submit">
+        <button id="comment-button" type="submit">
           Add Comment
         </button>
       </form>
