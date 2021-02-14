@@ -57,7 +57,6 @@ function commentsReducer(state = initialState, action) {
         newState[action.comment.postId] = [action.comment];
         return newState;
       }
-
     default:
       return state;
   }

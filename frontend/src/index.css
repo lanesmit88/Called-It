@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center; */
     width: 100%;
+    height: 100%;
     background-color: rgb(1, 1, 117);
     margin: 0;
 }
