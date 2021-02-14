@@ -18,7 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: white;
+  background-image: url("../../crystal-ball.png");
   width: 320px;
   height: 240px;
   border-radius: 6px;
