@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import "./index.css";
 
 function Feed() {
+  window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;

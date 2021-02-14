@@ -36,6 +36,8 @@
   align-items: center;
   width: 100%;
   padding-left: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
 }
 
 #email {
@@ -56,6 +58,8 @@
   align-items: center;
   width: 100%;
   padding-left: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
 }
 
 #password {
@@ -67,4 +71,28 @@
   font-size: 1em;
   margin-top: 6px;
   margin-bottom: 6px;
+}
+
+
+#login-button{
+  
+  background: rgb(130, 133, 153);
+  width: 125px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  border-radius: 4px;
+  border: rgb(35, 44, 100) 1px solid;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+  float: left;
+  margin-left: 16px;
+  font-weight: 800;
+  font-size: 0.8em;
+
+}
+
+#login-button:hover {
+  background: rgb(112, 117, 153);
 }

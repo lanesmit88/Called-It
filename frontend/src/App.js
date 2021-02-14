@@ -21,7 +21,6 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {!loggedInUser && (
         <Switch>
           <Route exact path="/">
@@ -32,21 +31,27 @@ function App() {
           </Route>
         </Switch>
       )}
+
       {isLoaded && loggedInUser && (
         <Switch>
           <Route path="/login">
+            <Navigation isLoaded={isLoaded} />
             <LoginFormPage />
           </Route>
           <Route path="/signup">
+            <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
           </Route>
           <Route path="/profile/:id">
+            <Navigation isLoaded={isLoaded} />
             <Profile />
           </Route>
           <Route path="/trending">
+            <Navigation isLoaded={isLoaded} />
             <Trending />
           </Route>
           <Route exact path="/">
+            <Navigation isLoaded={isLoaded} />
             <Feed />
           </Route>
         </Switch>

@@ -19,7 +19,7 @@ function Profile() {
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
-
+  window.scrollTo(0, 0);
   let profileUserId = parseInt(id);
 
   let profileUser;

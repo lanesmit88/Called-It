@@ -31,11 +31,11 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
       )}
-      <li>
+      { sessionUser &&<li>
         <NavLink className="navbarElements" to={`/trending`}>
           Trending
         </NavLink>
-      </li>
+      </li>}
       <li id="linksContainer">
         <NavLink exact to="/" className="navbarElements">
           Home
