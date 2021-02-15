@@ -25,7 +25,7 @@ function Post({ post }) {
 
   const [agreeableStatus, setAgreeableStatus] = useState(true);
   const [disagreeableStatus, setDisagreeableStatus] = useState(true);
-
+  const [showComments, setShowComments] = useState(false);
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
@@ -59,7 +59,9 @@ function Post({ post }) {
       return;
     }
   }
-
+  function commentsHandeler() {
+    setShowComments(!showComments);
+  }
   return (
     <>
       <div className="postContainer">
@@ -95,17 +97,17 @@ function Post({ post }) {
                   oldDisagreeableStatus={disagreeableStatus}
                 />
               }
+              <i class="far fa-comment" id="comment-icon"onClick={commentsHandeler}></i>
             </div>
           </div>
         </div>
-        <div id="comments">
-          {Comments &&
-            comments &&
+        {showComments && <div id="comments">
+          {comments &&
             comments.map((comment) => {
               return <Comment key={comment.id} comment={comment} />;
             })}
           <CreateComment userId={loggedInUserId} postId={id} />
-        </div>
+        </div>}
       </div>
     </>
   );
