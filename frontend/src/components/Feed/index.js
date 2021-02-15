@@ -19,7 +19,7 @@ function Feed() {
 
   useEffect(() => {
     dispatch(fetchFeedData(userId));
-  }, []);
+  }, [Comment]);
 
   return (
     <div id="feedContainer">

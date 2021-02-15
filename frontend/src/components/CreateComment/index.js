@@ -15,17 +15,16 @@ function CreateComment({ userId, postId }) {
 
   return (
     <>
-      <form onSubmit={submitForm}>
-        <textarea
+      <form onSubmit={submitForm} id="comment-form">
+        <input
+          id="comment-textarea"
           placeholder="Type here..."
           value={text}
           onChange={(e) => {
             setText(e.target.value);
           }}
-        ></textarea>
-        <button id="comment-button" type="submit">
-          Add Comment
-        </button>
+        ></input>
+        <button class="fas fa-plus" id="comment-button" type="submit"></button>
       </form>
     </>
   );

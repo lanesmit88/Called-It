@@ -1,0 +1,28 @@
+#comment-button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  float: left;
+  margin-left: 16px;
+  font-weight: 800;
+  font-size: 1.5em;
+}
+
+#comment-textarea {
+  border-radius: 4px;
+  background: #ecf0f1;
+  border: #ccc 1px solid;
+  padding: 8px;
+  width: 60%;
+  font-size: 1em;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  height: 100%;
+}
+
+#comment-form {
+  height: 100%;
+}

@@ -1,34 +1,94 @@
 .postContainer {
   width: 100%;
   height: 100%;
-  background-color: rgb(114, 113, 113);
+  background-color: rgb(208, 210, 221);
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 3px;
+  border: 1px solid rgb(165, 158, 158);
 }
 
 .postInteraction {
-  width: 25%;
+  width: 30%;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
   align-items: center;
-  padding-right: 2%;
 }
+
 #post-container-no-comments {
   width: 100%;
   display: flex;
+  justify-content: flex-start;
 }
+
+#post-container-no-comments > h1 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 26px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  padding-left: 24px;
+}
+
 #comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: azure;
   width: 100%;
+  height: 100%;
+  border-top: 1px solid rgb(165, 158, 158);
+}
+
+#comment {
+  border-top: 1px solid rgb(165, 158, 158);
+  display: flex;
+  align-items: center;
+
+}
+
+#comment > a {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  padding-left: 12px;
+}
+#comment > h3 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: normal;
+  padding-left: 28px;
+}
+
+#agrees-active {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 24px;
 }
 
 #agrees {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 24px;
+}
+
+#show-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #agree-button-and-count {
@@ -55,22 +115,29 @@
 
 #date-and-status {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: flex-end;
+  padding-right: 24px;
 }
 
 #post-date {
   padding-right: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 #active-post {
-background-color: green;
+  color: green;
 }
 
 #inactive-post {
-background-color: red;
+  color: rgb(175, 0, 0);
 }
 
-#comment-icon{
-color: blanchedalmond;
-font-size: 26px;
+#comment-icon {
+  color: #2980b9;
+  font-size: 26px;
+}
+
+#comments {
+  background-color: rgb(208, 210, 221);
 }

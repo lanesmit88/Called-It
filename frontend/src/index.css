@@ -1,15 +1,22 @@
 /* TODO Add site wide styles */
 body {
-    margin: 0;
+  margin: 0;
+  min-width: 1000px;
+  width: auto !important;
+  width: 1000px;
 }
 
 #root {
-    /* display: flex;
+  /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; */
-    width: 100%;
-    height: 100%;
-    background-color: rgb(1, 1, 117);
-    margin: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(225, 227, 240, 255),
+    #2980b9
+  );
+  margin: 0;
 }

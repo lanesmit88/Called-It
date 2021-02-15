@@ -8,12 +8,12 @@ function Comment({ comment }) {
   } = comment;
 
   return (
-    <>
+    <div id="comment">
       <NavLink to={`/profile/${id}`} exact>
         {username}
       </NavLink>
-      <h2>{text}</h2>
-    </>
+      <h3>{text}</h3>
+    </div>
   );
 }
 
