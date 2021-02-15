@@ -22,7 +22,7 @@ function Post({ post }) {
     PostInteractions,
     User: { profilePhotoUrl: profPhoto, username, id: postUserId },
   } = post;
-  console.log(Comments.length);
+
   const [agreeableStatus, setAgreeableStatus] = useState(true);
   const [disagreeableStatus, setDisagreeableStatus] = useState(true);
   const [showComments, setShowComments] = useState(false);
