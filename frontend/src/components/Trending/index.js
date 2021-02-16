@@ -4,11 +4,11 @@ import { fetchTrendingData } from "../../store/feed";
 import Post from "../Post";
 import { useEffect } from "react";
 function Trending() {
-
+  window.scrollTo(0, 0);
   const dispatch = useDispatch();
-const feed = useSelector((reduxState) => {
-  return reduxState.trending;
-});
+  const feed = useSelector((reduxState) => {
+    return reduxState.trending;
+  });
   useEffect(() => {
     dispatch(fetchTrendingData());
   }, []);

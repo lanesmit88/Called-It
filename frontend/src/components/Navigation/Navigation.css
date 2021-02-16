@@ -24,8 +24,8 @@
 }
 
 #navLoginButton {
-  background-color: aquamarine;
   font-size: 100%;
+  background-color: grey;
   font-family: inherit;
   border: 0;
   padding: 0;
@@ -39,3 +39,5 @@
   background-color: grey;
   border-bottom: 1px solid black;
 }
+
+

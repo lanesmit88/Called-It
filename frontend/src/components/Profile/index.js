@@ -19,7 +19,7 @@ function Profile() {
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
-
+  window.scrollTo(0, 0);
   let profileUserId = parseInt(id);
 
   let profileUser;
@@ -71,7 +71,7 @@ function Profile() {
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
-        <div id="username&follow">
+        <div id="username-follow">
           {profileUser && <h1 id="profile-username">{profileUser.username}</h1>}
           {followStatus !== null && (
             <Follow
@@ -85,7 +85,7 @@ function Profile() {
         {profileUser && loggedInUserId === profileUserId && (
           <>
             <p id="profile-bio">{profileUser.bio}</p>
-            <form onSubmit={editBio}>
+            <form onSubmit={editBio} id="edit-bio">
               <textarea
                 placeholder="Type here..."
                 value={text}
@@ -102,7 +102,7 @@ function Profile() {
         )}
       </div>
       {allowCreatePost && <CreatePost userId={id} />}
-      <div id="feedContainer">
+      <div id="profileFeedContainer">
         {feed.map((post) => {
           return <Post key={post.id} post={post} />;
         })}

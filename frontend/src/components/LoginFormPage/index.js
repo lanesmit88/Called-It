@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -32,27 +32,29 @@ function LoginFormPage() {
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <label id="email-label">
-            Username or Email
-            <input
-              id="email"
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
-            />
-          </label>
-          <label id="password-label">
-            Password
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-          <button type="submit">Log In</button>
+          <input
+            id="email"
+            type="text"
+            placeholder="Email or username"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+          <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button type="submit" id="login-button">
+            Log In
+          </button>
+          <NavLink to={`/signup`}>
+            <button id="signup-button">Sign Up</button>
+          </NavLink>
         </form>
       </div>
     </div>

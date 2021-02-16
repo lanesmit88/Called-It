@@ -25,6 +25,7 @@ function Post({ post }) {
 
   const [agreeableStatus, setAgreeableStatus] = useState(true);
   const [disagreeableStatus, setDisagreeableStatus] = useState(true);
+  const [showComments, setShowComments] = useState(false);
 
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
@@ -59,7 +60,9 @@ function Post({ post }) {
       return;
     }
   }
-
+  function commentsHandeler() {
+    setShowComments(!showComments);
+  }
   return (
     <>
       <div className="postContainer">
@@ -69,6 +72,8 @@ function Post({ post }) {
           <div className="postInteraction">
             <div id="date-and-status">
               <h3 id="post-date">By: {date.toDateString()}</h3>
+            </div>
+            <div id="agrees-active">
               {active && loggedInUserId === userId && (
                 <h1 id="active-post">Active</h1>
               )}
@@ -81,31 +86,52 @@ function Post({ post }) {
               {!active && loggedInUserId !== userId && (
                 <h1 id="inactive-post">complete</h1>
               )}
-            </div>
-            <div id="agrees">
-              {
-                <Agree
-                  agreeCount={agreeCount}
-                  disagreeCount={disagreeCount}
-                  postId={id}
-                  PostInteractions={PostInteractions}
-                  loggedInUserId={loggedInUserId}
-                  postUserId={postUserId}
-                  oldAgreeableStatus={agreeableStatus}
-                  oldDisagreeableStatus={disagreeableStatus}
-                />
-              }
+              <div id="agrees">
+                {
+                  <Agree
+                    agreeCount={agreeCount}
+                    disagreeCount={disagreeCount}
+                    postId={id}
+                    PostInteractions={PostInteractions}
+                    loggedInUserId={loggedInUserId}
+                    postUserId={postUserId}
+                    oldAgreeableStatus={agreeableStatus}
+                    oldDisagreeableStatus={disagreeableStatus}
+                  />
+                }
+
+                {showComments ? (
+                  <div id="show-comments">
+                    <i
+                      class="fas fa-comment"
+                      id="comment-icon"
+                      onClick={commentsHandeler}
+                    ></i>
+                    <h3>{Comments.length}</h3>
+                  </div>
+                ) : (
+                  <div id="show-comments">
+                    <i
+                      class="far fa-comment"
+                      id="comment-icon"
+                      onClick={commentsHandeler}
+                    ></i>
+                    <h3>{Comments.length}</h3>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-        <div id="comments">
-          {Comments &&
-            comments &&
-            comments.map((comment) => {
-              return <Comment key={comment.id} comment={comment} />;
-            })}
-          <CreateComment userId={loggedInUserId} postId={id} />
-        </div>
+        {showComments && (
+          <div id="comments">
+            {comments &&
+              comments.map((comment) => {
+                return <Comment key={comment.id} comment={comment} />;
+              })}
+            <CreateComment userId={loggedInUserId} postId={id} />
+          </div>
+        )}
       </div>
     </>
   );
