@@ -10,6 +10,8 @@ import CreateComment from "../CreateComment";
 
 import { fetchCommentsData } from "../../store/comment";
 
+import { fetchDeletePost } from "../../store/userPosts";
+
 function Post({ post }) {
   const dispatch = useDispatch();
   const {
@@ -67,7 +69,7 @@ function Post({ post }) {
   
   function submitDeletePost(e) {
     e.preventDefault();
-    dispatch(fetchDeletePost)
+    dispatch(fetchDeletePost({ id, userId }));
   }
 
   return (
