@@ -50,7 +50,7 @@ router.post(
       userId,
       text,
       dueDate,
-      active
+      active,
     });
     const createPost = await Post.findByPk(newPost.id, {
       include: [PostInteraction, User, Comment],
@@ -88,6 +88,18 @@ router.post(
   })
 );
 
+router.delete(
+  "/:userId/:postId/delete",
+  asyncHandler(async (req, res, next) => {
+    const { id, userId } = req.body;
+
+    const removePost = await Post.findOne({ where: { id: id } });
+
+    await removePost.destroy();
+    deletePost = { id, userId };
+    res.json({ deletePost });
+  })
+);
 router.put(
   "/:id/bio",
   asyncHandler(async (req, res, next) => {
@@ -99,7 +111,7 @@ router.put(
     });
 
     await user.update({ bio: text });
-    
+
     const posts = await Post.findAll({
       where: { userId: userId },
       include: [PostInteraction, User, Comment],

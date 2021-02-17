@@ -4,10 +4,17 @@ const USER_POSTS_DATA = "userposts/userPostsData";
 
 const NEW_POST = "posts/createPost";
 
+const DELETE_POST = "posts/deletePost";
+
 const UPDATE_BIO = "user/updateBio";
 
 const CreatePost = (post) => ({
   type: NEW_POST,
+  post: post,
+});
+
+const DeletePost = (post) => ({
+  type: DELETE_POST,
   post: post,
 });
 
@@ -41,6 +48,18 @@ export const createPost = (body) => {
   };
 };
 
+export const fetchDeletePost = (body) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/users/${body.userId}/${body.id}/delete`, {
+      method: "DELETE",
+      body: JSON.stringify(body),
+    });
+
+    const deletePost = res.data.deletePost;
+    dispatch(DeletePost(deletePost))
+  };
+};
+
 export const updateBio = (body) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${body.profileUserId}/bio`, {
@@ -61,6 +80,10 @@ function userPostsReducer(state = initialState, action) {
       return action.userPosts;
     case NEW_POST:
       return [...state, action.post];
+    case DELETE_POST:
+      return state.filter(
+        (piece) => piece.id !== action.post.id
+      );
     case UPDATE_BIO:
       return action.bio;
     default:

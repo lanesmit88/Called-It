@@ -10,6 +10,8 @@ import CreateComment from "../CreateComment";
 
 import { fetchCommentsData } from "../../store/comment";
 
+import { fetchDeletePost } from "../../store/userPosts";
+
 function Post({ post }) {
   const dispatch = useDispatch();
   const {
@@ -26,6 +28,7 @@ function Post({ post }) {
   const [agreeableStatus, setAgreeableStatus] = useState(true);
   const [disagreeableStatus, setDisagreeableStatus] = useState(true);
   const [showComments, setShowComments] = useState(false);
+  const [deletePost, setDeletePost] = useState(true);
 
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
@@ -64,7 +67,10 @@ function Post({ post }) {
     setShowComments(!showComments);
   }
   
-  console.log(Comments.length);
+  function submitDeletePost(e) {
+    e.preventDefault();
+    dispatch(fetchDeletePost({ id, userId }));
+  }
 
   return (
     <>
@@ -75,6 +81,18 @@ function Post({ post }) {
           <div className="postInteraction">
             <div id="date-and-status">
               <h3 id="post-date">By: {date.toDateString()}</h3>
+              <form onSubmit={submitDeletePost}>
+                <button
+                  id="delete-button"
+                  value={deletePost}
+                  onChange={(e) => {
+                    setDeletePost(e.target.value);
+                  }}
+                  type="submit"
+                >
+                </button>
+              </form>
+              <button className="fas fa-times"></button>
             </div>
             <div id="agrees-active">
               {active && loggedInUserId === userId && (
