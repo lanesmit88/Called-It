@@ -107,7 +107,7 @@ function Post({ post }) {
                       id="comment-icon"
                       onClick={commentsHandeler}
                     ></i>
-                    <h3>{Comments.length}</h3>
+                    {/* <h3>{Comments.length}</h3> */}
                   </div>
                 ) : (
                   <div id="show-comments">
@@ -116,7 +116,7 @@ function Post({ post }) {
                       id="comment-icon"
                       onClick={commentsHandeler}
                     ></i>
-                    <h3>{Comments.length}</h3>
+                    {/* <h3>{Comments.length}</h3> */}
                   </div>
                 )}
               </div>
