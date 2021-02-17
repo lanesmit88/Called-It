@@ -53,7 +53,7 @@ router.post(
       active
     });
     const createPost = await Post.findByPk(newPost.id, {
-      include: [PostInteraction, User],
+      include: [PostInteraction, User, Comment],
     });
 
     res.json({ createPost });

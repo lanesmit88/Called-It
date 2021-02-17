@@ -26,7 +26,7 @@ function CreatePost({ userId }) {
           }}
         ></textarea>
         <input
-          placeholder="Due Date"
+          placeholder="YYYY/MM/DD"
           value={dueDate}
           onChange={(e) => {
             setDueDate(e.target.value);

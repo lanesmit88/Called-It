@@ -63,6 +63,9 @@ function Post({ post }) {
   function commentsHandeler() {
     setShowComments(!showComments);
   }
+  
+  console.log(Comments.length);
+
   return (
     <>
       <div className="postContainer">
@@ -103,20 +106,20 @@ function Post({ post }) {
                 {showComments ? (
                   <div id="show-comments">
                     <i
-                      class="fas fa-comment"
+                      className="fas fa-comment"
                       id="comment-icon"
                       onClick={commentsHandeler}
                     ></i>
-                    {/* <h3>{Comments.length}</h3> */}
+                    <h3>{Comments.length}</h3>
                   </div>
                 ) : (
                   <div id="show-comments">
                     <i
-                      class="far fa-comment"
+                      className="far fa-comment"
                       id="comment-icon"
                       onClick={commentsHandeler}
                     ></i>
-                    {/* <h3>{Comments.length}</h3> */}
+                    <h3>{Comments.length}</h3>
                   </div>
                 )}
               </div>

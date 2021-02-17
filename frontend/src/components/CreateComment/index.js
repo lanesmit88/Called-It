@@ -24,7 +24,7 @@ function CreateComment({ userId, postId }) {
             setText(e.target.value);
           }}
         ></input>
-        <button class="fas fa-plus" id="comment-button" type="submit"></button>
+        <button className="fas fa-plus" id="comment-button" type="submit"></button>
       </form>
     </>
   );
