@@ -3,26 +3,28 @@ import { NavLink } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { fetchDeleteComment } from "../../store/comment";
-
+import { useState } from "react";
 
 function Comment({ comment }) {
   const {
     text,
-    id,
+    id: commentId,
     userId,
     postId,
     User: { username, profilePhotoUrl, bio },
   } = comment;
+
   const dispatch = useDispatch();
+  const [deleteComment, setDeleteComment] = useState(true);
 
   function submitDeleteComment(e) {
     e.preventDefault();
-    dispatch(fetchDeleteComment({ id, userId, postId }));
+    dispatch(fetchDeleteComment({ commentId, userId, postId }));
   }
 
   return (
     <div id="comment">
-      <NavLink to={`/profile/${id}`} exact>
+      <NavLink to={`/profile/${userId}`} exact>
         {username}
       </NavLink>
       <h3>{text}</h3>

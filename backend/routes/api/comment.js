@@ -34,12 +34,16 @@ router.post(
 router.delete(
   "/:commentId/delete",
   asyncHandler(async (req, res) => {
-    const { id, userId, postId } = req.body;
-    const removeComment = await Comment.findOne({ where: { id: id } });
+    tempCommentId = req.params.commentId;
+    const { commentId, userId, postId } = req.body;
+    const removeComment = await Comment.findOne({
+      where: { id: tempCommentId },
+      include: [Post, User],
+    });
 
     await removeComment.destroy();
 
-    const deleteComment = { id, userId, postId };
+    deleteComment = { commentId, userId, postId };
     res.json({ deleteComment });
   })
 );

@@ -2,7 +2,7 @@ import { fetch } from "./csrf.js";
 
 const COMMENTS_DATA = "comments/commentData";
 const CREATE_COMMENT = "comments/createComment";
-const DELETE_COMMENT = "comments/deleteComment"
+const DELETE_COMMENT = "comments/deleteComment";
 
 const CommentsData = (comments) => ({
   type: COMMENTS_DATA,
@@ -17,7 +17,7 @@ const CreateComment = (comment) => ({
 const DeleteComment = (comment) => ({
   type: DELETE_COMMENT,
   comment: comment,
-})
+});
 
 export const fetchCommentsData = (postId) => {
   return async (dispatch) => {
@@ -40,15 +40,15 @@ export const fetchCreateComment = (body) => {
 
 export const fetchDeleteComment = (body) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/comments/${body.id}/delete`, {
+    const res = await fetch(`/api/comments/${body.commentId}/delete`, {
       method: "DELETE",
-      body: JSON.stringify(body)
-    })
+      body: JSON.stringify(body),
+    });
 
-    const deleteComment = res.body.deleteComment;
-    dispatch(DeleteComment(deleteComment))
-  }
-}
+    const deleteComment = res.data.deleteComment;
+    dispatch(DeleteComment(deleteComment));
+  };
+};
 
 const initialState = {};
 // comments is a object where the key is the postId and the value is an array of  comment objects for that post
@@ -75,7 +75,16 @@ function commentsReducer(state = initialState, action) {
         return newState;
       }
     case DELETE_COMMENT:
-      state.filter((comment) => comment.id !== action.comment.id)
+      // state.filter((comment) => comment.id !== action.comment.id)
+      console.log(state, "-------------------", action.comment);
+      newState = JSON.parse(JSON.stringify(state));
+      let comments;
+      const post = newState[action.comment.postId];
+      comments = post.filter(
+        (comment) => comment.id !== action.comment.commentId
+      );
+        newState[action.comment.postId] = comments;
+      return newState
     default:
       return state;
   }
