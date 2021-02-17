@@ -81,7 +81,9 @@ function userPostsReducer(state = initialState, action) {
     case NEW_POST:
       return [...state, action.post];
     case DELETE_POST:
-      return [...state, action.post];
+      return state.filter(
+        (piece) => piece.id !== action.post.id
+      );
     case UPDATE_BIO:
       return action.bio;
     default:
