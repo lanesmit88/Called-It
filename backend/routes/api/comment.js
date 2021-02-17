@@ -5,7 +5,7 @@ const { Post, PostInteraction, User, Comment } = require("../../db/models");
 
 router.get(
   "/:postId",
-  asyncHandler(async (req, res, next) => { 
+  asyncHandler(async (req, res, next) => {
     postId = req.params.postId;
     const comments = await Comment.findAll({
       where: { postId: postId },
@@ -28,6 +28,23 @@ router.post(
       include: [Post, User],
     });
     res.json({ createComment });
+  })
+);
+
+router.delete(
+  "/:commentId/delete",
+  asyncHandler(async (req, res) => {
+    tempCommentId = req.params.commentId;
+    const { commentId, userId, postId } = req.body;
+    const removeComment = await Comment.findOne({
+      where: { id: tempCommentId },
+      include: [Post, User],
+    });
+
+    await removeComment.destroy();
+
+    deleteComment = { commentId, userId, postId };
+    res.json({ deleteComment });
   })
 );
 

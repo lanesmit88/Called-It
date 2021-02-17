@@ -100,6 +100,7 @@ router.delete(
     res.json({ deletePost });
   })
 );
+
 router.put(
   "/:id/bio",
   asyncHandler(async (req, res, next) => {

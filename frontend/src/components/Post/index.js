@@ -83,7 +83,7 @@ function Post({ post }) {
               <h3 id="post-date">By: {date.toDateString()}</h3>
               <form onSubmit={submitDeletePost}>
                 <button
-                  id="delete-button"
+                  id="delete-button"className="fas fa-times"
                   value={deletePost}
                   onChange={(e) => {
                     setDeletePost(e.target.value);
@@ -92,7 +92,6 @@ function Post({ post }) {
                 >
                 </button>
               </form>
-              <button className="fas fa-times"></button>
             </div>
             <div id="agrees-active">
               {active && loggedInUserId === userId && (

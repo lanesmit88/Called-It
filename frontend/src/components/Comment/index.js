@@ -1,18 +1,44 @@
 import "./index.css";
 import { NavLink } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { fetchDeleteComment } from "../../store/comment";
+import { useState } from "react";
+
 function Comment({ comment }) {
   const {
     text,
-    User: { id, username, profilePhotoUrl, bio },
+    id: commentId,
+    userId,
+    postId,
+    User: { username, profilePhotoUrl, bio },
   } = comment;
+
+  const dispatch = useDispatch();
+  const [deleteComment, setDeleteComment] = useState(true);
+
+  function submitDeleteComment(e) {
+    e.preventDefault();
+    dispatch(fetchDeleteComment({ commentId, userId, postId }));
+  }
 
   return (
     <div id="comment">
-      <NavLink to={`/profile/${id}`} exact>
+      <NavLink to={`/profile/${userId}`} exact>
         {username}
       </NavLink>
       <h3>{text}</h3>
+      <form onSubmit={submitDeleteComment}>
+        <button
+          id="delete-comment"
+          className="fas fa-times"
+          value={deleteComment}
+          onChange={(e) => {
+            setDeleteComment(e.target.value);
+          }}
+          type="submit"
+        ></button>
+      </form>
     </div>
   );
 }
