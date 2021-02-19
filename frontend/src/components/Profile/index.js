@@ -16,6 +16,8 @@ function Profile() {
   const { id } = useParams();
   const [followStatus, setFollowStatus] = useState(false);
   const [text, setText] = useState("");
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [showEditBio, setShowEditBio] = useState(false);
   const feed = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
@@ -62,7 +64,19 @@ function Profile() {
   function editBio(e) {
     e.preventDefault();
     dispatch(updateBio({ text, profileUserId }));
+    setShowEditBio(!showEditBio);
     setText("");
+
+  }
+
+  function showCreatePostHandeler(e) {
+    e.preventDefault();
+    setShowCreatePost(!showCreatePost);
+  }
+
+  function showEditBioHandeler(e) {
+    e.preventDefault();
+    setShowEditBio(!showEditBio);
   }
 
   return (
@@ -82,9 +96,20 @@ function Profile() {
             />
           )}
         </div>
-        {profileUser && loggedInUserId === profileUserId && (
+        {profileUser && <p id="profile-bio">{profileUser.bio}</p>}
+        <div id="profile-buttons" >
+        {profileUser && loggedInUserId === profileUserId && showEditBio && (
+          <form onSubmit={showEditBioHandeler}>
+            <button value={showEditBio}>Cancel</button>
+          </form>
+        )}
+        {profileUser && loggedInUserId === profileUserId && !showEditBio && (
+          <form onSubmit={showEditBioHandeler}>
+            <button value={showEditBio}>Edit Bio</button>
+          </form>
+        )}
+        {profileUser && loggedInUserId === profileUserId && showEditBio && (
           <>
-            <p id="profile-bio">{profileUser.bio}</p>
             <form onSubmit={editBio} id="edit-bio">
               <textarea
                 placeholder="Type here..."
@@ -93,15 +118,22 @@ function Profile() {
                   setText(e.target.value);
                 }}
               ></textarea>
-              <button>Edit Bio</button>
+              <button>Submit</button>
             </form>
           </>
         )}
-        {profileUser && loggedInUserId !== profileUserId && (
-          <p id="profile-bio">{profileUser.bio}</p>
+        {profileUser && loggedInUserId === profileUserId && showCreatePost && (
+          <form onSubmit={showCreatePostHandeler}>
+            <button value={showCreatePost}>Cancel</button>
+          </form>
         )}
-      </div>
-      {allowCreatePost && <CreatePost userId={id} />}
+        {profileUser && loggedInUserId === profileUserId && !showCreatePost && (
+          <form onSubmit={showCreatePostHandeler}>
+            <button value={showCreatePost}>New Post</button>
+          </form>
+        )}
+      </div></div>
+      {allowCreatePost && showCreatePost && <CreatePost userId={id} />}
       <div id="profileFeedContainer">
         {feed.map((post) => {
           return <Post key={post.id} post={post} />;

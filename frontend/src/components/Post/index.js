@@ -63,10 +63,10 @@ function Post({ post }) {
       return;
     }
   }
+
   function commentsHandeler() {
     setShowComments(!showComments);
   }
-  
   function submitDeletePost(e) {
     e.preventDefault();
     dispatch(fetchDeletePost({ id, userId }));
