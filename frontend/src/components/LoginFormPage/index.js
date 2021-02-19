@@ -25,6 +25,7 @@ function LoginFormPage() {
 
   return (
     <div id="login-container">
+      <h1 id="title">Called It</h1>
       <div id="login-page">
         <form id="login-form" onSubmit={handleSubmit}>
           <ul>
@@ -52,9 +53,10 @@ function LoginFormPage() {
           <button type="submit" id="login-button">
             Log In
           </button>
-          <NavLink to={`/signup`}>
-            <button id="signup-button">Sign Up</button>
-          </NavLink>
+          <div id="signup-link">
+            <p>Don't have an account?</p>
+            <NavLink to="/signup">SignUp</NavLink>
+          </div>
         </form>
       </div>
     </div>

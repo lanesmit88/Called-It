@@ -8,7 +8,9 @@ import "./index.css";
 
 function Feed() {
   window.scrollTo(0, 0);
+
   const dispatch = useDispatch();
+
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
@@ -21,6 +23,7 @@ function Feed() {
     dispatch(fetchFeedData(userId));
   }, [Comment]);
 
+  
   return (
     <div id="feedContainer">
       <div id="feed-inner-container">

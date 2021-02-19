@@ -111,3 +111,10 @@
 #signup-button:hover {
   background: rgb(112, 117, 153);
 }
+
+#title{
+  color: black;
+  font-size: 64px;
+  z-index: 3;
+  font-family: 'Times New Roman', Times, serif;
+}
