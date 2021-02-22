@@ -1,0 +1,13 @@
+.search-box-container {
+  background-color: none;
+  color: none;
+}
+.search-box-container > button {
+    color: rgba(240, 255, 255, 0);
+    background-color:rgba(240, 255, 255, 0);
+    border:  none;
+}
+
+#search-icon{
+    color: black;
+}
