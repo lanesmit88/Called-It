@@ -23,6 +23,12 @@ function LoginFormPage() {
     );
   };
 
+  const handleDemo = (e) => {
+    e.preventDefault();
+    setCredential("demo@user.io");
+    setPassword("password");
+  };
+
   return (
     <div id="login-container">
       <h1 id="title">Called It</h1>
@@ -49,14 +55,17 @@ function LoginFormPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-
           <button type="submit" id="login-button">
             Log In
           </button>
+
           <div id="signup-link">
             <p>Don't have an account?</p>
             <NavLink to="/signup">SignUp</NavLink>
           </div>
+        </form>
+        <form  id="demo-button" onSubmit={handleDemo}>
+          <button  type="submit">Demo</button>
         </form>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { searchDispatch } from "../../store/search";
 function Search() {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
-    const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState(false);
   const search = useSelector((reduxState) => reduxState.search);
 
   useEffect(() => {
