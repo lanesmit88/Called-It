@@ -10,6 +10,7 @@ import userPostsReducer from "./userPosts";
 import commentsReducer from "./comment";
 import followReducer from "./follow";
 import trendingReducer from "./trending";
+import searchReducer from "./search";
 
 
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   comments: commentsReducer,
   follow: followReducer,
   trending: trendingReducer,
+  search: searchReducer,
 });
 
 let enhancer;
