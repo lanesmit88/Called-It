@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
-const { Post, Follow, PostInteraction, User, Comment } = require("../../db/models");
+const {
+  Post,
+  Follow,
+  PostInteraction,
+  User,
+  Comment,
+} = require("../../db/models");
 
 router.get(
   "/:id",
@@ -10,22 +16,28 @@ router.get(
     const followed = await Follow.findAll({ where: { followerId: userId } });
     stuff = [];
     followed.forEach((follow) => {
-      
       temp = follow.dataValues.followedId;
-      
+
       stuff.push(temp);
     });
 
     let feed = [];
 
-    await Promise.all(stuff.map(async (id) => {
-      const temp = await Post.findAll({ where: { userId: id }, include:  [ PostInteraction, User, Comment ]});
-      feed.push(...temp);
-    }));
+    await Promise.all(
+      stuff.map(async (id) => {
+        const temp = await Post.findAll({
+          where: { userId: id },
+          include: [PostInteraction, User, Comment],
+        });
+        feed.push(...temp);
+      })
+    );
+        // while(feed.length > 4) {
+        //   feed.pop()
+        // }
 
     res.json([...feed]);
   })
 );
-
 
 module.exports = router;

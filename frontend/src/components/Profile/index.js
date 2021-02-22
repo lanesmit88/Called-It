@@ -18,7 +18,7 @@ function Profile() {
   const [text, setText] = useState("");
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [showEditBio, setShowEditBio] = useState(false);
-  const feed = useSelector((reduxState) => {
+  const feedArr = useSelector((reduxState) => {
     return reduxState.userPosts.reverse();
   });
   window.scrollTo(0, 0);
@@ -78,6 +78,7 @@ function Profile() {
     e.preventDefault();
     setShowEditBio(!showEditBio);
   }
+let feed = feedArr.sort((a, b) => a.id - b.id);
 
   return (
     <div id="profile-page-container">
