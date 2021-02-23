@@ -81,17 +81,19 @@ function Post({ post }) {
           <div className="postInteraction">
             <div id="date-and-status">
               <h3 id="post-date">By: {date.toDateString()}</h3>
-              <form onSubmit={submitDeletePost}>
-                <button
-                  id="delete-button"className="fas fa-times"
-                  value={deletePost}
-                  onChange={(e) => {
-                    setDeletePost(e.target.value);
-                  }}
-                  type="submit"
-                >
-                </button>
-              </form>
+              {loggedInUserId === userId && (
+                <form onSubmit={submitDeletePost}>
+                  <button
+                    id="delete-post-button"
+                    className="fas fa-trash"
+                    value={deletePost}
+                    onChange={(e) => {
+                      setDeletePost(e.target.value);
+                    }}
+                    type="submit"
+                  ></button>
+                </form>
+              )}
             </div>
             <div id="agrees-active">
               {active && loggedInUserId === userId && (
@@ -147,7 +149,7 @@ function Post({ post }) {
           <div id="comments">
             {comments &&
               comments.map((comment) => {
-                return <Comment key={comment.id} comment={comment} />;
+                return <Comment key={comment.id} comment={comment} loggedInUserId={loggedInUserId} posterId={userId}/>;
               })}
             <CreateComment userId={loggedInUserId} postId={id} />
           </div>

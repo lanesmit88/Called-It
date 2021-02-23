@@ -50,7 +50,6 @@
   border-top: 1px solid rgb(165, 158, 158);
   display: flex;
   align-items: center;
-
 }
 
 #comment > a {
@@ -113,6 +112,21 @@
   width: 100%;
 }
 
+#delete-post-button {
+  margin-top: 6px;
+  padding-top: 4px;
+  background-color: rgb(175, 0, 0);
+  border: 1px solid black;
+  border-radius: 6px;
+}
+#delete-comment-button {
+  margin-top: 6px;
+  padding-top: 4px;
+  background-color: rgb(175, 0, 0);
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-left: 8px;
+}
 #date-and-status {
   display: flex;
   width: 100%;
