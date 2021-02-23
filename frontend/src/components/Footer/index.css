@@ -19,3 +19,8 @@
     text-decoration: none;
     padding-left: 8px;
 }
+
+#footer-logo > img {
+  height: 100px;
+  width: 100px;
+}
