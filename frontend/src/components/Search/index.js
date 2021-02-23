@@ -16,28 +16,40 @@ function Search() {
   return (
     <div className="search-wrapper">
       <div className="search-box-container">
-        <button>
+        <button className="search-button">
           <i id="search-icon" className="fa fa-search" />
           <input
             className="search-input"
             type="text"
             placeholder="Search Users"
             value={searchText}
+            onFocus={() => setShowSearch(true)}
+            onBlur={() =>
+              setTimeout(() => {
+                setShowSearch(false);
+              }, 200)
+            }
             onChange={(event) => setSearchText(event.target.value)}
           ></input>
+          <ul id="user-search-list">
+            {search.length &&
+              showSearch &&
+              search.map((user) => {
+                return (
+                  <li className="user-search-result-text">
+                    <NavLink
+                      className="user-search-result-text-username"
+                      to={`/profile/${user.id}`}
+                    >
+                      {user.username}
+                    </NavLink>
+                    ;
+                  </li>
+                );
+              })}
+          </ul>
         </button>
       </div>
-      <ul>
-        {search.length &&
-          showSearch &&
-          search.map((user) => {
-            return (
-              <li>
-                <NavLink to={`/profile/${user.id}`}>{user.username}</NavLink>;
-              </li>
-            );
-          })}
-      </ul>
     </div>
   );
 }
