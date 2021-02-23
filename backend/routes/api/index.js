@@ -7,6 +7,7 @@ const disagreeRouter = require("./disagree");
 const commentRouter = require("./comment");
 const followRouter = require("./follow");
 const trendingRouter = require("./trending");
+const searchRouter = require("./search");
 
 // GET /api/set-token-cookie
 const asyncHandler = require("express-async-handler");
@@ -50,16 +51,18 @@ router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
 
-router.use("/feed", feedRouter)
+router.use("/feed", feedRouter);
 
-router.use("/agree", agreeRouter)
+router.use("/agree", agreeRouter);
 
-router.use("/disagree", disagreeRouter)
+router.use("/disagree", disagreeRouter);
 
-router.use("/comments", commentRouter)
+router.use("/comments", commentRouter);
 
-router.use("/follow", followRouter)
+router.use("/follow", followRouter);
 
-router.use("/trending", trendingRouter)
+router.use("/trending", trendingRouter);
+
+router.use("/search", searchRouter);
 
 module.exports = router;
