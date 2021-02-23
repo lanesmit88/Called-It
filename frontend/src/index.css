@@ -1,10 +1,10 @@
 /* TODO Add site wide styles */
 html {
-  /* background-image: linear-gradient(
-    to bottom right,
+  background-image: linear-gradient(
+    to bottom left,
     #2980b9,
     rgba(225, 227, 240, 255)
-  ); */
+  );
   background-color:rgba(225, 227, 240, 255);
 }
 body {
@@ -12,6 +12,7 @@ body {
   min-width: 1000px;
   width: auto !important;
   width: 1000px;
+  height: 100%;
 }
 
 #root {

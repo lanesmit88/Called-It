@@ -24,15 +24,14 @@ function Follow({ followStatus, followerId, followedId }) {
           {
             <form onSubmit={submitUnfollow}>
               <button
+                class="fas fa-user-minus"
                 id="follow-button"
                 value={follow}
                 onChange={(e) => {
                   setFollow(e.target.value);
                 }}
                 type="submit"
-              >
-                unfollow
-              </button>
+              ></button>
             </form>
           }
         </>
@@ -41,15 +40,14 @@ function Follow({ followStatus, followerId, followedId }) {
           {
             <form onSubmit={submitFollow}>
               <button
+                class="fas fa-user-plus"
                 id="follow-button"
                 value={follow}
                 onChange={(e) => {
                   setFollow(e.target.value);
                 }}
                 type="submit"
-              >
-                follow
-              </button>
+              ></button>
             </form>
           }
         </>
