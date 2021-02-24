@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { fetchDeleteComment } from "../../store/comment";
 import { useState } from "react";
 
-function Comment({ comment }) {
+function Comment({ comment, loggedInUserId, posterId }) {
   const {
     text,
     id: commentId,
@@ -28,17 +28,19 @@ function Comment({ comment }) {
         {username}
       </NavLink>
       <h3>{text}</h3>
-      <form onSubmit={submitDeleteComment}>
-        <button
-          id="delete-comment"
-          className="fas fa-times"
-          value={deleteComment}
-          onChange={(e) => {
-            setDeleteComment(e.target.value);
-          }}
-          type="submit"
-        ></button>
-      </form>
+      {(loggedInUserId === userId || loggedInUserId === posterId) && (
+        <form onSubmit={submitDeleteComment}>
+          <button
+            id="delete-comment-button"
+            className="fas fa-trash"
+            value={deleteComment}
+            onChange={(e) => {
+              setDeleteComment(e.target.value);
+            }}
+            type="submit"
+          ></button>
+        </form>
+      )}
     </div>
   );
 }

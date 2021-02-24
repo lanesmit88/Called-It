@@ -64,8 +64,8 @@ function LoginFormPage() {
             <NavLink to="/signup">SignUp</NavLink>
           </div>
         </form>
-        <form  id="demo-button" onSubmit={handleDemo}>
-          <button  type="submit">Demo</button>
+        <form id="demo-button" onSubmit={handleDemo}>
+          <button type="submit">Demo</button>
         </form>
       </div>
     </div>

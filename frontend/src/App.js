@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
 import Profile from "./components/Profile";
 import Trending from "./components/Trending";
+import Footer from "./components/Footer"
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,22 +39,27 @@ function App() {
           <Route path="/login">
             <Navigation isLoaded={isLoaded} />
             <LoginFormPage />
+            <Footer />
           </Route>
           <Route path="/signup">
             <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
+            <Footer />
           </Route>
           <Route path="/profile/:id">
             <Navigation isLoaded={isLoaded} />
             <Profile />
+            <Footer />
           </Route>
           <Route path="/trending">
             <Navigation isLoaded={isLoaded} />
             <Trending />
+            <Footer />
           </Route>
           <Route exact path="/">
             <Navigation isLoaded={isLoaded} />
             <Feed />
+            <Footer />
           </Route>
         </Switch>
       )}

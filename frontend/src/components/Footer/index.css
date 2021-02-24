@@ -1,0 +1,35 @@
+#footer-container {
+  position: fixed;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(54, 54, 54);
+  color: white;
+  height: 10%;
+}
+#footer-socials > a {
+  font-size: 32px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding-left: 8px;
+  order: 9;
+  z-index: 9;
+}
+
+#footer-logo > img {
+  height: 100px;
+  width: 100px;
+  margin-top: 8px;
+  order: 9;
+  z-index: 9;
+}
+/* comment */
+#footer-title {
+  color: white;
+  order: 9;
+  z-index: 9;
+}
