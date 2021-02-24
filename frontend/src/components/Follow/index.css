@@ -1,0 +1,14 @@
+#follow-form {
+  display: flex;
+  justify-content: flex-end;
+  height: 20%;
+  width: 80%;
+  color: white;
+  position: absolute;
+}
+
+#follow-form > button {
+  height: 22px;
+  margin-right: 12px;
+  margin-left: 4px;
+}

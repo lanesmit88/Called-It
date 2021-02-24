@@ -66,7 +66,6 @@ function Profile() {
     dispatch(updateBio({ text, profileUserId }));
     setShowEditBio(!showEditBio);
     setText("");
-
   }
 
   function showCreatePostHandeler(e) {
@@ -78,62 +77,63 @@ function Profile() {
     e.preventDefault();
     setShowEditBio(!showEditBio);
   }
-let feed = feedArr.sort((a, b) => a.id - b.id);
+  let feed = feedArr.sort((a, b) => a.id - b.id);
 
   return (
     <div id="profile-page-container">
       <div id="profile-container">
+        {followStatus !== null && (
+          <Follow
+            followStatus={followStatus}
+            follow={follow}
+            followerId={loggedInUserId}
+            followedId={profileUserId}
+          />
+        )}
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
         <div id="username-follow">
           {profileUser && <h1 id="profile-username">{profileUser.username}</h1>}
-          {followStatus !== null && (
-            <Follow
-              followStatus={followStatus}
-              follow={follow}
-              followerId={loggedInUserId}
-              followedId={profileUserId}
-            />
-          )}
         </div>
         {profileUser && <p id="profile-bio">{profileUser.bio}</p>}
-        <div id="profile-buttons" >
-        {profileUser && loggedInUserId === profileUserId && showEditBio && (
-          <form onSubmit={showEditBioHandeler}>
-            <button value={showEditBio}>Cancel</button>
-          </form>
-        )}
-        {profileUser && loggedInUserId === profileUserId && !showEditBio && (
-          <form onSubmit={showEditBioHandeler}>
-            <button value={showEditBio}>Edit Bio</button>
-          </form>
-        )}
-        {profileUser && loggedInUserId === profileUserId && showEditBio && (
-          <>
-            <form onSubmit={editBio} id="edit-bio">
-              <textarea
-                placeholder="Type here..."
-                value={text}
-                onChange={(e) => {
-                  setText(e.target.value);
-                }}
-              ></textarea>
-              <button>Submit</button>
+        <div id="profile-buttons">
+          {profileUser && loggedInUserId === profileUserId && showEditBio && (
+            <form onSubmit={showEditBioHandeler}>
+              <button value={showEditBio}>Cancel</button>
             </form>
-          </>
-        )}
-        {profileUser && loggedInUserId === profileUserId && showCreatePost && (
-          <form onSubmit={showCreatePostHandeler}>
-            <button value={showCreatePost}>Cancel</button>
-          </form>
-        )}
-        {profileUser && loggedInUserId === profileUserId && !showCreatePost && (
-          <form onSubmit={showCreatePostHandeler}>
-            <button value={showCreatePost}>New Post</button>
-          </form>
-        )}
-      </div></div>
+          )}
+          {profileUser && loggedInUserId === profileUserId && !showEditBio && (
+            <form onSubmit={showEditBioHandeler}>
+              <button value={showEditBio}>Edit Bio</button>
+            </form>
+          )}
+          {profileUser && loggedInUserId === profileUserId && showEditBio && (
+            <>
+              <form onSubmit={editBio} id="edit-bio">
+                <textarea
+                  placeholder="Type here..."
+                  value={text}
+                  onChange={(e) => {
+                    setText(e.target.value);
+                  }}
+                ></textarea>
+                <button>Submit</button>
+              </form>
+            </>
+          )}
+          {profileUser && loggedInUserId === profileUserId && showCreatePost && (
+            <form onSubmit={showCreatePostHandeler}>
+              <button value={showCreatePost}>Cancel</button>
+            </form>
+          )}
+          {profileUser && loggedInUserId === profileUserId && !showCreatePost && (
+            <form onSubmit={showCreatePostHandeler}>
+              <button value={showCreatePost}>New Post</button>
+            </form>
+          )}
+        </div>
+      </div>
       {allowCreatePost && showCreatePost && <CreatePost userId={id} />}
       <div id="profileFeedContainer">
         {feed.map((post) => {
