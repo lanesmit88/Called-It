@@ -1,5 +1,4 @@
 #footer-container {
-  position: absolute;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
@@ -11,6 +10,7 @@
   color: white;
   height: 10%;
 }
+
 #footer-socials > a {
   font-size: 32px;
   color: rgb(255, 255, 255);
