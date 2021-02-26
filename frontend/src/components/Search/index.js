@@ -36,7 +36,7 @@ function Search() {
               showSearch &&
               search.map((user) => {
                 return (
-                  <li className="user-search-result-text">
+                  <li className="user-search-result">
                     <NavLink
                       className="user-search-result-text-username"
                       to={`/profile/${user.id}`}

@@ -13,7 +13,7 @@ body {
   min-width: 1000px;
   width: auto !important;
   width: 1000px;
-  height: 100%;
+
 }
 
 #root {
@@ -22,7 +22,7 @@ body {
   justify-content: center;
   align-items: center; */
   width: 100%;
-
+  height: 100%;
   background-image: linear-gradient(
     to bottom right,
     rgba(225, 227, 240, 255),

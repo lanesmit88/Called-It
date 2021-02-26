@@ -1,5 +1,7 @@
 #footer-formatter{
-  height: 100%;
+  display: flex;
+  align-items: flex-end;
+
 }
 
 #footer-container {
@@ -31,6 +33,7 @@
   order: 9;
   z-index: 9;
 }
+
 /* comment */
 #footer-title {
   color: white;
