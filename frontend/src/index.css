@@ -6,6 +6,7 @@ html {
     rgba(225, 227, 240, 255)
   );
   background-color: rgba(225, 227, 240, 255);
+  height: 100%;
 }
 body {
   margin: 0;
