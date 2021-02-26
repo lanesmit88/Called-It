@@ -36,11 +36,6 @@ function App() {
 
       {isLoaded && loggedInUser && (
         <Switch>
-          <Route path="/login">
-            <Navigation isLoaded={isLoaded} />
-            <LoginFormPage />
-            <Footer />
-          </Route>
           <Route path="/signup">
             <Navigation isLoaded={isLoaded} />
             <SignupFormPage />

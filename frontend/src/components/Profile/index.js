@@ -93,8 +93,17 @@ function Profile() {
         {profileUser && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
+        {!profileUser && (
+          <img
+            id="profPhoto"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          ></img>
+        )}
         <div id="username-follow">
           {profileUser && <h1 id="profile-username">{profileUser.username}</h1>}
+        </div>
+        <div id="username-follow">
+          {!profileUser && <h1 id="profile-username"></h1>}
         </div>
         {profileUser && <p id="profile-bio">{profileUser.bio}</p>}
         <div id="profile-buttons">

@@ -5,6 +5,7 @@ import { fetchFeedData } from "../../store/feed";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
 import "./index.css";
+import { NavLink } from "react-router-dom";
 
 function Feed() {
   window.scrollTo(0, 0);
@@ -23,16 +24,24 @@ function Feed() {
     dispatch(fetchFeedData(userId));
   }, [Comment]);
 
-let feedArr = feed.sort((a, b) => b.id - a.id);
-console.log(feedArr)
+  let feedArr = feed.sort((a, b) => b.id - a.id);
+  console.log(feedArr);
   return (
     <>
       <div id="feedContainer">
-        <div id="feed-inner-container">
-          {feedArr.map((post) => {
-            return <Post key={post.id} post={post} />;
-          })}
-        </div>
+        {feedArr && (
+          <div id="feed-inner-container">
+            {feedArr.map((post) => {
+              return <Post key={post.id} post={post} />;
+            })}
+          </div>
+        )}
+        {feedArr.length === 0 && (
+          <>
+            <h1 id="no-posts">No Posts Here</h1>
+            <NavLink to="/trending">Find some people to follow!</NavLink>
+          </>
+        )}
         {/* {feed && (
           <InfiniteScroll
             className="journal-entries-list-container"

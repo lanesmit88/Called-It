@@ -1,5 +1,5 @@
 .postContainer {
-  width: 60%;
+  width: 70%;
   height: 100%;
   background-color: rgb(208, 210, 221);
   margin-bottom: 32px;
@@ -34,6 +34,7 @@
   align-items: center;
   border-radius: 12px;
   padding-left: 24px;
+  margin-right: 12px;
 }
 
 #comments {

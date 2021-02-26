@@ -11,7 +11,7 @@
 
 #profile-container {
   margin-top: 80px;
-  background-color: black;
+  background-color: rgb(54, 54, 54);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -31,10 +31,10 @@
 }
 
 #profPhoto {
-  max-height: 220px;
-  max-width: 220px;
-  min-height: 180px;
-  min-width: 180px;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 120px;
+  min-width: 120px;
   border-radius: 50%;
   margin-left: 1em;
   margin-right: 1em;
@@ -54,8 +54,13 @@
 #profile-bio {
   font-size: 24px;
   color: azure;
+  padding-right: 8px;
 }
 
 #edit-bio{
   margin-left: 8px;
+}
+
+#profile-buttons{
+  width: 100%;
 }

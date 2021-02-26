@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../store/userPosts";
+import "./index.css";
 
 function CreatePost({ userId }) {
   const [text, setText] = useState("");
@@ -16,23 +17,30 @@ function CreatePost({ userId }) {
   }
 
   return (
-    <div>
+    <div id="new-post-container">
       <form onSubmit={submitForm}>
         <textarea
           placeholder="Enter prediction..."
           value={text}
+          id="post-textarea"
           onChange={(e) => {
             setText(e.target.value);
           }}
         ></textarea>
-        <input
-          placeholder="YYYY/MM/DD"
-          value={dueDate}
-          onChange={(e) => {
-            setDueDate(e.target.value);
-          }}
-        />
-        <button type="submit">Post</button>
+        <div>
+          <input
+            placeholder="YYYY/MM/DD"
+            value={dueDate}
+            onChange={(e) => {
+              setDueDate(e.target.value);
+            }}
+          />
+          <button
+            className="fas fa-plus"
+            type="submit"
+            id="post-button"
+          ></button>
+        </div>
       </form>
     </div>
   );
