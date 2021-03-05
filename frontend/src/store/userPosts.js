@@ -42,7 +42,6 @@ export const createPost = (body) => {
       method: "POST",
       body: JSON.stringify(body),
     });
-
     const newPost = res.data.createPost;
     dispatch(CreatePost(newPost));
   };
