@@ -59,6 +59,7 @@
 
 #user-search-list{
   background-color: rgb(208, 210, 221);
+  padding-left: 4px;
 }
 
 .user-search-results a {

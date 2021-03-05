@@ -43,7 +43,6 @@ function Search() {
                     >
                       {user.username}
                     </NavLink>
-                    ;
                   </li>
                 );
               })}
