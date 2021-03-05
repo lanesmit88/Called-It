@@ -105,7 +105,11 @@ function Profile() {
         <div id="username-follow">
           {!profileUser && <h1 id="profile-username"></h1>}
         </div>
-        {profileUser && <p id="profile-bio">{profileUser.bio}</p>}
+        {profileUser && profileUser.bio ? (
+          <p id="profile-bio">{profileUser.bio}</p>
+        ) : (
+          <p id="profile-bio">"No bio yet..."</p>
+        )}
         <div id="profile-buttons">
           {profileUser && loggedInUserId === profileUserId && showEditBio && (
             <form onSubmit={showEditBioHandeler}>
