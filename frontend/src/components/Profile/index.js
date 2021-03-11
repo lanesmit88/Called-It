@@ -113,7 +113,7 @@ function Profile() {
         <div id="profile-buttons">
           {profileUser && loggedInUserId === profileUserId && showEditBio && (
             <form onSubmit={showEditBioHandeler}>
-              <button value={showEditBio}>Cancel</button>
+              <button value={showEditBio} id="edit-bio-button" >Cancel</button>
             </form>
           )}
           {profileUser && loggedInUserId === profileUserId && !showEditBio && (
