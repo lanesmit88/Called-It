@@ -108,7 +108,7 @@ function Profile() {
         {profileUser && profileUser.bio ? (
           <p id="profile-bio">{profileUser.bio}</p>
         ) : (
-          <p id="profile-bio">"No bio yet..."</p>
+          <p id="profile-bio">No bio yet...</p>
         )}
         <div id="profile-buttons">
           {profileUser && loggedInUserId === profileUserId && showEditBio && (

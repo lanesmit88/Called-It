@@ -25,7 +25,6 @@ function Feed() {
   }, [Comment]);
 
   let feedArr = feed.sort((a, b) => b.id - a.id);
-  console.log(feedArr);
   return (
     <>
       <div id="feedContainer">

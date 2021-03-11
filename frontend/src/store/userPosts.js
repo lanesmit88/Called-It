@@ -53,7 +53,6 @@ export const fetchDeletePost = (body) => {
       method: "DELETE",
       body: JSON.stringify(body),
     });
-
     const deletePost = res.data.deletePost;
     dispatch(DeletePost(deletePost))
   };
