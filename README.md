@@ -8,7 +8,7 @@
 <br />
 <p align="center"  style='margin-top: -40px; margin-bottom: -10px;'>
   <a href="https://github.com/lanesmit88/Called-It">
-    <img src="./images/fmnlogo1.png" alt="Logo" width="160" height="160" style="object-fit: contain">
+    <img src="./images/logo.png" alt="Logo" width="160" height="160" style="object-fit: contain">
   </a>
 
   <p align="center">
@@ -45,14 +45,7 @@
          <li><a href="#installation">Installation</a></li>
          </ul>
       </li>
-      <li><a href="#usage">Usage</a>
-         <ul>
-            <li><a href="#more-screenshots">More Screenshots</a></li>
-         </ul>
-      </li>
-      <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#contributing">Contributing</a></li>
-      <li><a href="#license">License</a></li>
       <li><a href="#acknowledgements">Acknowledgements</a></li>
    </ol>
 </details>
@@ -68,8 +61,8 @@
 <details open="open">
    <summary>Screenshots: Login and Homepage</summary>
    <div style="display: flex">
-      <img src="/images/screenshotlogin.png" width="31%" height="30%" style="margin: 5px"/>
-      <img src="/images/screenshothome.png" width="31%" height="30%"  style="margin: 5px"/>
+      <img src="/images/Login.png" width="31%" height="30%" style="margin: 5px"/>
+      <img src="/images/home.png" width="31%" height="30%"  style="margin: 5px"/>
    <div>
 </details>
 
