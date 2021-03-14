@@ -61,8 +61,8 @@
 <details open="open">
    <summary>Screenshots: Login and Homepage</summary>
    <div style="display: flex">
-      <img src="/images/Login.png" width="31%" height="30%" style="margin: 5px"/>
-      <img src="/images/home.png" width="31%" height="30%"  style="margin: 5px"/>
+      <img src="/images/newlogin.png" width="31%" height="30%" style="margin: 5px"/>
+      <img src="/images/newhome.png" width="31%" height="30%"  style="margin: 5px"/>
    <div>
 </details>
 
