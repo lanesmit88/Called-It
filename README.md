@@ -8,7 +8,7 @@
 <br />
 <p align="center"  style='margin-top: -40px; margin-bottom: -10px;'>
   <a href="https://github.com/lanesmit88/Called-It">
-    <img src="./images/fmnlogo1.png" alt="Logo" width="160" height="160" style="object-fit: contain">
+    <img src="./images/logo.png" alt="Logo" width="160" height="160" style="object-fit: contain">
   </a>
 
   <p align="center">
