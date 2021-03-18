@@ -1,7 +1,3 @@
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![LinkedIn][linkedin-shield]][linkedin-url2]
 <!--ReactSkipperStart -->
 
 <h1>Called-It</h1>
@@ -61,8 +57,8 @@
 <details open="open">
    <summary>Screenshots: Login and Homepage</summary>
    <div style="display: flex">
-      <img src="/images/Login.png" width="31%" height="30%" style="margin: 5px"/>
-      <img src="/images/home.png" width="31%" height="30%"  style="margin: 5px"/>
+      <img src="/images/newlogin.png" width="31%" height="30%" style="margin: 5px"/>
+      <img src="/images/newhome.png" width="31%" height="30%"  style="margin: 5px"/>
    <div>
 </details>
 
@@ -133,16 +129,3 @@ Contributions are what make the open source community such an amazing place to b
 
 * [App Academy](https://www.appacademy.io/)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-
-[contributors-shield]: https://img.shields.io/github/contributors/rhwebster/forgetMeNot.svg?style=for-the-badge
-[contributors-url]: https://github.com/rhwebster/forgetMeNot/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/rhwebster/forgetMeNot.svg?style=for-the-badge
-[forks-url]: https://github.com/rhwebster/forgetMeNot/network/members
-[stars-shield]: https://img.shields.io/github/stars/rhwebster/forgetMeNot.svg?style=for-the-badge
-[stars-url]: https://github.com/rhwebster/forgetMeNot/stargazers
-[issues-shield]: https://img.shields.io/github/issues/rhwebster/forgetMeNot.svg?style=for-the-badge
-[issues-url]: https://github.com/rhwebster/forgetMeNot/issues
-[license-shield]: https://img.shields.io/github/license/rhwebster/forgetMeNot.svg?style=for-the-badge
-[license-url]: https://github.com/rhwebster/forgetMeNot/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url2]: https://www.linkedin.com/in/lane-smit-724291203/
