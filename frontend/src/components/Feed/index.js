@@ -23,36 +23,8 @@ function Feed() {
     dispatch(fetchFeedData({userId, post}));
   }, [Comment, post]);
 
-  // let feedArr = feed.sort((a, b) => b.id - a.id);
-
   return (
     <>
-      {/* <div id="feedContainer">
-        {feedArr && (
-          <div id="feed-inner-container">
-            {feedArr.map((post) => {
-              return <Post key={post.id} post={post} />;
-            })}
-          </div>
-        )} */}
-      {/* {feedArr && (
-          <InfiniteScroll
-            className="journal-entries-list-container"
-            dataLength={feedArr.length}
-            next={() => setPage(page + 1)}
-            loader={<h4>Loading...</h4>}
-            hasMore={true}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
-          >
-            {feedArr.map((post) => {
-              return <Post key={post.id} post={post} />;
-            })}
-          </InfiniteScroll>
-        )} */}
       {feed && (
         <InfiniteScroll
           dataLength={feed.length}

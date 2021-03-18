@@ -22,9 +22,9 @@ export const fetchFeedData = (body) => {
   };
 };
 
-export const fetchTrendingData = () => {
+export const fetchTrendingData = (post) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/trending`);
+    const res = await fetch(`/api/trending/${post}`);
     const resData = await res.data;
     dispatch(TrendingData(resData));
   };

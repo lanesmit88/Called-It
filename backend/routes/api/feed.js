@@ -13,7 +13,6 @@ router.get(
   "/:id/:post",
   asyncHandler(async (req, res, next) => {
     post = req.params.post;
-
     userId = req.params.id;
     const followed = await Follow.findAll({ where: { followerId: userId } });
     stuff = [];
@@ -34,9 +33,13 @@ router.get(
         tempFeed.push(...temp);
       })
     );
-    console.log(post, "------------------------------------------------");
     let feedArr = tempFeed.sort((a, b) => b.id - a.id);
-    feed = feedArr.slice(0, 6 * post);
+    let feed;
+    if (post * 6 > feedArr.length) {
+      feed = feedArr.slice(0);
+    } else {
+      feed = feedArr.slice(0, 6 * post);
+    }
     res.json([...feed]);
   })
 );
