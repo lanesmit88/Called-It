@@ -10,8 +10,10 @@ const {
 } = require("../../db/models");
 
 router.get(
-  "/:id",
+  "/:id/:post",
   asyncHandler(async (req, res, next) => {
+    post = req.params.post;
+
     userId = req.params.id;
     const followed = await Follow.findAll({ where: { followerId: userId } });
     stuff = [];
@@ -21,7 +23,7 @@ router.get(
       stuff.push(temp);
     });
 
-    let feed = [];
+    let tempFeed = [];
 
     await Promise.all(
       stuff.map(async (id) => {
@@ -29,15 +31,12 @@ router.get(
           where: { userId: id },
           include: [PostInteraction, User, Comment],
         });
-        feed.push(...temp);
+        tempFeed.push(...temp);
       })
     );
-        // while(feed.length > 4) {
-        //   feed.pop()
-        // }
-
-    
-
+    console.log(post, "------------------------------------------------");
+    let feedArr = tempFeed.sort((a, b) => b.id - a.id);
+    feed = feedArr.slice(0, 6 * post);
     res.json([...feed]);
   })
 );

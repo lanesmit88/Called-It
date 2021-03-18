@@ -8,10 +8,9 @@ import "./index.css";
 import { NavLink } from "react-router-dom";
 
 function Feed() {
-  window.scrollTo(0, 0);
 
   const dispatch = useDispatch();
-  const [page, setPage] = useState(0);
+  const [post, setPost] = useState(1);
   const userId = useSelector((reduxState) => {
     return reduxState.session.user.id;
   });
@@ -21,10 +20,10 @@ function Feed() {
   });
 
   useEffect(() => {
-    dispatch(fetchFeedData(userId));
-  }, [Comment]);
+    dispatch(fetchFeedData({userId, post}));
+  }, [Comment, post]);
 
-  let feedArr = feed.sort((a, b) => b.id - a.id);
+  // let feedArr = feed.sort((a, b) => b.id - a.id);
 
   return (
     <>
@@ -54,17 +53,22 @@ function Feed() {
             })}
           </InfiniteScroll>
         )} */}
-      {feedArr && (
+      {feed && (
         <InfiniteScroll
-          dataLength={feedArr.length}
-          next={feedArr}
+          dataLength={feed.length}
+          next={() => setPost(post + 1)}
           hasMore={true}
           loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
         >
           <div id="feedContainer">
-            {feedArr && (
+            {feed && (
               <div id="feed-inner-container">
-                {feedArr.map((post) => {
+                {feed.map((post) => {
                   return <Post key={post.id} post={post} />;
                 })}
               </div>
@@ -73,7 +77,7 @@ function Feed() {
         </InfiniteScroll>
       )}
       {/* If there are no posts */}
-      {feedArr.length === 0 && (
+      {feed.length === 0 && (
         <>
           <h1 id="no-posts">No Posts Here</h1>
           <NavLink to="/trending">Find some people to follow!</NavLink>

@@ -14,9 +14,9 @@ const TrendingData = (trending) => ({
   trending: trending,
 });
 
-export const fetchFeedData = (id) => {
+export const fetchFeedData = (body) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/feed/${id}`);
+    const res = await fetch(`/api/feed/${body.userId}/${body.post}`);
     const resData = await res.data;
     dispatch(feedData(resData));
   };
