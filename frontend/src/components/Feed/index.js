@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import Post from "../Post";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeedData } from "../../store/feed";
@@ -25,26 +25,21 @@ function Feed() {
   }, [Comment]);
 
   let feedArr = feed.sort((a, b) => b.id - a.id);
+
   return (
     <>
-      <div id="feedContainer">
+      {/* <div id="feedContainer">
         {feedArr && (
           <div id="feed-inner-container">
             {feedArr.map((post) => {
               return <Post key={post.id} post={post} />;
             })}
           </div>
-        )}
-        {feedArr.length === 0 && (
-          <>
-            <h1 id="no-posts">No Posts Here</h1>
-            <NavLink to="/trending">Find some people to follow!</NavLink>
-          </>
-        )}
-        {/* {feed && (
+        )} */}
+      {/* {feedArr && (
           <InfiniteScroll
             className="journal-entries-list-container"
-            dataLength={feed.length}
+            dataLength={feedArr.length}
             next={() => setPage(page + 1)}
             loader={<h4>Loading...</h4>}
             hasMore={true}
@@ -54,12 +49,36 @@ function Feed() {
               </p>
             }
           >
-            {feed.map((post) => {
+            {feedArr.map((post) => {
               return <Post key={post.id} post={post} />;
             })}
           </InfiniteScroll>
         )} */}
-      </div>
+      {feedArr && (
+        <InfiniteScroll
+          dataLength={feedArr.length}
+          next={feedArr}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+        >
+          <div id="feedContainer">
+            {feedArr && (
+              <div id="feed-inner-container">
+                {feedArr.map((post) => {
+                  return <Post key={post.id} post={post} />;
+                })}
+              </div>
+            )}
+          </div>
+        </InfiniteScroll>
+      )}
+      {/* If there are no posts */}
+      {feedArr.length === 0 && (
+        <>
+          <h1 id="no-posts">No Posts Here</h1>
+          <NavLink to="/trending">Find some people to follow!</NavLink>
+        </>
+      )}
     </>
   );
 }
