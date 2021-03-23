@@ -8,6 +8,18 @@ const UploadPictureForm = () => {
         fetch("/temp", { method: "POST" });
       }}
     >
+      <input
+        type="file"
+        onChange={async (e) => {
+          const rawInputElement = e.target;
+          const theFileToUpload = rawInputElement.files[0];
+          const formData = new FormData();
+
+          formData.append("bubblebop", theFileToUpload);
+
+          await fetch("/temp", { method: "POST", body: formData });
+        }}
+      />
       <button type="submit">Submit</button>
     </form>
   );

@@ -1,6 +1,7 @@
 const router = require('express').Router();
+const { singleMulterUpload, singlePublicFileUpload } = require("../awsS3")
 
-router.post("/", async (req, res) => {
+router.post("/", singleMulterUpload("image"), async (req, res) => {
     console.log(req.url)
     res.json({message: "nice"});
 })
