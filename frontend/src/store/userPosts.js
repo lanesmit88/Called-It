@@ -52,6 +52,7 @@ export const fetchDeletePost = (body) => {
     const res = await fetch(`/api/users/${body.userId}/${body.id}/delete`, {
       method: "DELETE",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
     const deletePost = res.data.deletePost;
     dispatch(DeletePost(deletePost))
@@ -63,6 +64,7 @@ export const updateBio = (body) => {
     const res = await fetch(`/api/users/${body.profileUserId}/bio`, {
       method: "PUT",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
     const updateBio = res.data.posts;
     dispatch(UpdateBio(updateBio));

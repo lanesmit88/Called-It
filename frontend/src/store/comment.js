@@ -32,6 +32,7 @@ export const fetchCreateComment = (body) => {
     const res = await fetch(`/api/comments/post`, {
       method: "POST",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
     const createComment = res.data.createComment;
     dispatch(CreateComment(createComment));
@@ -43,6 +44,7 @@ export const fetchDeleteComment = (body) => {
     const res = await fetch(`/api/comments/${body.commentId}/delete`, {
       method: "DELETE",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
 
     const deleteComment = res.data.deleteComment;
@@ -75,8 +77,6 @@ function commentsReducer(state = initialState, action) {
         return newState;
       }
     case DELETE_COMMENT:
-      // state.filter((comment) => comment.id !== action.comment.id)
-      console.log(state, "-------------------", action.comment);
       newState = JSON.parse(JSON.stringify(state));
       let comments;
       const post = newState[action.comment.postId];

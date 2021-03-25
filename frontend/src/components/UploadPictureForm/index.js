@@ -5,7 +5,6 @@ const UploadPictureForm = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        fetch("/temp", { method: "POST" });
       }}
     >
       <input
@@ -17,7 +16,10 @@ const UploadPictureForm = () => {
 
           formData.append("bubblebop", theFileToUpload);
 
-          await fetch("/temp", { method: "POST", body: formData });
+          await fetch("/temp", {
+            method: "POST",
+            body: formData,
+          });
         }}
       />
       <button type="submit">Submit</button>

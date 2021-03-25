@@ -1,22 +1,18 @@
 import { fetch } from "./csrf.js";
 
-
 const NEW_DISAGREE = "disagree/createDisagree";
-
-
 
 const CreateDisagree = (disagree) => ({
   type: NEW_DISAGREE,
   disagree: disagree,
 });
 
-
-
 export const fetchCreateDisagree = (body) => {
   return async (dispatch) => {
     const res = await fetch(`/api/disagree/${body.userId}`, {
       method: "POST",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
 
     const createDisagree = res.data.createDisagree;
