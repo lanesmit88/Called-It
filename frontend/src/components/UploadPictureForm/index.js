@@ -3,6 +3,7 @@ import React, { Component, useState } from "react";
 
 const UploadPictureForm = () => {
   const [data, setData] = useState();
+  
   return (
     <>
       <form
