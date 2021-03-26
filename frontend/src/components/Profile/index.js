@@ -77,6 +77,7 @@ function Profile() {
     e.preventDefault();
     setShowEditBio(!showEditBio);
   }
+
   let feed = feedArr.sort((a, b) => a.id - b.id);
 
   return (
@@ -90,9 +91,17 @@ function Profile() {
             followedId={profileUserId}
           />
         )}
-        {profileUser && (
+        {profileUser && loggedInUserId !== profileUserId && (
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
+        {profileUser && loggedInUserId === profileUserId && (
+          <img
+            id="profPhoto"
+            className="fas fa-plus loggedinProfPhoto"
+            src={profileUser.profilePhotoUrl}
+          ></img>
+        )}
+
         {!profileUser && (
           <img
             id="profPhoto"
@@ -113,7 +122,9 @@ function Profile() {
         <div id="profile-buttons">
           {profileUser && loggedInUserId === profileUserId && showEditBio && (
             <form onSubmit={showEditBioHandeler}>
-              <button value={showEditBio} id="edit-bio-button" >Cancel</button>
+              <button value={showEditBio} id="edit-bio-button">
+                Cancel
+              </button>
             </form>
           )}
           {profileUser && loggedInUserId === profileUserId && !showEditBio && (
