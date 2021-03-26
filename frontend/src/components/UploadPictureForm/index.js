@@ -2,6 +2,7 @@ import { fetch } from "../../store/csrf";
 
 const UploadPictureForm = () => {
   return (
+    <>
     <form
       onSubmit={(e) => {
         e.preventDefault();
