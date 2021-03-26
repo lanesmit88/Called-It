@@ -9,6 +9,7 @@ import Feed from "./components/Feed";
 import Profile from "./components/Profile";
 import Trending from "./components/Trending";
 import Footer from "./components/Footer"
+import UploadPictureForm from "./components/UploadPictureForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
             <Footer />
+          </Route>
+          <Route path="/testing">
+            <UploadPictureForm />
           </Route>
           <Route path="/profile/:id">
             <Navigation isLoaded={isLoaded} />

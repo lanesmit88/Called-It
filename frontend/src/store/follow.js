@@ -32,6 +32,7 @@ export const fetchCreateFollow = (body) => {
     const res = await fetch(`/api/follow/${body.followedId}`, {
       method: "POST",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
     const createFollow = res.data.createFollow;
     dispatch(CreateFollow(createFollow));
@@ -43,6 +44,7 @@ export const fetchRemoveFollow = (body) => {
     const res = await fetch(`/api/follow/${body.followedId}`, {
       method: "DELETE",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
     const removeFollow = res.data.removeFollow;
     dispatch(RemoveFollow(removeFollow));

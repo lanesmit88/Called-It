@@ -26,6 +26,7 @@ export const fetchCreateAgree = (body) => {
     const res = await fetch(`/api/agree/${body.userId}`, {
       method: "POST",
       body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
     });
 
     const createAgree = res.data.createAgree;
