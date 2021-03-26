@@ -25,6 +25,7 @@ const UploadPictureForm = () => {
       />
       <button type="submit">Submit</button>
     </form>
+    </>
   );
 };
 
