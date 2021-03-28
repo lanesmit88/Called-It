@@ -10,6 +10,7 @@ import { updateBio } from "../../store/userPosts";
 import Follow from "../Follow";
 import Post from "../Post";
 import CreatePost from "../CreatePost/CreatePost";
+import UploadPictureForm from "../UploadPictureForm";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -95,11 +96,14 @@ function Profile() {
           <img id="profPhoto" src={profileUser.profilePhotoUrl}></img>
         )}
         {profileUser && loggedInUserId === profileUserId && (
-          <img
-            id="profPhoto"
-            className="fas fa-plus loggedinProfPhoto"
-            src={profileUser.profilePhotoUrl}
-          ></img>
+          <div id="profPicDiv">
+            <img
+              id="profPhoto"
+              className="fas fa-plus loggedinProfPhoto"
+              src={profileUser.profilePhotoUrl}
+            ></img>
+            <UploadPictureForm />
+          </div>
         )}
 
         {!profileUser && (
