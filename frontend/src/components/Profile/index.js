@@ -102,7 +102,7 @@ function Profile() {
               className="fas fa-plus loggedinProfPhoto"
               src={profileUser.profilePhotoUrl}
             ></img>
-            <UploadPictureForm />
+            <UploadPictureForm profileUserId={profileUserId} />
           </div>
         )}
 

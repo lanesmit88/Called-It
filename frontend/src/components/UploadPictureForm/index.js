@@ -1,14 +1,15 @@
 import { fetch } from "../../store/csrf";
 import React, { Component, useState } from "react";
 import { useDispatch } from "react-redux";
+import { updateProfPhoto } from "../../store/userPosts";
 
-const UploadPictureForm = () => {
+const UploadPictureForm = ({ profileUserId }) => {
   const [data, setData] = useState();
   const dispatch = useDispatch();
 
   function submitForm(e) {
     e.preventDefault();
-    dispatch(updatProfPhoto({data}));
+    dispatch(updateProfPhoto({ data, profileUserId }));
   }
 
   return (
