@@ -80,7 +80,7 @@ export const updateBio = (body) => {
 
 export const updateProfPhoto = (body) => {
   return async (dispatch) => {
-    const res = await fetch(`/api/users/${body.profileUserId}/profPic`, {
+    const res = await fetch(`/api/users/${body.profileUserId}/profPhoto`, {
       method: "PUT",
       body: JSON.stringify(body),
     });
