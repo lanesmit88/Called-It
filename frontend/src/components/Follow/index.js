@@ -25,7 +25,7 @@ function Follow({ followStatus, followerId, followedId }) {
             <form onSubmit={submitUnfollow} id="follow-form">
               Unfollow
               <button
-                class="fas fa-user-minus"
+                className="fas fa-user-minus"
                 id="follow-button"
                 value={follow}
                 onChange={(e) => {
@@ -43,7 +43,7 @@ function Follow({ followStatus, followerId, followedId }) {
               {" "}
               Follow
               <button
-                class="fas fa-user-plus"
+                className="fas fa-user-plus"
                 id="follow-button"
                 value={follow}
                 onChange={(e) => {

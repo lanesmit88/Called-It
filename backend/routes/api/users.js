@@ -1,7 +1,7 @@
 const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
-
+const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User, Post, PostInteraction, Comment } = require("../../db/models");
@@ -119,6 +119,25 @@ router.put(
     });
 
     res.json({ posts });
+  })
+);
+
+router.put(
+  "/:id/profPhoto",
+  singleMulterUpload("profPhoto"),
+  asyncHandler(async (req, res) => {
+    let userId = req.params.id;
+    const { data } = req.body;
+    await singlePublicFileUpload(data);
+
+    const user = await User.findOne({
+      where: { id: userId },
+      include: [PostInteraction, Comment, Post],
+    });
+
+    await user.update({ profilePhotoUrl: data });
+
+    res.json({user})
   })
 );
 

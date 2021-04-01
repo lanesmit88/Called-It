@@ -8,6 +8,8 @@ const DELETE_POST = "posts/deletePost";
 
 const UPDATE_BIO = "user/updateBio";
 
+const UPDATE_PROF_PHOTO = "user/updateProfPhoto";
+
 const CreatePost = (post) => ({
   type: NEW_POST,
   post: post,
@@ -26,6 +28,11 @@ const userPostsData = (userPosts) => ({
 const UpdateBio = (bio) => ({
   type: UPDATE_BIO,
   bio: bio,
+});
+
+const UpdateProfPhoto = (photo) => ({
+  type: UPDATE_PROF_PHOTO,
+  photo: photo,
 });
 
 export const fetchUserPostsData = (userId) => {
@@ -55,7 +62,7 @@ export const fetchDeletePost = (body) => {
       headers: { "Content-Type": "application/json" },
     });
     const deletePost = res.data.deletePost;
-    dispatch(DeletePost(deletePost))
+    dispatch(DeletePost(deletePost));
   };
 };
 
@@ -71,6 +78,17 @@ export const updateBio = (body) => {
   };
 };
 
+export const updateProfPhoto = (body) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/users/${body.profileUserId}/profPhoto`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    });
+    const updatedProfPic = res.data.profPic;
+    dispatch(UpdateProfPhoto(updatedProfPic));
+  };
+};
+
 const initialState = [];
 
 function userPostsReducer(state = initialState, action) {
@@ -81,11 +99,11 @@ function userPostsReducer(state = initialState, action) {
     case NEW_POST:
       return [...state, action.post];
     case DELETE_POST:
-      return state.filter(
-        (piece) => piece.id !== action.post.id
-      );
+      return state.filter((piece) => piece.id !== action.post.id);
     case UPDATE_BIO:
       return action.bio;
+    case UPDATE_PROF_PHOTO:
+      return action.profPic;
     default:
       return state;
   }

@@ -1,16 +1,20 @@
 import { fetch } from "../../store/csrf";
 import React, { Component, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateProfPhoto } from "../../store/userPosts";
 
-const UploadPictureForm = () => {
+const UploadPictureForm = ({ profileUserId }) => {
   const [data, setData] = useState();
-  
+  const dispatch = useDispatch();
+
+  function submitForm(e) {
+    e.preventDefault();
+    dispatch(updateProfPhoto({ data, profileUserId }));
+  }
+
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <form onSubmit={submitForm}>
         <input
           type="file"
           onChange={async (e) => {
@@ -18,14 +22,15 @@ const UploadPictureForm = () => {
             const theFileToUpload = rawInputElement.files[0];
             const formData = new FormData();
 
-            formData.append("bubblebop", theFileToUpload);
-
-            await fetch("/temp", {
-              method: "POST",
-              body: formData,
-            });
+            formData.append("profPhoto", theFileToUpload);
+            setData(formData);
+            //   await fetch("/temp", {
+            //     method: "POST",
+            //     body: formData,
+            //   });
           }}
         />
+
         <button type="submit">Submit</button>
       </form>
     </>
