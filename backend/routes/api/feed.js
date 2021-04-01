@@ -41,6 +41,7 @@ router.get(
       feed = feedArr.slice(0, 6 * post);
     }
     res.json([...feed]);
+    
   })
 );
 
