@@ -9,8 +9,10 @@ function CreateComment({ userId, postId }) {
 
   function submitForm(e) {
     e.preventDefault();
-    dispatch(fetchCreateComment({ text, userId, postId }));
-    setText("");
+    if (text.length > 0) {
+      dispatch(fetchCreateComment({ text, userId, postId }));
+      setText("");
+    }
   }
 
   return (
@@ -24,7 +26,11 @@ function CreateComment({ userId, postId }) {
             setText(e.target.value);
           }}
         ></input>
-        <button className="fas fa-plus" id="comment-button" type="submit"></button>
+        <button
+          className="fas fa-plus"
+          id="comment-button"
+          type="submit"
+        ></button>
       </form>
     </>
   );
