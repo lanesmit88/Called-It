@@ -29,6 +29,7 @@ function Post({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [deletePost, setDeletePost] = useState(true);
   const [showRightWrong, setShowRightWrong] = useState(false);
+  const [rightWrong, setRightWrong] = useState(false);
 
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
@@ -127,7 +128,21 @@ function Post({ post }) {
               )}
               {showRightWrong && (
                 <>
-                  <h1>hiiiiiiii</h1>
+                  <form onSubmit={submitComplete} id="complete-form">
+                    Correct?
+                    <input
+                      type="checkbox"
+                      value={rightWrong}
+                      onChange={(e) => {
+                        setRightWrong(e.target.value);
+                      }}
+                    ></input>
+                    <button
+                      className="fas fa-plus"
+                      id="comment-button"
+                      type="submit"
+                    ></button>
+                  </form>
                 </>
               )}
               {active && loggedInUserId !== userId && (
