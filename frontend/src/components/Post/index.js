@@ -10,7 +10,7 @@ import CreateComment from "../CreateComment";
 
 import { fetchCommentsData } from "../../store/comment";
 
-import { fetchDeletePost } from "../../store/userPosts";
+import { fetchDeletePost, fetchCompletePost } from "../../store/userPosts";
 
 function Post({ post }) {
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ function Post({ post }) {
 
   function submitComplete(e) {
     e.preventDefault();
-    // dispatch(fetchCreateComment({ text, userId, postId }));
+    dispatch(fetchCompletePost({ rightWrong, id, userId }));
     // setText("");
   }
 

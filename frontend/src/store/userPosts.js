@@ -6,6 +6,8 @@ const NEW_POST = "posts/createPost";
 
 const DELETE_POST = "posts/deletePost";
 
+const COMPLETE_POST = "posts/completePost";
+
 const UPDATE_BIO = "user/updateBio";
 
 const UPDATE_PROF_PHOTO = "user/updateProfPhoto";
@@ -17,6 +19,11 @@ const CreatePost = (post) => ({
 
 const DeletePost = (post) => ({
   type: DELETE_POST,
+  post: post,
+});
+
+const CompletePost = (post) => ({
+  type: COMPLETE_POST,
   post: post,
 });
 
@@ -66,6 +73,18 @@ export const fetchDeletePost = (body) => {
   };
 };
 
+export const fetchDeletePost = (body) => {
+  return async (dispatch) => {
+    const res = await fetch(`/api/users/${body.userId}/${body.id}/complete`, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+    });
+    const completePost = res.data.completePost;
+    dispatch(CompletePost(completePost));
+  };
+};
+
 export const updateBio = (body) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${body.profileUserId}/bio`, {
@@ -100,6 +119,8 @@ function userPostsReducer(state = initialState, action) {
       return [...state, action.post];
     case DELETE_POST:
       return state.filter((piece) => piece.id !== action.post.id);
+    case COMPLETE_POST:
+      return action.post;
     case UPDATE_BIO:
       return action.bio;
     case UPDATE_PROF_PHOTO:
