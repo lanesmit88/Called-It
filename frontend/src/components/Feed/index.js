@@ -19,6 +19,7 @@ function Feed() {
     return reduxState.feed;
   });
 
+
   useEffect(() => {
     dispatch(fetchFeedData({userId, post}));
   }, [Comment, post]);

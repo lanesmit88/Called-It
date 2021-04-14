@@ -19,7 +19,6 @@ function Post({ post }) {
     userId,
     dueDate,
     id,
-    active,
     Comments,
     PostInteractions,
     User: { profilePhotoUrl: profPhoto, username, id: postUserId },
@@ -50,9 +49,11 @@ function Post({ post }) {
   });
   let agreeCount = interactionAgree.length;
   let disagreeCount = interactionDisagree.length;
-
+  
   const date = new Date(dueDate);
-
+  
+  let active = date >= new Date();
+  console.log(active, date, new Date())
   if (agreeableStatus || disagreeableStatus) {
     let cancelInteractions = PostInteractions.find(
       (eachInteraction) => eachInteraction.userId === loggedInUserId
@@ -149,7 +150,14 @@ function Post({ post }) {
           <div id="comments">
             {comments &&
               comments.map((comment) => {
-                return <Comment key={comment.id} comment={comment} loggedInUserId={loggedInUserId} posterId={userId}/>;
+                return (
+                  <Comment
+                    key={comment.id}
+                    comment={comment}
+                    loggedInUserId={loggedInUserId}
+                    posterId={userId}
+                  />
+                );
               })}
             <CreateComment userId={loggedInUserId} postId={id} />
           </div>
