@@ -30,7 +30,6 @@ function Feed() {
           dataLength={feed.length}
           next={() => setPost(post + 1)}
           hasMore={true}
-          loader={<h4>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>Yay! You have seen it all</b>
