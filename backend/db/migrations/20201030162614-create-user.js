@@ -18,6 +18,14 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      rights: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      wrongs: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false,

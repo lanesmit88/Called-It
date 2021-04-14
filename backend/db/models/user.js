@@ -25,6 +25,12 @@ module.exports = (sequelize, DataTypes) => {
           len: [3, 256],
         },
       },
+      rights: {
+        type: DataTypes.INTEGER,
+      },
+      wrongs: {
+        type: DataTypes.INTEGER,
+      },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
         allowNull: false,
@@ -69,7 +75,6 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Follow, { foreignKey: "followerId" });
     User.hasMany(models.Message, { foreignKey: "senderId" });
     User.hasMany(models.Message, { foreignKey: "recipientId" });
-
   };
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function

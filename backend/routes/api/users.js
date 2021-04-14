@@ -101,6 +101,19 @@ router.delete(
   })
 );
 
+router.post(
+  "/:userId/:postId/complete",
+  asyncHandler(async (req, res, next) => {
+    const { id, userId, rightWrong } = req.body;
+
+    const completePost = await Post.findOne({ where: { id: id } });
+
+    await completePost.update({active: false});
+    deletePost = { id, userId };
+    res.json({ deletePost });
+  })
+);
+
 router.put(
   "/:id/bio",
   asyncHandler(async (req, res, next) => {

@@ -73,7 +73,7 @@ export const fetchDeletePost = (body) => {
   };
 };
 
-export const fetchDeletePost = (body) => {
+export const fetchCompletePost = (body) => {
   return async (dispatch) => {
     const res = await fetch(`/api/users/${body.userId}/${body.id}/complete`, {
       method: "POST",
