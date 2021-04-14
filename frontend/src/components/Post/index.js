@@ -28,6 +28,7 @@ function Post({ post }) {
   const [disagreeableStatus, setDisagreeableStatus] = useState(true);
   const [showComments, setShowComments] = useState(false);
   const [deletePost, setDeletePost] = useState(true);
+  const [showRightWrong, setShowRightWrong] = useState(false);
 
   const loggedInUserId = useSelector((reduxState) => {
     return reduxState.session.user.id;
@@ -49,11 +50,10 @@ function Post({ post }) {
   });
   let agreeCount = interactionAgree.length;
   let disagreeCount = interactionDisagree.length;
-  
+
   const date = new Date(dueDate);
-  
+
   let active = date >= new Date();
-  console.log(active, date, new Date())
   if (agreeableStatus || disagreeableStatus) {
     let cancelInteractions = PostInteractions.find(
       (eachInteraction) => eachInteraction.userId === loggedInUserId
@@ -71,6 +71,12 @@ function Post({ post }) {
   function submitDeletePost(e) {
     e.preventDefault();
     dispatch(fetchDeletePost({ id, userId }));
+  }
+
+  function submitComplete(e) {
+    e.preventDefault();
+    // dispatch(fetchCreateComment({ text, userId, postId }));
+    // setText("");
   }
 
   return (
@@ -101,7 +107,28 @@ function Post({ post }) {
                 <h1 id="active-post">Active</h1>
               )}
               {!active && loggedInUserId === userId && (
-                <button>Complete</button>
+                <>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (showRightWrong) {
+                        setShowRightWrong(false);
+                      } else {
+                        setShowRightWrong(true);
+                      }
+                    }}
+                    id="complete-form"
+                  >
+                    <button id="complete-button" type="submit">
+                      Complete
+                    </button>
+                  </form>
+                </>
+              )}
+              {showRightWrong && (
+                <>
+                  <h1>hiiiiiiii</h1>
+                </>
               )}
               {active && loggedInUserId !== userId && (
                 <h1 id="active-post">Active</h1>
