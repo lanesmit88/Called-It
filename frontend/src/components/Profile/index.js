@@ -22,12 +22,12 @@ function Profile() {
   const [showActiveFeed, setShowActiveFeed] = useState(true);
   const activeFeedArr = useSelector((reduxState) => {
     return reduxState.userPosts
-      .filter((piece) => piece.active === true)
+      .filter((piece) => piece.complete === false)
       .reverse();
   });
   const inactiveFeedArr = useSelector((reduxState) => {
     return reduxState.userPosts
-      .filter((piece) => piece.active === false)
+      .filter((piece) => piece.complete === true)
       .reverse();
   });
   window.scrollTo(0, 0);

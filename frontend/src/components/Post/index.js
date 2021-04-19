@@ -77,7 +77,7 @@ function Post({ post }) {
   function submitComplete(e) {
     e.preventDefault();
     dispatch(fetchCompletePost({ rightWrong, id, userId }));
-    // setText("");
+
   }
 
   return (

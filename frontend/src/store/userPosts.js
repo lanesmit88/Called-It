@@ -120,7 +120,14 @@ function userPostsReducer(state = initialState, action) {
     case DELETE_POST:
       return state.filter((piece) => piece.id !== action.post.id);
     case COMPLETE_POST:
-      return state.filter((piece) => piece.id !== action.post.id);
+      newState = JSON.parse(JSON.stringify(state));
+      // newState[action.post.id] = [action.comment];
+      newState.forEach((e) => {
+        if (e.id === action.post.id) {
+          e.complete = true;
+        }
+      });
+      return newState;
     case UPDATE_BIO:
       return action.bio;
     case UPDATE_PROF_PHOTO:
