@@ -19,8 +19,16 @@ function Profile() {
   const [text, setText] = useState("");
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [showEditBio, setShowEditBio] = useState(false);
-  const feedArr = useSelector((reduxState) => {
-    return reduxState.userPosts.reverse();
+  const [showActiveFeed, setShowActiveFeed] = useState(true);
+  const activeFeedArr = useSelector((reduxState) => {
+    return reduxState.userPosts
+      .filter((piece) => piece.active === true)
+      .reverse();
+  });
+  const inactiveFeedArr = useSelector((reduxState) => {
+    return reduxState.userPosts
+      .filter((piece) => piece.active === false)
+      .reverse();
   });
   window.scrollTo(0, 0);
   let profileUserId = parseInt(id);
@@ -79,7 +87,8 @@ function Profile() {
     setShowEditBio(!showEditBio);
   }
 
-  let feed = feedArr.sort((a, b) => a.id - b.id);
+  let feed = activeFeedArr.sort((a, b) => a.id - b.id);
+  let inactiveFeed = inactiveFeedArr.sort((a, b) => a.id - b.id);
 
   return (
     <div id="profile-page-container">
@@ -164,9 +173,17 @@ function Profile() {
       </div>
       {allowCreatePost && showCreatePost && <CreatePost userId={id} />}
       <div id="profileFeedContainer">
-        {feed.map((post) => {
-          return <Post key={post.id} post={post} />;
-        })}
+        <button onClick={() => setShowActiveFeed(!showActiveFeed)}>
+          Show inactives
+        </button>
+        {showActiveFeed &&
+          feed.map((post) => {
+            return <Post key={post.id} post={post} />;
+          })}
+        {!showActiveFeed &&
+          inactiveFeed.map((post) => {
+            return <Post key={post.id} post={post} />;
+          })}
       </div>
     </div>
   );
