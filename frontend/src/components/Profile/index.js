@@ -173,9 +173,16 @@ function Profile() {
       </div>
       {allowCreatePost && showCreatePost && <CreatePost userId={id} />}
       <div id="profileFeedContainer">
-        <button onClick={() => setShowActiveFeed(!showActiveFeed)}>
-          Show inactives
-        </button>
+        {!showActiveFeed &&  (
+          <button onClick={() => setShowActiveFeed(!showActiveFeed)}>
+            Show Actives
+          </button>
+        )}
+        {showActiveFeed && inactiveFeed.length > 0 && (
+          <button onClick={() => setShowActiveFeed(!showActiveFeed)}>
+            Show Inactives
+          </button>
+        )}
         {showActiveFeed &&
           feed.map((post) => {
             return <Post key={post.id} post={post} />;

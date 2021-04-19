@@ -21,6 +21,9 @@ function Post({ post }) {
     id,
     Comments,
     PostInteractions,
+    active,
+    complete,
+    correct, 
     User: { profilePhotoUrl: profPhoto, username, id: postUserId },
   } = post;
 
@@ -54,7 +57,7 @@ function Post({ post }) {
 
   const date = new Date(dueDate);
 
-  let active = date >= new Date();
+  let isActive = date >= new Date();
   if (agreeableStatus || disagreeableStatus) {
     let cancelInteractions = PostInteractions.find(
       (eachInteraction) => eachInteraction.userId === loggedInUserId
@@ -77,7 +80,6 @@ function Post({ post }) {
   function submitComplete(e) {
     e.preventDefault();
     dispatch(fetchCompletePost({ rightWrong, id, userId }));
-
   }
 
   return (
@@ -104,10 +106,11 @@ function Post({ post }) {
               )}
             </div>
             <div id="agrees-active">
-              {active && loggedInUserId === userId && (
+              {isActive && loggedInUserId === userId && !complete && (
                 <h1 id="active-post">Active</h1>
               )}
-              {!active && loggedInUserId === userId && (
+
+              {!isActive && loggedInUserId === userId && !complete && (
                 <>
                   <form
                     onSubmit={(e) => {
@@ -124,6 +127,16 @@ function Post({ post }) {
                       Complete
                     </button>
                   </form>
+                </>
+              )}
+              {!isActive && loggedInUserId === userId && complete && correct && (
+                <>
+                  <h1 id="active-post">Correct</h1>
+                </>
+              )}
+              {!isActive && loggedInUserId === userId && complete && !correct && (
+                <>
+                  <h1 id="inactive-post">Incorrect</h1>
                 </>
               )}
               {showRightWrong && (
@@ -145,10 +158,10 @@ function Post({ post }) {
                   </form>
                 </>
               )}
-              {active && loggedInUserId !== userId && (
+              {isActive && loggedInUserId !== userId && (
                 <h1 id="active-post">Active</h1>
               )}
-              {!active && loggedInUserId !== userId && (
+              {!isActive && loggedInUserId !== userId && (
                 <h1 id="inactive-post">complete</h1>
               )}
               <div id="agrees">

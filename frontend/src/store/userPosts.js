@@ -125,6 +125,11 @@ function userPostsReducer(state = initialState, action) {
       newState.forEach((e) => {
         if (e.id === action.post.id) {
           e.complete = true;
+          if (action.post.rightWrong) {
+            e.correct = true;
+          } else {
+            e.correct = false;
+          }
         }
       });
       return newState;

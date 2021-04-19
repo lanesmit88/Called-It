@@ -110,7 +110,11 @@ router.post(
     const user = await User.findOne({ where: { id: userId } });
     let userRights = user.rights;
     let userWrongs = user.wrongs;
-    await completedPost.update({ complete: true });
+    if (rightWrong) {
+      await completedPost.update({ complete: true, correct: true });
+    } else {
+      await completedPost.update({ complete: true, correct: false });
+    }
 
     if (rightWrong) {
       await user.update({ rights: userRights + 1 });

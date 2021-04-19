@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       complete: {
         type: DataTypes.BOOLEAN,
       },
+      correct: {
+        type: DataTypes.BOOLEAN,
+      },
     },
     {}
   );
