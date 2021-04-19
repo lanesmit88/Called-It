@@ -120,7 +120,7 @@ function userPostsReducer(state = initialState, action) {
     case DELETE_POST:
       return state.filter((piece) => piece.id !== action.post.id);
     case COMPLETE_POST:
-      return action.post;
+      return state.filter((piece) => piece.id !== action.post.id);
     case UPDATE_BIO:
       return action.bio;
     case UPDATE_PROF_PHOTO:

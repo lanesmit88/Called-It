@@ -106,19 +106,19 @@ router.post(
   asyncHandler(async (req, res, next) => {
     const { id, userId, rightWrong } = req.body;
 
-    const completePost = await Post.findOne({ where: { id: id } });
+    const completedPost = await Post.findOne({ where: { id: id } });
     const user = await User.findOne({ where: { id: userId } });
     let userRights = user.rights;
     let userWrongs = user.wrongs;
-    await completePost.update({ active: false });
+    await completedPost.update({ active: false });
 
     if (rightWrong) {
       await user.update({ rights: userRights + 1 });
     } else {
-      await user.update({ wrongs: userWrongs + 1})
+      await user.update({ wrongs: userWrongs + 1 });
     }
-    deletePost = { id, userId };
-    res.json({ deletePost });
+    completePost = { id, userId, rightWrong };
+    res.json({ completePost });
   })
 );
 
