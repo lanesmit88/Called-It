@@ -107,8 +107,13 @@ router.post(
     const { id, userId, rightWrong } = req.body;
 
     const completePost = await Post.findOne({ where: { id: id } });
+    const user = await User.findOne({ where: { id: userId } });
 
     await completePost.update({active: false});
+
+    // if(rightWrong) {
+    //   await user.update({rights: })
+    // }
     deletePost = { id, userId };
     res.json({ deletePost });
   })
