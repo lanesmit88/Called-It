@@ -108,12 +108,15 @@ router.post(
 
     const completePost = await Post.findOne({ where: { id: id } });
     const user = await User.findOne({ where: { id: userId } });
+    let userRights = user.rights;
+    let userWrongs = user.wrongs;
+    await completePost.update({ active: false });
 
-    await completePost.update({active: false});
-
-    // if(rightWrong) {
-    //   await user.update({rights: })
-    // }
+    if (rightWrong) {
+      await user.update({ rights: userRights + 1 });
+    } else {
+      await user.update({ wrongs: userWrongs + 1})
+    }
     deletePost = { id, userId };
     res.json({ deletePost });
   })
@@ -155,7 +158,7 @@ router.put(
 
     await user.update({ profilePhotoUrl: data });
 
-    res.json({user})
+    res.json({ user });
   })
 );
 
