@@ -64,10 +64,18 @@ router.get(
   "/:id/posts",
   asyncHandler(async (req, res, next) => {
     userId = req.params.id;
-    const posts = await Post.findAll({
-      where: { userId: userId },
-      include: [PostInteraction, User, Comment],
+    // const posts = await Post.findAll({
+    //   where: { userId: userId },
+    //   include: [PostInteraction, User, Comment],
+    // });
+    let arr = [];
+    const posts = await PostInteraction.findAll({
+      where: { userId: userId }, include: [Post, User]
     });
+
+    // posts.forEach((int) => {
+    //   arr.push(Post.findOne({ where: { id: int.postId } }));
+    // });
     res.json({ posts });
   })
 );
