@@ -14,6 +14,7 @@ function Agree({
   oldAgreeableStatus,
   oldDisagreeableStatus,
 }) {
+  const dispatch = useDispatch();
   const [agree, setAgree] = useState(true);
   const [disagree, setDisagree] = useState(false);
   const [agreeCounter, setAgreeCounter] = useState(agreeCount);
@@ -22,8 +23,6 @@ function Agree({
   const [disagreeableStatus, setDisagreeableStatus] = useState(
     oldDisagreeableStatus
   );
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (agreeableStatus || disagreeableStatus) {
