@@ -1,6 +1,6 @@
+import "./index.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./index.css";
 import { fetchCreateComment } from "../../store/comment";
 
 function CreateComment({ userId, postId }) {

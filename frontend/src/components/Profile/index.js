@@ -9,7 +9,7 @@ import { updateBio } from "../../store/userPosts";
 
 import Follow from "../Follow";
 import Post from "../Post";
-import CreatePost from "../CreatePost/CreatePost";
+import CreatePost from "../CreatePost";
 import UploadPictureForm from "../UploadPictureForm";
 
 function Profile() {

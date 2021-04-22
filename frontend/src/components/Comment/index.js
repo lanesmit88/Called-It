@@ -1,6 +1,5 @@
 import "./index.css";
 import { NavLink } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 import { fetchDeleteComment } from "../../store/comment";
 import { useState } from "react";

@@ -80,13 +80,9 @@ function Agree({
               }}
               type="submit"
             ></button>
-            {/* <button type="submit">Post</button> */}
           </form>
         ) : (
-          <button
-            className="fas fa-thumbs-up"
-            id="not-agreeable-button"
-          ></button>
+          <i className="fas fa-thumbs-up" id="not-agreeable-button"></i>
         )}
         <h3 id="postAgrees">{agreeCounter}</h3>
       </div>
@@ -102,13 +98,9 @@ function Agree({
               }}
               type="submit"
             ></button>
-            {/* <button type="submit">Post</button> */}
           </form>
         ) : (
-          <button
-            className="fas fa-thumbs-down"
-            id="not-disagreeable-button"
-          ></button>
+          <i className="fas fa-thumbs-down" id="not-disagreeable-button"></i>
         )}
 
         <h3 id="postDisagrees">{disagreeCounter}</h3>

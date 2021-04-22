@@ -1,11 +1,11 @@
-import React, { Component, useState } from "react";
-import Post from "../Post";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchFeedData } from "../../store/feed";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useEffect } from "react";
 import "./index.css";
+import React, { Component, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Post from "../Post";
+import { fetchFeedData } from "../../store/feed";
 
 function Feed() {
 
@@ -48,7 +48,6 @@ function Feed() {
           </div>
         </InfiniteScroll>
       )}
-      {/* If there are no posts */}
       {feed.length === 0 && (
         <>
           <h1 id="no-posts">No Posts Here</h1>
